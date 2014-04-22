@@ -11,11 +11,11 @@ GameObject:
   - 33: {fileID: 3300000}
   - 23: {fileID: 2300000}
   - 65: {fileID: 6500000}
-  - 195: {fileID: 19500000}
   - 114: {fileID: 11400000}
+  - 195: {fileID: 19500000}
   m_Layer: 0
-  m_Name: Ally0
-  m_TagString: Player
+  m_Name: Dummy0
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -27,8 +27,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 421.886841, y: 3, z: 862.416992}
-  m_LocalScale: {x: 15, y: 6, z: 15}
+  m_LocalPosition: {x: 492.750916, y: 4, z: 892.927246}
+  m_LocalScale: {x: 6, y: 8, z: 6}
   m_Children: []
   m_Father: {fileID: 0}
 --- !u!23 &2300000
@@ -43,7 +43,7 @@ Renderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 2100000, guid: 720d19f46f55fef44ad1c7a67fbdb167, type: 2}
+  - {fileID: 2100000, guid: 12ccb9c0602333a4682db8503781f249, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -79,13 +79,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0f363d2fd598efd4b8b2ec87bd0d66b8, type: 3}
+  m_Script: {fileID: 11500000, guid: e016d1635f619ea40b65eefd92e7569e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultMaterial: {fileID: 2100000, guid: 720d19f46f55fef44ad1c7a67fbdb167, type: 2}
+  defaultMaterial: {fileID: 2100000, guid: 12ccb9c0602333a4682db8503781f249, type: 2}
   onHoverMaterial: {fileID: 2100000, guid: 13f2273eee249e24f92aa2d8fabfc2af, type: 2}
-  health: 0
-  energy: 0
+  health: 50
+  energy: 50
   isClicked: 0
   updateRightClick: 0
   destinationVector: {x: 0, y: 0, z: 0}
@@ -100,7 +100,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
   m_Radius: .5
-  m_Speed: 3.5
+  m_Speed: 5.5
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120

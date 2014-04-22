@@ -33,19 +33,19 @@ public class perspectiveCameraMouse : MonoBehaviour {
 		transform.Translate(Input.GetAxis(keyboardXAxis) * scrollSpeed * Time.deltaTime, Input.GetAxis(keyboardYAxis) * scrollSpeed * Time.deltaTime, Input.GetAxis(keyboardYAxis) * scrollSpeed * Time.deltaTime);
 		
 		//up 
-		if(Input.mousePosition.y >= Screen.height - (Screen.height * edgeOfScreen))
+		if(Input.mousePosition.y >= Screen.height - (Screen.height * edgeOfScreen) && Input.mousePosition.y <= Screen.height)
 			transform.position += (Vector3.forward + Vector3.right) * Time.deltaTime * scrollSpeed;
 		
 		//down
-		if(Input.mousePosition.y <= Screen.height * edgeOfScreen)
+		if(Input.mousePosition.y <= Screen.height * edgeOfScreen && Input.mousePosition.y >= 0.0f)
 			transform.position += -(Vector3.forward - Vector3.left) * Time.deltaTime * scrollSpeed;
 		
 		//left
-		if(Input.mousePosition.x <= Screen.width * edgeOfScreen)
+		if(Input.mousePosition.x <= Screen.width * edgeOfScreen && Input.mousePosition.x >= 0.0f)
 			transform.position += (Vector3.left + Vector3.forward) * Time.deltaTime * scrollSpeed;
 		
 		//right
-		if(Input.mousePosition.x >= Screen.width - (Screen.width * edgeOfScreen))
+		if(Input.mousePosition.x >= Screen.width - (Screen.width * edgeOfScreen)  && Input.mousePosition.y <= Screen.width)
 			transform.position += (Vector3.right - Vector3.forward) * Time.deltaTime * scrollSpeed;
 		
 	}
@@ -101,8 +101,10 @@ public class perspectiveCameraMouse : MonoBehaviour {
 			Debug.Log("Hit " + hit.transform.gameObject.name);
 			GameObject rayGO = hit.collider.gameObject;
 			mouseLocation = hit.point;
-			
-			RightClickSelectable(); 
+			//if(rayGO.GetComponent("baseUnit") != null){
+				RightClickSelectable(); 
+			//}
+			//else if(rayGO.GetComponent("enemyUnit") != null)
 		}
 	}
 }

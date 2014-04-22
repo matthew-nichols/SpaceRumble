@@ -1,28 +1,23 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
-public class baseUnit : MonoBehaviour {
+public class EnemyUnit : baseUnit {
 
-	public Material defaultMaterial;
-	public Material onHoverMaterial;
-	public int health;
-	public int energy;
-	public bool isClicked = false;
-	public bool updateRightClick = false;
-	public Vector3 destinationVector;
-	public NavMeshAgent agent;
+	public Vector3 targetLocation;
+	public baseUnit currentTarget;
 
+	// Use this for initialization
 	void Start () {
-		//defaultMaterial = renderer.material;
 		agent = GetComponent<NavMeshAgent>();
 	}
 
 	// Update is called once per frame
 	void Update () {
+		currentTarget = FindObjectOfType<AllyUnit>();
+		agent.SetDestination(currentTarget.transform.position);
 		if(isClicked){
 			print(gameObject.name + " is active: " + gameObject.activeSelf);
 			renderer.material = onHoverMaterial;
-			//moveUnit();
 		}
 		else{
 			renderer.material = defaultMaterial;
