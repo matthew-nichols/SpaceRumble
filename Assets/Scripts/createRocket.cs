@@ -11,13 +11,14 @@ public class createRocket : MonoBehaviour {
 	void Update() {
 		if (Input.GetButtonDown(FireButton)) {
 			Rigidbody clone;
-			clone = Instantiate(projectile, transform.position + offset, transform.rotation) as Rigidbody;
+			clone = (Rigidbody)Instantiate(projectile, transform.position + offset, transform.rotation);
 			clone.velocity = transform.TransformDirection(Vector3.forward * velocity) + new Vector3(Time.deltaTime * velocity, 0, 0);
 			//removeObject(clone, 3);
 
 			Destroy(clone, delay);
 			Destroy (clone.gameObject, delay);
 		}
+
 	}
 	/*
 	void OnCollisionEnter(Collision collision) {

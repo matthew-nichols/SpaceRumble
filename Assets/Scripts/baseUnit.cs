@@ -6,11 +6,15 @@ public class baseUnit : MonoBehaviour {
 	public Material defaultMaterial;
 	public Material onHoverMaterial;
 	public int health;
-	public int energy;
+    public int currentHealth;
+    public int attackDmg;
+    public int attackRange;
+    public double attackRate;
 	public bool isClicked = false;
 	public bool updateRightClick = false;
 	public Vector3 destinationVector;
 	public NavMeshAgent agent;
+    public string name = "unit";
 
 	void Start () {
 		//defaultMaterial = renderer.material;
@@ -27,6 +31,11 @@ public class baseUnit : MonoBehaviour {
 		else{
 			renderer.material = defaultMaterial;
 		}
+        if (currentHealth <= 0)
+        {
+            Destroy(gameObject.rigidbody);
+            Destroy(gameObject);
+        }
 	}
 	void OnMouseEnter(){
 		renderer.material = onHoverMaterial;
@@ -34,4 +43,9 @@ public class baseUnit : MonoBehaviour {
 	void OnMouseExit(){
 		renderer.material = defaultMaterial ;
 	}
+    void ApplyDamage(int n)
+    {
+        currentHealth -= n;
+
+    }
 }

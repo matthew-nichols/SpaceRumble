@@ -78,17 +78,24 @@ public class perspectiveCameraMouse : MonoBehaviour {
 
 			//if clicked object is selectable
 			//still buggy
-			if(rayGO.GetComponent("baseUnit") != null){
+			if(rayGO.GetComponent("AllyUnit") != null){
 				//Debug.Log("select: " + rayGO.GetType());
 				RayHitSelectable(rayGO);
 				hasUnitSelected = true;
 				previousSelectedID = rayGO.GetInstanceID();
 				//rayGO.SetActive(true);
-			}
+                ((SelectionDisplay)selectedUnit.GetComponent("SelectionDisplay")).disp = true;
+                //sd.disp = true;
+                //rayGO.GetComponent("SelectionDisplay").disp = true;
+                //rayGO.GetComponent("AllyUnit").canMove = true;
+            }
 			else{
 				Debug.Log("unselect");
+
+                ((SelectionDisplay)selectedUnit.GetComponent("SelectionDisplay")).disp = false;
 				hasUnitSelected = false;
 				previousSelectedID = -1;
+                selectedUnit = null;
 			}
 		}
 	}

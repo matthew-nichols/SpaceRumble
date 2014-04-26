@@ -5,7 +5,9 @@ public class AllyUnit : baseUnit {
 	
 	public Vector3 targetLocation;
 	public baseUnit currentTarget;
-	
+    public bool canMove;
+    public int energy;
+    public int currentEnergy;
 	// Use this for initialization
 	void Start () {
 		agent = GetComponent<NavMeshAgent>();

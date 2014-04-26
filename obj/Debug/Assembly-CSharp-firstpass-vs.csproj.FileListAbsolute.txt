@@ -1,0 +1,11 @@
+C:\Users\LegoShrimip\Documents\GitHub\SpaceRumble\Temp\bin\Debug\Assembly-CSharp-firstpass.dll
+C:\Users\LegoShrimip\Documents\GitHub\SpaceRumble\Temp\bin\Debug\Assembly-CSharp-firstpass.pdb
+C:\Users\LegoShrimip\Documents\GitHub\SpaceRumble\Temp\bin\Debug\UnityEditor.dll
+C:\Users\LegoShrimip\Documents\GitHub\SpaceRumble\Temp\bin\Debug\UnityEngine.dll
+C:\Users\LegoShrimip\Documents\GitHub\SpaceRumble\Temp\bin\Debug\Mono.Cecil.dll
+C:\Users\LegoShrimip\Documents\GitHub\SpaceRumble\Temp\bin\Debug\nunit.framework.dll
+C:\Users\LegoShrimip\Documents\GitHub\SpaceRumble\Temp\bin\Debug\Unity.DataContract.dll
+C:\Users\LegoShrimip\Documents\GitHub\SpaceRumble\Temp\bin\Debug\ICSharpCode.NRefactory.dll
+C:\Users\LegoShrimip\Documents\GitHub\SpaceRumble\obj\Debug\Assembly-CSharp-firstpass-vs.csprojResolveAssemblyReference.cache
+C:\Users\LegoShrimip\Documents\GitHub\SpaceRumble\obj\Debug\Assembly-CSharp-firstpass.dll
+C:\Users\LegoShrimip\Documents\GitHub\SpaceRumble\obj\Debug\Assembly-CSharp-firstpass.pdb

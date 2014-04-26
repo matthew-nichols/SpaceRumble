@@ -13,6 +13,11 @@ public class EnemyUnit : baseUnit {
 
 	// Update is called once per frame
 	void Update () {
+        if (currentHealth <= 0)
+        {
+            Destroy(gameObject.rigidbody);
+            Destroy(gameObject);
+        }
 		currentTarget = FindObjectOfType<AllyUnit>();
 		agent.SetDestination(currentTarget.transform.position);
 		if(isClicked){
@@ -29,4 +34,5 @@ public class EnemyUnit : baseUnit {
 	void OnMouseExit(){
 		renderer.material = defaultMaterial ;
 	}
+
 }

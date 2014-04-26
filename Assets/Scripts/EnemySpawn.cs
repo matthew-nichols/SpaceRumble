@@ -5,9 +5,10 @@ public class EnemySpawn : MonoBehaviour {
 
 	public ArrayList enemies = new ArrayList();
 	public GameObject unitType;
-	public int totalEnemies = 50;
+	public double totalEnemies = 50;
 	public Vector3 targetLocation;
-	public float spawnTime = 0.0f;
+	private float spawnTime = 0.0f;
+	public float sTime = 0.0f;
 	//private int currentEnemy = 0;
 
 	// Use this for initialization
@@ -20,7 +21,7 @@ public class EnemySpawn : MonoBehaviour {
 		if(enemies.Count >= totalEnemies)
 			return;
 		else{
-			if(spawnTime >= 2.0){
+			if(spawnTime >= sTime){
 				EnemyUnit newEnemy = Instantiate(unitType, transform.position, transform.rotation) as EnemyUnit;
 				enemies.Add(newEnemy);
 				spawnTime = 0.0f;
