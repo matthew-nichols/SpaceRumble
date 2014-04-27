@@ -15,7 +15,7 @@ public class baseUnit : MonoBehaviour {
 	public Vector3 destinationVector;
 	public NavMeshAgent agent;
     public string name = "unit";
-
+    public baseUnit currentTarget;
 	void Start () {
 		//defaultMaterial = renderer.material;
 		agent = GetComponent<NavMeshAgent>();
@@ -31,11 +31,7 @@ public class baseUnit : MonoBehaviour {
 		else{
 			renderer.material = defaultMaterial;
 		}
-        if (currentHealth <= 0)
-        {
-            Destroy(gameObject.rigidbody);
-            Destroy(gameObject);
-        }
+
 	}
 	void OnMouseEnter(){
 		renderer.material = onHoverMaterial;

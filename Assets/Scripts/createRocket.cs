@@ -9,16 +9,10 @@ public class createRocket : MonoBehaviour {
 	public int delay = 3;
 
 	void Update() {
-		if (Input.GetButtonDown(FireButton)) {
-			Rigidbody clone;
-			clone = (Rigidbody)Instantiate(projectile, transform.position + offset, transform.rotation);
-			clone.velocity = transform.TransformDirection(Vector3.forward * velocity) + new Vector3(Time.deltaTime * velocity, 0, 0);
-			//removeObject(clone, 3);
-
-			Destroy(clone, delay);
-			Destroy (clone.gameObject, delay);
-		}
-
+        if (Input.GetButtonDown(FireButton))
+        {
+            Instantiate(projectile, transform.position + offset, transform.rotation);
+        }
 	}
 	/*
 	void OnCollisionEnter(Collision collision) {

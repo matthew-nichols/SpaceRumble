@@ -4,7 +4,7 @@ using System.Collections;
 public class AllyUnit : baseUnit {
 	
 	public Vector3 targetLocation;
-	public baseUnit currentTarget;
+	
     public bool canMove;
     public int energy;
     public int currentEnergy;
@@ -15,21 +15,27 @@ public class AllyUnit : baseUnit {
 	
 	// Update is called once per frame
 	void Update () {
+        if (currentHealth <= 0)
+        {
+            Destroy(gameObject.rigidbody);
+            Destroy(gameObject);
+        }
 		if(isClicked){
 			print(gameObject.name + " is active: " + gameObject.activeSelf);
 			renderer.material = onHoverMaterial;
+            moveUnit();
 		}
 		else{
 			renderer.material = defaultMaterial;
 		}
-		moveUnit();
+
 	}
-	void OnMouseEnter(){
+	/*void OnMouseEnter(){
 		renderer.material = onHoverMaterial;
 	}
 	void OnMouseExit(){
 		renderer.material = defaultMaterial ;
-	}
+	}*/
 	void moveUnit(){
 		if(updateRightClick){
 			Debug.Log("moving unit");

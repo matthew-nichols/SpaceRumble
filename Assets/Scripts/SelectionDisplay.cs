@@ -4,7 +4,6 @@ using System.Collections;
 public class SelectionDisplay : MonoBehaviour {
     public AllyUnit selected;
     public bool disp = false;
-    private Rect displayArea;
     //variables for size of UI
     public int width = 200;
     public int height = 200;
@@ -20,23 +19,23 @@ public class SelectionDisplay : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         //update display info
+        if(selected!= null){
+            //display Unit name
+            name = selected.name;
+            //display health info(max current)
+            health = "Health: " + selected.currentHealth + "/" + selected.health;
+            //display energy info
+            energy = "Energy: " + selected.currentEnergy + "/" + selected.energy;
 
-        //display Unit name
-        name = selected.name;
-        //display health info(max current)
-        health = "Health: " + selected.currentHealth + "/" + selected.health;
-        //display energy info
-        energy = "Energy: " + selected.currentEnergy + "/" + selected.energy;
+            //display attack info
+            attack = "Attack Damage:" + selected.attackDmg + "\nAttack Range:" + selected.attackRange;
 
-        //display attack info
-        attack = "Attack Damage:" + selected.attackDmg + "\nAttack Range:" + selected.attackRange;
+            //display on cursor during MOVEMENT phase stamina cost
 
-        //display on cursor during MOVEMENT phase stamina cost
-
-        //Display during DEFEND phase current target.
-        toDisplay = "Selection Info for Unit; " + name + "\n" + health + "\n" + energy+ "\n" + attack;
-        //LATER ADD INFO ABOUT EQUPIMENT
-
+            //Display during DEFEND phase current target.
+            toDisplay = "Selection Info for Unit; " + name + "\n" + health + "\n" + energy+ "\n" + attack;
+            //LATER ADD INFO ABOUT EQUPIMENT
+        }
 	}
     void OnGUI()
     {
@@ -48,10 +47,10 @@ public class SelectionDisplay : MonoBehaviour {
             // Make the first button. If it is pressed, Application.Loadlevel (1) will be executed
           //  GUI.Box(new Rect(menuX, menuY+20, width, 20), name);
             // Make the second button.
-            if (GUI.Button(new Rect(20, 70, 80, 20), "Level 2"))
-            {
-                Application.LoadLevel(2);
-            }
+         //   if (GUI.Button(new Rect(20, 70, 80, 20), "Level 2"))
+         //   {
+            //    Application.LoadLevel(2);
+         //   }
         }
     }
 }

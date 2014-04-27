@@ -51,7 +51,16 @@ public class perspectiveCameraMouse : MonoBehaviour {
 	}
 	
 	void RayHitSelectable(GameObject rayGO){
-		selectedUnit = rayGO.GetComponent<baseUnit>();
+        //selectedUnit.isClicked = false;
+        if (selectedUnit != null)
+        {
+            if (selectedUnit != rayGO.GetComponent<baseUnit>())
+            {
+                ((SelectionDisplay)selectedUnit.GetComponent("SelectionDisplay")).disp = false;
+                selectedUnit.isClicked = false;
+            }
+        }
+        selectedUnit = rayGO.GetComponent<baseUnit>();
 		if(!selectedUnit.isClicked){
 			selectedUnit.isClicked = true;
 		}
@@ -81,7 +90,8 @@ public class perspectiveCameraMouse : MonoBehaviour {
 			if(rayGO.GetComponent("AllyUnit") != null){
 				//Debug.Log("select: " + rayGO.GetType());
 				RayHitSelectable(rayGO);
-				hasUnitSelected = true;
+				
+                hasUnitSelected = true;
 				previousSelectedID = rayGO.GetInstanceID();
 				//rayGO.SetActive(true);
                 ((SelectionDisplay)selectedUnit.GetComponent("SelectionDisplay")).disp = true;
@@ -91,9 +101,13 @@ public class perspectiveCameraMouse : MonoBehaviour {
             }
 			else{
 				Debug.Log("unselect");
+                if (selectedUnit != null)
+                {
+                    ((SelectionDisplay)selectedUnit.GetComponent("SelctionDisplay")).disp = false;
 
-                ((SelectionDisplay)selectedUnit.GetComponent("SelectionDisplay")).disp = false;
-				hasUnitSelected = false;
+                    selectedUnit.isClicked = false;
+                }
+                hasUnitSelected = false;
 				previousSelectedID = -1;
                 selectedUnit = null;
 			}
