@@ -285,7 +285,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_TerrainData: {fileID: 15600000, guid: b09f7246af786ae4bae69a074da561e5, type: 2}
-  m_TreeDistance: 5000
+  m_TreeDistance: 2000
   m_TreeBillboardDistance: 50
   m_TreeCrossFadeLength: 5
   m_TreeMaximumFullLODCount: 50
@@ -297,8 +297,8 @@ MonoBehaviour:
   m_CastShadows: 1
   m_LightmapIndex: -1
   m_LightmapSize: 1024
-  m_DrawTreesAndFoliage: 1
-  m_MaterialTemplate: {fileID: 0}
+  m_DrawTreesAndFoliage: 0
+  m_MaterialTemplate: {fileID: 2100000, guid: 4fe2e431e79dd6544915eddf5a2040fc, type: 2}
 --- !u!4 &559322167
 Transform:
   m_ObjectHideFlags: 0
@@ -541,7 +541,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: b5890ab83ab7dc742a7d3cfdac8db6aa, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -221.425903
+      value: -226.744843
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: b5890ab83ab7dc742a7d3cfdac8db6aa, type: 2}
       propertyPath: m_LocalPosition.z
@@ -1079,7 +1079,7 @@ Transform:
   m_PrefabInternal: {fileID: 702453699}
   m_GameObject: {fileID: 894088208}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 363.828064, y: -221.425903, z: 303.767761}
+  m_LocalPosition: {x: 363.828064, y: -226.744843, z: 303.767761}
   m_LocalScale: {x: 15, y: 6, z: 15}
   m_Children: []
   m_Father: {fileID: 1291772092}
@@ -1249,10 +1249,10 @@ Transform:
   m_LocalPosition: {x: -290, y: 230, z: -280}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 894088209}
   - {fileID: 1317264136}
   - {fileID: 1761037814}
   - {fileID: 710550039}
-  - {fileID: 894088209}
   m_Father: {fileID: 0}
 --- !u!1 &1317264130
 GameObject:
