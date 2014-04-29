@@ -15,11 +15,12 @@ public class EnemyUnit : baseUnit {
 	public AudioClip fireSound;
 	// Use this for initialization
 	void Start () {
-		agent = GetComponent<NavMeshAgent>();
+		base.Start();
 	}
 
 	// Update is called once per frame
 	void Update () {
+		base.Update();
         if (currentHealth <= 0)
         {
             Destroy(gameObject.rigidbody);
@@ -27,13 +28,6 @@ public class EnemyUnit : baseUnit {
         }
 		currentTarget = FindObjectOfType<AllyUnit>();
 		agent.SetDestination(currentTarget.transform.position);
-		if(isClicked){
-			print(gameObject.name + " is active: " + gameObject.activeSelf);
-			renderer.material = onHoverMaterial;
-		}
-		else{
-			renderer.material = defaultMaterial;
-		}
 
         if (Vector3.Distance(transform.position, currentTarget.transform.position) < attackRange && lastAttack > attackRate)
         {
@@ -48,12 +42,6 @@ public class EnemyUnit : baseUnit {
         }
         lastAttack += Time.deltaTime;
 
-	}
-	void OnMouseEnter(){
-		renderer.material = onHoverMaterial;
-	}
-	void OnMouseExit(){
-		renderer.material = defaultMaterial ;
 	}
 
 }

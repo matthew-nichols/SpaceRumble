@@ -10,7 +10,7 @@ public class AllyUnit : baseUnit {
     public int currentEnergy;
 	// Use this for initialization
 	void Start () {
-		agent = GetComponent<NavMeshAgent>();
+		base.Start();
 	}
 	
 	// Update is called once per frame

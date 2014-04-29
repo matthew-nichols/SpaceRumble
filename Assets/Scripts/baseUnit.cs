@@ -13,17 +13,17 @@ public class baseUnit : MonoBehaviour {
 	public bool isClicked = false;
 	public bool updateRightClick = false;
 	public Vector3 destinationVector;
-	public NavMeshAgent agent;
+	protected NavMeshAgent agent;
     public string name = "unit";
     public baseUnit currentTarget;
 
-	void Start () {
+	protected virtual void Start () {
 		//defaultMaterial = renderer.material;
 		agent = GetComponent<NavMeshAgent>();
 	}
 
 	// Update is called once per frame
-	void Update () {
+	protected virtual void Update () {
 		if(isClicked){
 			print(gameObject.name + " is active: " + gameObject.activeSelf);
 			renderer.material = onHoverMaterial;
