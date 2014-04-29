@@ -9,6 +9,10 @@ public class EnemyUnit : baseUnit {
     public float velocity = 100;
     public Vector3 offset;
     public float lastAttack = 0f;
+
+	//public AudioSource selectSound;
+	public AudioSource unitSound;
+	public AudioClip fireSound;
 	// Use this for initialization
 	void Start () {
 		agent = GetComponent<NavMeshAgent>();
@@ -35,6 +39,7 @@ public class EnemyUnit : baseUnit {
         {
             Rigidbody clone;
             clone = (Rigidbody)Instantiate(projectile, transform.position + offset, transform.rotation);
+			unitSound.PlayOneShot(fireSound, 1);
             clone.velocity = transform.TransformDirection(Vector3.forward * velocity) + new Vector3(Time.deltaTime * velocity, 0, 0);
             //removeObject(clone, 3);
             lastAttack = 0;

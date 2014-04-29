@@ -16,6 +16,7 @@ public class baseUnit : MonoBehaviour {
 	public NavMeshAgent agent;
     public string name = "unit";
     public baseUnit currentTarget;
+
 	void Start () {
 		//defaultMaterial = renderer.material;
 		agent = GetComponent<NavMeshAgent>();
