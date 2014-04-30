@@ -23,6 +23,7 @@ public class EnemyUnit : baseUnit {
 		base.Update();
         if (currentHealth <= 0)
         {
+            control.currentEnemies--;
             Destroy(gameObject.rigidbody);
             Destroy(gameObject);
         }

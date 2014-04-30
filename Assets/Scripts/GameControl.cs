@@ -5,7 +5,7 @@ public class GameControl : MonoBehaviour {
 
     //Variables
     public Object[] allies = new Object[10];//10 allied units
-    private Object[] spawners = new Object[5];//at most 5 enemy spawners
+    public EnemySpawn[] spawners = new EnemySpawn[5];//at most 5 enemy spawners
     public GameObject enemy;
     public EnemySpawn spawner;
     //enum gameStates { SETUP, WAVE };
@@ -17,6 +17,7 @@ public class GameControl : MonoBehaviour {
     public int health, damage, spawnNumber; 
     public double rate, range;
     public Vector3 enemyPos;
+    public Rect end;
     
 
 	// Use this for initialization
@@ -36,12 +37,21 @@ public class GameControl : MonoBehaviour {
             if (allies[i] != null)
                 ((AllyUnit)allies[i]).canMove = true;
 
+        } 
+        for (int i = 0; i < allies.Length; i++)
+        {
+            if (allies[i] != null)
+                if(end.Contains(((AllyUnit)allies[i]).transform.position))
+                {
+                    
+                }
+
         }
 
 	}
 
     //creates a spawner for eneimes with these stats
-    Object createSpawner(int h, int d, double r, double rng, Vector3 pos, int n, float t)
+    EnemySpawn createSpawner(int h, int d, double r, double rng, Vector3 pos, int n, float t)
     {
         //range might be better as int 
         //create unit
@@ -51,7 +61,7 @@ public class GameControl : MonoBehaviour {
         e.GetComponent<EnemyUnit>().attackRate = r;
         e.GetComponent<EnemyUnit>().health = h;
         e.GetComponent<EnemyUnit>().currentHealth = h;//can change to reduce dificulty
-        
+        e.GetComponent<EnemyUnit>().control = this;
         
         EnemySpawn s = spawner;
         s.control = this.GetComponent<GameControl>();
@@ -59,7 +69,7 @@ public class GameControl : MonoBehaviour {
         s.totalEnemies = n;
         spawner.unitType = e;
         
-        return Instantiate(s, pos, Quaternion.identity) as Object;
+        return Instantiate(s, pos, Quaternion.identity) as EnemySpawn;
         
     }
 	
@@ -68,21 +78,22 @@ public class GameControl : MonoBehaviour {
         if (gameState)//wait for player to finish moving units
         {
             //if all enemies are dead call waveEnd
-            if (currentEnemies == 0)
+
+            if (spawners[0]&&spawners[0].done == true)
+            {
+                Destroy(spawners[0]);
+                Destroy((spawners[0].gameObject));
+                spawners[0] = null;
+            }
+            if (currentEnemies == 0 && spawners[0] == null)
             {
                 waveEnd();
             }
-            if (((EnemySpawn)spawners[0]).done == true)
-            {
-                Destroy(spawners[0]);
-                Destroy((EnemySpawn)spawners[0]);
-                Destroy((GameObject)spawners[0]);
-                spawners[0] = null;
-            }
-
         }
         else//what needs to be done during the wave
-        {//Somehow keep track of units and unit spawns
+        {
+            //need to check if units are in end zone.
+
         }
 	
 	}
@@ -101,7 +112,7 @@ public class GameControl : MonoBehaviour {
         
         wave++;
         //logic for enemy spawn types go here.
-        spawners[0] = createSpawner(health, damage, rate, range, enemyPos, spawnNumber, 1);
+        spawners[0] = createSpawner(health, damage, rate, range, enemyPos, spawnNumber+wave, 1);
 
 
 

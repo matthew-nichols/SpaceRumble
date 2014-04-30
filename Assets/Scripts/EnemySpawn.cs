@@ -21,7 +21,7 @@ public class EnemySpawn : MonoBehaviour {
 	void Update () {
         if (enemies.Count >= totalEnemies)
         {
-            Destroy(this);
+
             done = true;
             return;
         }
