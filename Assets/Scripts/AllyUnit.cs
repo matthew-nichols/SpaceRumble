@@ -23,7 +23,10 @@ public class AllyUnit : baseUnit {
 		if(isClicked){
 			print(gameObject.name + " is active: " + gameObject.activeSelf);
 			renderer.material = onHoverMaterial;
-            moveUnit();
+            if (canMove)
+            {
+                moveUnit();
+            }
 		}
 		else{
 			renderer.material = defaultMaterial;
