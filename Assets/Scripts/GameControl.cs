@@ -18,7 +18,7 @@ public class GameControl : MonoBehaviour {
     public double rate, range;
     public Vector3 enemyPos;
     public Rect end;
-    
+    public int maxDist;
 
 	// Use this for initialization
 	void Start () {
@@ -43,7 +43,7 @@ public class GameControl : MonoBehaviour {
 	}
 
     //creates a spawner for eneimes with these stats
-    EnemySpawn createSpawner(int h, int d, double r, double rng, Vector3 pos, int n, float t)
+    EnemySpawn createSpawner(int h, int d, double r, double rng, Vector3 pos, int n, float t, int m)
     {
         //range might be better as int 
         //create unit
@@ -54,11 +54,13 @@ public class GameControl : MonoBehaviour {
         e.GetComponent<EnemyUnit>().health = h;
         e.GetComponent<EnemyUnit>().currentHealth = h;//can change to reduce dificulty
         e.GetComponent<EnemyUnit>().control = this;
+        e.GetComponent<EnemyUnit>().maxDist = m;
         
         EnemySpawn s = spawner;
         s.control = this.GetComponent<GameControl>();
         s.sTime = t;
         s.totalEnemies = n;
+ 
         spawner.unitType = e;
         
         return Instantiate(s, pos, Quaternion.identity) as EnemySpawn;
@@ -109,14 +111,14 @@ public class GameControl : MonoBehaviour {
         //set all allies to stop movement.
         for (int i = 0; i < allies.Length; i++)
         {
-            if(allies[i] != null)
+            if(allies[i] != null){
                 ((AllyUnit)allies[i]).canMove = false;
-
+            }
         }
         
         wave++;
         //logic for enemy spawn types go here.
-        spawners[0] = createSpawner(health, damage, rate, range, enemyPos, spawnNumber+wave, 1);
+        spawners[0] = createSpawner(health, damage, rate, range, enemyPos, spawnNumber+wave, 1, maxDist);
 
 
 

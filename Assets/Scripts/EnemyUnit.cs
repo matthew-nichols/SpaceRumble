@@ -9,7 +9,7 @@ public class EnemyUnit : baseUnit {
     public float velocity = 100;
     public Vector3 offset;
     public float lastAttack = 0f;
-
+    public int maxDist = 100;
 	//public AudioSource selectSound;
 	public AudioSource unitSound;
 	public AudioClip fireSound;
@@ -28,8 +28,14 @@ public class EnemyUnit : baseUnit {
             Destroy(gameObject);
         }
 		currentTarget = FindObjectOfType<AllyUnit>();
-		agent.SetDestination(currentTarget.transform.position);
-
+		if (Vector3.Distance(transform.position, currentTarget.transform.position)<maxDist){
+            //RigidBody.sleep(rigidbody);
+            //rigidbody.Sleep();  
+            agent.Stop();
+        }else 
+        {
+            agent.SetDestination(currentTarget.transform.position);
+        }
         if (Vector3.Distance(transform.position, currentTarget.transform.position) < attackRange && lastAttack > attackRate)
         {
             Rigidbody clone;

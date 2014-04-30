@@ -164,7 +164,7 @@ MonoBehaviour:
   spawner: {fileID: 11400000, guid: 07fccf3e710650444b4ba40f11e0cb2c, type: 2}
   currentEnemies: 0
   wave: 0
-  health: 500
+  health: 1000
   damage: 100
   spawnNumber: 5
   rate: 1
@@ -176,6 +176,7 @@ MonoBehaviour:
     y: 900
     width: 4000
     height: 4000
+  maxDist: 250
 --- !u!4 &183074255
 Transform:
   m_ObjectHideFlags: 0
@@ -480,7 +481,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 50010e7bbd970ca46be9f44cc18143e0, type: 2}
       propertyPath: m_LocalRotation.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 50010e7bbd970ca46be9f44cc18143e0, type: 2}
       propertyPath: m_LocalRotation.z
@@ -488,7 +489,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 50010e7bbd970ca46be9f44cc18143e0, type: 2}
       propertyPath: m_LocalRotation.w
-      value: -4.37113883e-08
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 50010e7bbd970ca46be9f44cc18143e0, type: 2}
       propertyPath: m_LocalScale.x
@@ -947,8 +948,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   defaultMaterial: {fileID: 2100000, guid: d72afdd902bb8874dbce14621f320b3a, type: 2}
   onHoverMaterial: {fileID: 2100000, guid: 13f2273eee249e24f92aa2d8fabfc2af, type: 2}
-  health: 500
-  currentHealth: 500
+  health: 1000
+  currentHealth: 1000
   attackDmg: 100
   attackRange: 500
   attackRate: 1
@@ -964,6 +965,7 @@ MonoBehaviour:
   velocity: 100
   offset: {x: 25, y: 0, z: 0}
   lastAttack: 0
+  maxDist: 250
   unitSound: {fileID: 1673324088}
   fireSound: {fileID: 8300000, guid: 25a8f4668dfb3c546bfdc8a0ea0cb194, type: 3}
 --- !u!95 &1949737947
@@ -1109,7 +1111,7 @@ Transform:
   m_PrefabParentObject: {fileID: 400000, guid: 50010e7bbd970ca46be9f44cc18143e0, type: 2}
   m_PrefabInternal: {fileID: 568070680}
   m_GameObject: {fileID: 2140861394}
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: -4.37113883e-08}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 720.726562, y: 0, z: 1006.38214}
   m_LocalScale: {x: 20, y: 20, z: 20}
   m_Children: []
