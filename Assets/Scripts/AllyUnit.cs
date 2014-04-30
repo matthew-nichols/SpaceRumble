@@ -20,7 +20,7 @@ public class AllyUnit : baseUnit {
 	void Start () {
 		base.Start();
 	}
-
+/*
 	  EnemyUnit FindClosestEnemy() 
 	  {
         EnemyUnit[] gos;
@@ -40,7 +40,7 @@ public class AllyUnit : baseUnit {
         }
         return closest;
     }
-	
+	*/
 	// Update is called once per frame
 	void Update () {
 
