@@ -40,7 +40,7 @@ public class baseUnit : MonoBehaviour {
 	void OnMouseExit(){
 		renderer.material = defaultMaterial ;
 	}
-    void ApplyDamage(int n)
+    public virtual void ApplyDamage(int n)
     {
         currentHealth -= n;
 
