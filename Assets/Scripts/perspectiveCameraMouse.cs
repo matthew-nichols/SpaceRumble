@@ -31,7 +31,7 @@ public class perspectiveCameraMouse : MonoBehaviour {
 	void PanCamera(){
 		//keyboard
 		transform.Translate(Input.GetAxis(keyboardXAxis) * scrollSpeed * Time.deltaTime, Input.GetAxis(keyboardYAxis) * scrollSpeed * Time.deltaTime, Input.GetAxis(keyboardYAxis) * scrollSpeed * Time.deltaTime);
-		
+		/*
 		//up 
 		if(Input.mousePosition.y >= Screen.height - (Screen.height * edgeOfScreen) && Input.mousePosition.y <= Screen.height)
 			transform.position += (Vector3.forward + Vector3.right) * Time.deltaTime * scrollSpeed;
@@ -47,7 +47,7 @@ public class perspectiveCameraMouse : MonoBehaviour {
 		//right
 		if(Input.mousePosition.x >= Screen.width - (Screen.width * edgeOfScreen)  && Input.mousePosition.y <= Screen.width)
 			transform.position += (Vector3.right - Vector3.forward) * Time.deltaTime * scrollSpeed;
-		
+		*/
 	}
 	
 	void RayHitSelectable(GameObject rayGO){
@@ -63,8 +63,11 @@ public class perspectiveCameraMouse : MonoBehaviour {
         selectedUnit = rayGO.GetComponent<baseUnit>();
 		if(!selectedUnit.isClicked){
 			selectedUnit.isClicked = true;
+
+            ((SelectionDisplay)selectedUnit.GetComponent("SelectionDisplay")).disp = true;
 		}
 		else{
+            ((SelectionDisplay)selectedUnit.GetComponent("SelectionDisplay")).disp = false;
 			selectedUnit.isClicked = false;
 		}
 	}
@@ -94,7 +97,6 @@ public class perspectiveCameraMouse : MonoBehaviour {
                 hasUnitSelected = true;
 				previousSelectedID = rayGO.GetInstanceID();
 				//rayGO.SetActive(true);
-                ((SelectionDisplay)selectedUnit.GetComponent("SelectionDisplay")).disp = true;
                 //sd.disp = true;
                 //rayGO.GetComponent("SelectionDisplay").disp = true;
                 //rayGO.GetComponent("AllyUnit").canMove = true;
@@ -103,7 +105,7 @@ public class perspectiveCameraMouse : MonoBehaviour {
 				Debug.Log("unselect");
                 if (selectedUnit != null)
                 {
-                    ((SelectionDisplay)selectedUnit.GetComponent("SelctionDisplay")).disp = false;
+                    selectedUnit.GetComponent<SelectionDisplay>().disp = false;
 
                     selectedUnit.isClicked = false;
                 }
