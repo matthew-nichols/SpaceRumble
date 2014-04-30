@@ -126,8 +126,11 @@ public class GameControl : MonoBehaviour {
         gameState = false;
         for (int i = 0; i < allies.Length; i++)
         {
-            if(allies[i] != null)
+            if (allies[i] != null)
+            {
                 ((AllyUnit)allies[i]).canMove = true;
+                ((AllyUnit)allies[i]).currentEnergy = ((AllyUnit)allies[i]).energy;
+            }
 
         }
     }

@@ -219,20 +219,30 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   defaultMaterial: {fileID: 2100000, guid: cb94a76a729ceaa49a858777623169a3, type: 2}
   onHoverMaterial: {fileID: 2100000, guid: 13f2273eee249e24f92aa2d8fabfc2af, type: 2}
-  health: 9000
-  currentHealth: 9000
-  attackDmg: 15
-  attackRange: 100
+  health: 1000
+  currentHealth: 1000
+  attackDmg: 20
+  attackRange: 601
   attackRate: .5
   isClicked: 0
   updateRightClick: 0
   destinationVector: {x: 0, y: 0, z: 0}
   name: Bob
   currentTarget: {fileID: 0}
+  control: {fileID: 0}
   targetLocation: {x: 5, y: 0, z: 0}
+  lastAttack: 0
+  projectile: {fileID: 5400000, guid: 69ff15e6563e37c4384b67a4d802f5ae, type: 2}
+  offset: {x: 0, y: 0, z: 0}
+  velocity: 100
+  delay: 3
+  unitSound: {fileID: 0}
+  fireSound: {fileID: 0}
   canMove: 0
-  energy: 100
-  currentEnergy: 50
+  energy: 500
+  currentEnergy: 500
+  cpos: {x: 0, y: 0, z: 0}
+  ppos: {x: 0, y: 0, z: 0}
 --- !u!195 &19500000
 NavMeshAgent:
   m_ObjectHideFlags: 1

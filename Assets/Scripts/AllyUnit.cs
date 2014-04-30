@@ -16,6 +16,7 @@ public class AllyUnit : baseUnit {
     public bool canMove;
     public int energy;
     public int currentEnergy;
+    public Vector3 cpos, ppos;
 	// Use this for initialization
 	void Start () {
 		base.Start();
@@ -43,16 +44,24 @@ public class AllyUnit : baseUnit {
 	*/
 	// Update is called once per frame
 	void Update () {
-
+        //transform.position = new Vector3(0, 0, 0);
         if (currentHealth <= 0)
         {
             Destroy(gameObject.rigidbody);
             Destroy(gameObject);
         }
+         if (ppos != this.transform.position&& canMove) { currentEnergy--; }
+
+         if (ppos != this.transform.position && currentEnergy <= 0)
+        {
+            currentEnergy = 0;
+            agent.SetDestination(this.rigidbody.position);
+        }
+         ppos = this.transform.position;
 		if(isClicked){
 			print(gameObject.name + " is active: " + gameObject.activeSelf);
 			renderer.material = onHoverMaterial;
-            if (canMove)
+            if (canMove&&currentEnergy>0)
             {
                 moveUnit();
             }
@@ -62,26 +71,26 @@ public class AllyUnit : baseUnit {
 		}
 
 
-	if(!currentTarget)
-	{
-		currentTarget = FindObjectOfType<EnemyUnit>();	
-	}
+	    if(!currentTarget)
+	    {
+		    currentTarget = FindObjectOfType<EnemyUnit>();	
+	    }
 	
-	transform.LookAt(currentTarget.transform);
-    if (Vector3.Distance(transform.position, currentTarget.transform.position) <= attackRange && lastAttack >= attackRate)
-    {
+	    transform.LookAt(currentTarget.transform);
+        if (Vector3.Distance(transform.position, currentTarget.transform.position) <= attackRange && lastAttack >= attackRate)
+        {
     	
-        Rigidbody clone;
-        clone = (Rigidbody)Instantiate(projectile, transform.position + offset, transform.rotation);
-		unitSound.PlayOneShot(fireSound, 1);
-        clone.velocity = transform.TransformDirection(Vector3.forward * velocity) + new Vector3(Time.deltaTime * velocity, 0, 0);
-        //removeObject(clone, 3);
-        lastAttack = 0;
-        Destroy(clone, delay);
-        Destroy(clone.gameObject, delay);
-    }
-    lastAttack += Time.deltaTime;
-
+            Rigidbody clone;
+            clone = (Rigidbody)Instantiate(projectile, transform.position + offset, transform.rotation);
+		    unitSound.PlayOneShot(fireSound, 1);
+            clone.velocity = transform.TransformDirection(Vector3.forward * velocity) + new Vector3(Time.deltaTime * velocity, 0, 0);
+            //removeObject(clone, 3);
+            lastAttack = 0;
+            Destroy(clone, delay);
+            Destroy(clone.gameObject, delay);
+        }
+        lastAttack += Time.deltaTime;
+       
 	}
 	/*void OnMouseEnter(){
 		renderer.material = onHoverMaterial;
