@@ -49,7 +49,7 @@ public class perspectiveCameraMouse : MonoBehaviour {
 		//right
 		if(Input.mousePosition.x >= Screen.width - (Screen.width * edgeOfScreen)  && Input.mousePosition.y <= Screen.width)
 			transform.position += (Vector3.right - Vector3.forward) * Time.deltaTime * scrollSpeed;
-		*/
+		*/  
 	}
 	
 	void RayHitSelectable(GameObject rayGO){
