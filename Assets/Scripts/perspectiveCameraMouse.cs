@@ -30,7 +30,9 @@ public class perspectiveCameraMouse : MonoBehaviour {
 	
 	void PanCamera(){
 		//keyboard
-		transform.Translate(Input.GetAxis(keyboardXAxis) * scrollSpeed * Time.deltaTime, Input.GetAxis(keyboardYAxis) * scrollSpeed * Time.deltaTime, Input.GetAxis(keyboardYAxis) * scrollSpeed * Time.deltaTime);
+		transform.Translate(Input.GetAxis(keyboardXAxis) * scrollSpeed * Time.deltaTime,
+		                    Input.GetAxis(keyboardYAxis) * scrollSpeed * Time.deltaTime,
+		                    1.66f * Input.GetAxis(keyboardYAxis) * scrollSpeed * Time.deltaTime);
 		
 		//up 
 		if(Input.mousePosition.y >= Screen.height - (Screen.height * edgeOfScreen) && Input.mousePosition.y <= Screen.height)
