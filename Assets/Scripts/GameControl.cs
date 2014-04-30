@@ -12,7 +12,7 @@ public class GameControl : MonoBehaviour {
     private bool gameState;//Holds if the game is in setup(false), or wave(true) mode
     public int currentEnemies;
     public int wave =1;//holds the wave number
-    
+    private bool win;
     //variables that determine enemy stats;
     public int health, damage, spawnNumber; 
     public double rate, range;
@@ -38,15 +38,7 @@ public class GameControl : MonoBehaviour {
                 ((AllyUnit)allies[i]).canMove = true;
 
         } 
-        for (int i = 0; i < allies.Length; i++)
-        {
-            if (allies[i] != null)
-                if(end.Contains(((AllyUnit)allies[i]).transform.position))
-                {
-                    
-                }
 
-        }
 
 	}
 
@@ -93,7 +85,19 @@ public class GameControl : MonoBehaviour {
         else//what needs to be done during the wave
         {
             //need to check if units are in end zone.
+            for (int i = 0; i < allies.Length; i++)
+            {
+                if (allies[i] != null)
+                {
+                    Vector3 p;
+                    p = new Vector3((((AllyUnit)allies[i]).transform.position).x, (((AllyUnit)allies[i]).transform.position).z, (((AllyUnit)allies[i]).transform.position).z);
+                    if (end.Contains(p))
+                    {
 
+                        win = true;
+                    }
+                }
+            }
         }
 	
 	}
@@ -130,6 +134,8 @@ public class GameControl : MonoBehaviour {
 
     void OnGUI()
     {
+        if(win)
+            GUI.Box(new Rect(Screen.width / 2, Screen.height / 2, 200, 200), "You Win !!!");
         // Make a background box
         if (!gameState)
         {
