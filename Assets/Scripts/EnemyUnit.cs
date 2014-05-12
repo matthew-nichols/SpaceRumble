@@ -1,54 +1,45 @@
 using UnityEngine;
-using System.Collections;
 
-public class EnemyUnit : baseUnit {
+public class EnemyUnit : baseUnit
+{
+		public Vector3 targetLocation;
+		public Rigidbody projectile;
+		public int delay = 3;
+		public float velocity = 100;
+		public Vector3 offset;
+		public float lastAttack = 0f;
+		public int maxDist = 100;
+		public AudioSource unitSound;
+		public AudioClip fireSound;
 
-	public Vector3 targetLocation;
-    public Rigidbody projectile;
-    public int delay = 3;
-    public float velocity = 100;
-    public Vector3 offset;
-    public float lastAttack = 0f;
-    public int maxDist = 100;
-	//public AudioSource selectSound;
-	public AudioSource unitSound;
-	public AudioClip fireSound;
-	// Use this for initialization
-	void Start () {
-		base.Start();
-	}
+		void Start ()
+		{
+				base.Start ();
+		}
 
-	// Update is called once per frame
-	void Update () {
-		base.Update();
-        if (currentHealth <= 0)
-        {
-            control.currentEnemies--;
-            Destroy(gameObject.rigidbody);
-            Destroy(gameObject);
-        }
-		currentTarget = FindObjectOfType<AllyUnit>();
-		if (Vector3.Distance(transform.position, currentTarget.transform.position)<maxDist){
-            //RigidBody.sleep(rigidbody);
-            //rigidbody.Sleep();  
-            agent.Stop();
-        }else 
-        {
-            agent.SetDestination(currentTarget.transform.position);
-        }
-        if (Vector3.Distance(transform.position, currentTarget.transform.position) < attackRange && lastAttack > attackRate)
-        {
-            Rigidbody clone;
-            clone = (Rigidbody)Instantiate(projectile, transform.position + offset, transform.rotation);
-			unitSound.PlayOneShot(fireSound, 1);
-            clone.velocity = transform.TransformDirection(Vector3.forward * velocity) + new Vector3(Time.deltaTime * velocity, 0, 0);
-            //removeObject(clone, 3);
-            lastAttack = 0;
-            Destroy(clone, delay);
-            Destroy(clone.gameObject, delay);
-        }
-        lastAttack += Time.deltaTime;
-
-	}
-
+		void Update ()
+		{
+				base.Update ();
+				if (currentHealth <= 0) {
+						control.currentEnemies--;
+						Destroy (gameObject.rigidbody);
+						Destroy (gameObject);
+				}
+				currentTarget = FindObjectOfType<AllyUnit> ();
+				if (Vector3.Distance (transform.position, currentTarget.transform.position) < maxDist) {
+						agent.Stop ();
+				} else {
+						agent.SetDestination (currentTarget.transform.position);
+				}
+				if (Vector3.Distance (transform.position, currentTarget.transform.position) < attackRange && lastAttack > attackRate) {
+						Rigidbody clone;
+						clone = (Rigidbody)Instantiate (projectile, transform.position + offset, transform.rotation);
+						unitSound.PlayOneShot (fireSound, 1);
+						clone.velocity = transform.TransformDirection (Vector3.forward * velocity) + new Vector3 (Time.deltaTime * velocity, 0, 0);
+						lastAttack = 0;
+						Destroy (clone, delay);
+						Destroy (clone.gameObject, delay);
+				}
+				lastAttack += Time.deltaTime;
+		}
 }
