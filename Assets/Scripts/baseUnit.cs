@@ -15,12 +15,13 @@ public class baseUnit : MonoBehaviour
 		protected NavMeshAgent agent;
 		public string name = "unit";
 		public baseUnit currentTarget;
+		public GameControl control;
 
 		protected virtual void Start ()
 		{
 				agent = GetComponent<NavMeshAgent> ();
 		}
-	
+		
 		protected virtual void Update ()
 		{
 				if (isClicked) {

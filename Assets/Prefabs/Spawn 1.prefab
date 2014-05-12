@@ -9,8 +9,10 @@ GameObject:
   m_Component:
   - 4: {fileID: 400000}
   - 114: {fileID: 11400000}
+  - 33: {fileID: 0}
+  - 23: {fileID: 0}
   m_Layer: 0
-  m_Name: Spawn
+  m_Name: Spawn 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -38,10 +40,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24ca22b917e11db4b87fc9f772f2b326, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unitType: {fileID: 100002, guid: 8158a1d4d2700eb42abd3f90e6815d5e, type: 2}
-  totalEnemies: 5
+  unitType: {fileID: 0}
+  totalEnemies: 50
   targetLocation: {x: 0, y: 0, z: 0}
-  sTime: 1
+  sTime: 0
   done: 0
   control: {fileID: 0}
 --- !u!1001 &100100000

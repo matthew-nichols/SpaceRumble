@@ -4,7 +4,7 @@ public class SelectionDisplay : MonoBehaviour
 {
 		public AllyUnit selected;
 		public bool disp = false;
-		//variables for size of UI
+		// variables for size of UI
 		public int width = 200;
 		public int height = 200;
 		int menuX;
@@ -19,21 +19,21 @@ public class SelectionDisplay : MonoBehaviour
 
 		void Update ()
 		{
-				//update display info
+				// update display info
 				if (selected != null) {
-						//display Unit name
+						// display Unit name
 						name = selected.name;
-						//display health info(max current)
+						// display health info(max current)
 						health = "Health: " + selected.currentHealth + "/" + selected.health;
-						//display energy info
+						// display energy info
 						energy = "Energy: " + selected.currentEnergy + "/" + selected.energy;
 
-						//display attack info
+						// display attack info
 						attack = "Attack Damage:" + selected.attackDmg + "\nAttack Range:" + selected.attackRange;
 
-						//display on cursor during MOVEMENT phase stamina cost
+						// display on cursor during MOVEMENT phase stamina cost
 
-						//Display during DEFEND phase current target.
+						// Display during DEFEND phase current target.
 						toDisplay = "Selection Info for Unit; " + name + "\n" + health + "\n" + energy + "\n" + attack;
 						// TODO: ADD INFO ABOUT EQUPIMENT
 				}

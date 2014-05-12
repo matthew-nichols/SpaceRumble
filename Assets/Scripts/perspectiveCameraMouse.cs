@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 public class perspectiveCameraMouse : MonoBehaviour
 {
@@ -9,13 +8,13 @@ public class perspectiveCameraMouse : MonoBehaviour
 		//percent of screen that cursor needs to be on to scroll camera
 		//should be less than 0.5
 		public float edgeOfScreen = .15f;
-	
+
 		//returns where mouse cursor is on click
 		public Vector3 mouseLocation;
 		baseUnit selectedUnit;
 		bool hasUnitSelected = false;
 		int previousSelectedID = -1;
-	
+
 		void Update ()
 		{
 				PanCamera ();
@@ -27,13 +26,13 @@ public class perspectiveCameraMouse : MonoBehaviour
 						RightClick ();
 				}
 		}
-	
+
 		void PanCamera ()
 		{
 				//keyboard
 				transform.Translate (Input.GetAxis (keyboardXAxis) * scrollSpeed * Time.deltaTime,
-		                    Input.GetAxis (keyboardYAxis) * scrollSpeed * Time.deltaTime,
-		                    1.66f * Input.GetAxis (keyboardYAxis) * scrollSpeed * Time.deltaTime);
+						Input.GetAxis (keyboardYAxis) * scrollSpeed * Time.deltaTime,
+						1.66f * Input.GetAxis (keyboardYAxis) * scrollSpeed * Time.deltaTime);
 		
 				//up 
 				if (Input.mousePosition.y >= Screen.height - (Screen.height * edgeOfScreen) && Input.mousePosition.y <= Screen.height)
@@ -51,7 +50,7 @@ public class perspectiveCameraMouse : MonoBehaviour
 				if (Input.mousePosition.x >= Screen.width - (Screen.width * edgeOfScreen) && Input.mousePosition.y <= Screen.width)
 						transform.position += (Vector3.right - Vector3.forward) * Time.deltaTime * scrollSpeed;
 		}
-	
+
 		void RayHitSelectable (GameObject rayGO)
 		{
 				if (selectedUnit != null) {
@@ -63,7 +62,9 @@ public class perspectiveCameraMouse : MonoBehaviour
 				selectedUnit = rayGO.GetComponent<baseUnit> ();
 				if (!selectedUnit.isClicked) {
 						selectedUnit.isClicked = true;
+						((SelectionDisplay)selectedUnit.GetComponent ("SelectionDisplay")).disp = true;
 				} else {
+						((SelectionDisplay)selectedUnit.GetComponent ("SelectionDisplay")).disp = false;
 						selectedUnit.isClicked = false;
 				}
 		}
@@ -75,7 +76,7 @@ public class perspectiveCameraMouse : MonoBehaviour
 						selectedUnit.destinationVector = mouseLocation;
 				}
 		}
-	
+
 		void LeftClick ()
 		{
 				Debug.Log ("LeftClick");
@@ -93,12 +94,10 @@ public class perspectiveCameraMouse : MonoBehaviour
 				
 								hasUnitSelected = true;
 								previousSelectedID = rayGO.GetInstanceID ();
-								((SelectionDisplay)selectedUnit.GetComponent ("SelectionDisplay")).disp = true;
 						} else {
 								Debug.Log ("unselect");
 								if (selectedUnit != null) {
-										((SelectionDisplay)selectedUnit.GetComponent ("SelctionDisplay")).disp = false;
-
+										selectedUnit.GetComponent<SelectionDisplay> ().disp = false;
 										selectedUnit.isClicked = false;
 								}
 								hasUnitSelected = false;
@@ -107,7 +106,7 @@ public class perspectiveCameraMouse : MonoBehaviour
 						}
 				}
 		}
-	
+
 		void RightClick ()
 		{
 				Debug.Log ("RightClick");
