@@ -108,7 +108,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100002}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 738.221069, y: .475870192, z: 208.846344}
+  m_LocalPosition: {x: 738.686646, y: 7.68055248, z: 263.103424}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 400008}
@@ -316,7 +316,7 @@ MonoBehaviour:
   destinationVector: {x: 0, y: 0, z: 0}
   name: Bob
   currentTarget: {fileID: 0}
-  deathExplosion: {fileID: 19800004, guid: 93f2c95ad8a9048aba5958f95784f8f5, type: 2}
+  deathExplosion: {fileID: 19800004, guid: 987d09edf8cc09949a93c64e4e18591c, type: 2}
   control: {fileID: 0}
   targetLocation: {x: 5, y: 0, z: 0}
   lastAttack: 0
