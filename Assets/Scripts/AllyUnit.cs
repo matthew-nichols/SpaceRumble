@@ -23,8 +23,10 @@ public class AllyUnit : baseUnit
 		protected override void Update ()
 		{
 				if (currentHealth <= 0) {
+						ParticleSystem temp = (ParticleSystem)Instantiate(deathExplosion, transform.position, transform.rotation);
 						Destroy (gameObject.rigidbody);
 						Destroy (gameObject);
+						Destroy (temp.gameObject, 5);
 				}
 				if (ppos != transform.position && canMove) {
 						currentEnergy--;

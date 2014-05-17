@@ -15,6 +15,7 @@ public class baseUnit : MonoBehaviour
 		protected NavMeshAgent agent;
 		public string name = "unit";
 		public baseUnit currentTarget;
+		public ParticleSystem deathExplosion;
 		public GameControl control;
 
 		protected virtual void Start ()

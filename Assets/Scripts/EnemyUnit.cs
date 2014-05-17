@@ -21,10 +21,13 @@ public class EnemyUnit : baseUnit
 		{
 				base.Update ();
 				if (currentHealth <= 0) {
+						ParticleSystem temp = (ParticleSystem)Instantiate(deathExplosion, transform.position, transform.rotation);
 						control.currentEnemies--;
 						Destroy (gameObject.rigidbody);
 						Destroy (gameObject);
+						Destroy (temp.gameObject, 5);
 				}
+
 				currentTarget = FindObjectOfType<AllyUnit> ();
 				if (Vector3.Distance (transform.position, currentTarget.transform.position) < maxDist) {
 						agent.Stop ();
