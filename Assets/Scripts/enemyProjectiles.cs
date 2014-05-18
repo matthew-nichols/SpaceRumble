@@ -34,7 +34,8 @@ public class enemyProjectiles : MonoBehaviour
 						ParticleSystem temp = Instantiate(impactEffect, pos, rot) as ParticleSystem;
 						Destroy (gameObject);
 						Destroy (temp.gameObject, 3);
-						((baseUnit)other.gameObject.GetComponent ("baseUnit")).currentHealth -= dmg;
+						baseUnit unit = other.gameObject.GetComponent<baseUnit>();
+						if (unit) unit.currentHealth -= dmg;
 				}
 		}
 }

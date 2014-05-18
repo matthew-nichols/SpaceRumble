@@ -34,7 +34,8 @@ public class projectileMovement : MonoBehaviour
 						ParticleSystem temp = Instantiate(impactEffect, pos, rot) as ParticleSystem;
 						Destroy (gameObject);
 						Destroy (temp.gameObject, 3);
-						other.gameObject.GetComponent<baseUnit> ().currentHealth -= 10; 
+						baseUnit unit = other.gameObject.GetComponent<baseUnit>();
+						if (unit) unit.currentHealth -= 10;
 				}
 		}
 }
