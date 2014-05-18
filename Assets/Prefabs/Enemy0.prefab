@@ -56,8 +56,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100002}
   m_LocalRotation: {x: 2.18556941e-08, y: 0, z: -0, w: 1}
-  m_LocalPosition: {x: 760.109131, y: 23.9134007, z: 350.063629}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 723.615234, y: 14.5283546, z: 921.926086}
+  m_LocalScale: {x: .5, y: .5, z: .5}
   m_Children:
   - {fileID: 400000}
   m_Father: {fileID: 0}
@@ -114,8 +114,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 15, y: 30, z: 18}
-  m_Center: {x: 0, y: -10, z: 0}
+  m_Size: {x: 15, y: 50, z: 18}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!82 &8200000
 AudioSource:
   m_ObjectHideFlags: 1
@@ -124,40 +124,40 @@ AudioSource:
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
   serializedVersion: 3
-  m_audioClip: {fileID: 8300000, guid: 6da24f7134e4eca48bcd1977708ab00d, type: 3}
+  m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
   Mute: 0
   Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
+  DopplerLevel: 0
+  MinDistance: 250
+  MaxDistance: 1000
   Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
+  rolloffMode: 1
+  BypassEffects: 1
   BypassListenerEffects: 0
   BypassReverbZones: 0
   rolloffCustomCurve:
     serializedVersion: 2
     m_Curve:
-    - time: 0
+    - time: .00200000009
       value: 1
       inSlope: 0
-      outSlope: 0
+      outSlope: -1.00200403
       tangentMode: 0
     - time: 1
       value: 0
-      inSlope: 0
-      outSlope: 0
+      inSlope: -.91019094
+      outSlope: -.91019094
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
   panLevelCustomCurve:
     serializedVersion: 2
     m_Curve:
-    - time: 0
+    - time: .267156869
       value: 1
       inSlope: 0
       outSlope: 0
@@ -217,11 +217,12 @@ MonoBehaviour:
   projectile: {fileID: 5400000, guid: eb1bdaf9e42eb1e4d9b834184d517b64, type: 2}
   delay: 3
   velocity: 100
-  offset: {x: 25, y: 0, z: 0}
+  offset: {x: 0, y: 0, z: 0}
   lastAttack: 0
   maxDist: 250
   unitSound: {fileID: 8200000}
   fireSound: {fileID: 8300000, guid: 25a8f4668dfb3c546bfdc8a0ea0cb194, type: 3}
+  deathSound: {fileID: 8300000, guid: 41b79386a04a03e4aa9385c156aa5473, type: 3}
 --- !u!195 &19500000
 NavMeshAgent:
   m_ObjectHideFlags: 1
@@ -238,8 +239,8 @@ NavMeshAgent:
   m_AutoTraverseOffMeshLink: 0
   m_AutoBraking: 1
   m_AutoRepath: 1
-  m_Height: 30
-  m_BaseOffset: 24
+  m_Height: 1
+  m_BaseOffset: 25
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
 --- !u!1001 &100100000

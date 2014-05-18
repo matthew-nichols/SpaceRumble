@@ -33,7 +33,7 @@ public class perspectiveCameraMouse : MonoBehaviour
 				transform.Translate (Input.GetAxis (keyboardXAxis) * scrollSpeed * Time.deltaTime,
 						Input.GetAxis (keyboardYAxis) * scrollSpeed * Time.deltaTime,
 						1.66f * Input.GetAxis (keyboardYAxis) * scrollSpeed * Time.deltaTime);
-		
+		/*
 				//up 
 				if (Input.mousePosition.y >= Screen.height - (Screen.height * edgeOfScreen) && Input.mousePosition.y <= Screen.height)
 						transform.position += (Vector3.forward + Vector3.right) * Time.deltaTime * scrollSpeed;
@@ -49,6 +49,7 @@ public class perspectiveCameraMouse : MonoBehaviour
 				//right
 				if (Input.mousePosition.x >= Screen.width - (Screen.width * edgeOfScreen) && Input.mousePosition.y <= Screen.width)
 						transform.position += (Vector3.right - Vector3.forward) * Time.deltaTime * scrollSpeed;
+		*/
 		}
 
 		void RayHitSelectable (GameObject rayGO)

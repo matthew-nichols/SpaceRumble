@@ -10,7 +10,7 @@ GameObject:
   - 4: {fileID: 400000}
   - 82: {fileID: 8200000}
   m_Layer: 0
-  m_Name: Sound
+  m_Name: ShipAudioSource
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -29,7 +29,6 @@ GameObject:
   - 65: {fileID: 6500000}
   - 195: {fileID: 19500000}
   - 114: {fileID: 11400004}
-  - 114: {fileID: 11400002}
   - 114: {fileID: 11400000}
   - 54: {fileID: 5400000}
   m_Layer: 0
@@ -108,8 +107,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100002}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 738.686646, y: 7.68055248, z: 263.103424}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalPosition: {x: 808.705627, y: 4.09552526, z: 319.149902}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400008}
   - {fileID: 400000}
@@ -202,8 +201,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 20, y: 40, z: 20}
-  m_Center: {x: 0, y: 10, z: 0}
+  m_Size: {x: 20, y: 20, z: 20}
+  m_Center: {x: 0, y: 4, z: 0}
 --- !u!82 &8200000
 AudioSource:
   m_ObjectHideFlags: 1
@@ -212,32 +211,32 @@ AudioSource:
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
   serializedVersion: 3
-  m_audioClip: {fileID: 8300000, guid: 8d98c6698217d634eb6521d09335a30f, type: 3}
+  m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
   Mute: 0
   Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
+  DopplerLevel: 0
+  MinDistance: 250
+  MaxDistance: 1000
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 1
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
   rolloffCustomCurve:
     serializedVersion: 2
     m_Curve:
-    - time: 0
+    - time: .00200000009
       value: 1
       inSlope: 0
-      outSlope: 0
+      outSlope: -1.00200403
       tangentMode: 0
     - time: 1
-      value: 0
-      inSlope: 0
+      value: .502840936
+      inSlope: -1.00200403
       outSlope: 0
       tangentMode: 0
     m_PreInfinity: 2
@@ -277,22 +276,6 @@ MonoBehaviour:
   disp: 0
   width: 200
   height: 200
---- !u!114 &11400002
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100002}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 001c72b39ac7d5747b6ff1b4ed02e1b4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  projectile: {fileID: 5400000, guid: 69ff15e6563e37c4384b67a4d802f5ae, type: 2}
-  velocity: 100
-  offset: {x: 0, y: 0, z: 0}
-  FireButton: E
-  delay: 3
 --- !u!114 &11400004
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -321,11 +304,12 @@ MonoBehaviour:
   targetLocation: {x: 5, y: 0, z: 0}
   lastAttack: 0
   projectile: {fileID: 5400000, guid: 69ff15e6563e37c4384b67a4d802f5ae, type: 2}
-  offset: {x: 0, y: 0, z: 0}
+  offset: {x: 0, y: 6, z: 0}
   velocity: 100
   delay: 3
-  unitSound: {fileID: 0}
-  fireSound: {fileID: 0}
+  unitSound: {fileID: 8200000}
+  fireSound: {fileID: 8300000, guid: 8d98c6698217d634eb6521d09335a30f, type: 3}
+  deathSound: {fileID: 8300000, guid: ab2b2c9abeaae614faf97117cc30e640, type: 3}
   canMove: 0
   energy: 500
   currentEnergy: 500
@@ -348,7 +332,7 @@ NavMeshAgent:
   m_AutoBraking: 1
   m_AutoRepath: 1
   m_Height: 1
-  m_BaseOffset: .5
+  m_BaseOffset: 6
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
 --- !u!198 &19800000

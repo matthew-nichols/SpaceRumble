@@ -11,21 +11,22 @@ public class EnemyUnit : baseUnit
 		public int maxDist = 100;
 		public AudioSource unitSound;
 		public AudioClip fireSound;
+		public AudioClip deathSound;
 
 		protected override void Start ()
 		{
 				base.Start ();
 		}
-
-		void Update ()
+		protected override void Update ()
 		{
 				base.Update ();
 				if (currentHealth <= 0) {
 						ParticleSystem temp = (ParticleSystem)Instantiate(deathExplosion, transform.position, transform.rotation);
-						control.currentEnemies--;
+						AudioSource tempSound = PlayClipAt (deathSound, transform.position);
 						Destroy (gameObject.rigidbody);
 						Destroy (gameObject);
 						Destroy (temp.gameObject, 5);
+						control.currentEnemies--;
 				}
 
 				currentTarget = FindObjectOfType<AllyUnit> ();
@@ -38,12 +39,28 @@ public class EnemyUnit : baseUnit
 				if (Vector3.Distance (transform.position, currentTarget.transform.position) < attackRange && lastAttack > attackRate) {
 						Rigidbody clone;
 						clone = (Rigidbody)Instantiate (projectile, transform.position + offset, transform.rotation);
-						unitSound.PlayOneShot (fireSound, 1);
+						unitSound.PlayOneShot(fireSound, 0.1f);
 						clone.velocity = transform.TransformDirection (Vector3.forward * velocity) + new Vector3 (Time.deltaTime * velocity, 0, 0);
 						lastAttack = 0;
 						Destroy (clone, delay);
 						Destroy (clone.gameObject, delay);
 				}
 				lastAttack += Time.deltaTime;
+		}
+		AudioSource PlayClipAt(AudioClip clip, Vector3 pos)
+		{
+				GameObject tempGO = new GameObject("TempAudio " + clip.name);
+				tempGO.transform.position = pos;
+				AudioSource aSource = tempGO.AddComponent<AudioSource>();
+				aSource.clip = deathSound;
+				aSource.rolloffMode = unitSound.rolloffMode;
+				aSource.pitch = unitSound.pitch;
+				aSource.minDistance = unitSound.minDistance;
+				aSource.maxDistance = unitSound.maxDistance;
+				aSource.dopplerLevel = unitSound.dopplerLevel;
+				aSource.volume = 1.0f;
+				aSource.Play();
+				Destroy(tempGO, clip.length);
+				return aSource;
 		}
 }
