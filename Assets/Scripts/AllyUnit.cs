@@ -24,7 +24,7 @@ public class AllyUnit : baseUnit
 		protected override void Update ()
 		{
 				if (currentHealth <= 0) {
-						ParticleSystem temp = (ParticleSystem)Instantiate(deathExplosion, transform.position, transform.rotation);
+						ParticleSystem temp = (ParticleSystem)Instantiate (deathExplosion, transform.position, transform.rotation);
 						AudioSource tempSound = PlayClipAt (deathSound, transform.position);
 						Destroy (gameObject.rigidbody);
 						Destroy (gameObject);
@@ -52,18 +52,21 @@ public class AllyUnit : baseUnit
 				if (!currentTarget) {
 						currentTarget = FindObjectOfType<EnemyUnit> ();	
 				}
-	
-				transform.LookAt (currentTarget.transform);
-				if (Vector3.Distance (transform.position, currentTarget.transform.position) <= attackRange && lastAttack >= attackRate) {
+				
+				// possible for above to not find an enemy unit
+				if (currentTarget) {
+						transform.LookAt (currentTarget.transform);
+						if (Vector3.Distance (transform.position, currentTarget.transform.position) <= attackRange && lastAttack >= attackRate) {
 
-						Rigidbody clone;
-						clone = (Rigidbody)Instantiate (projectile, transform.position + offset, transform.rotation);
-						unitSound.PlayOneShot (fireSound, 0.1f);
-						clone.velocity = transform.TransformDirection (Vector3.forward * velocity) + new Vector3 (Time.deltaTime * velocity, 0, 0);
+								Rigidbody clone;
+								clone = (Rigidbody)Instantiate (projectile, transform.position + offset, transform.rotation);
+								unitSound.PlayOneShot (fireSound, 0.1f);
+								clone.velocity = transform.TransformDirection (Vector3.forward * velocity) + new Vector3 (Time.deltaTime * velocity, 0, 0);
 
-						lastAttack = 0;
-						Destroy (clone, delay);
-						Destroy (clone.gameObject, delay);
+								lastAttack = 0;
+								Destroy (clone, delay);
+								Destroy (clone.gameObject, delay);
+						}
 				}
 				lastAttack += Time.deltaTime;       
 		}
@@ -76,11 +79,12 @@ public class AllyUnit : baseUnit
 						updateRightClick = false;
 				}
 		}
-		AudioSource PlayClipAt(AudioClip clip, Vector3 pos)
+
+		AudioSource PlayClipAt (AudioClip clip, Vector3 pos)
 		{
-				GameObject tempGO = new GameObject("TempAudio " + clip.name);
+				GameObject tempGO = new GameObject ("TempAudio " + clip.name);
 				tempGO.transform.position = pos;
-				AudioSource aSource = tempGO.AddComponent<AudioSource>();
+				AudioSource aSource = tempGO.AddComponent<AudioSource> ();
 				aSource.clip = deathSound;
 				aSource.rolloffMode = unitSound.rolloffMode;
 				aSource.pitch = unitSound.pitch;
@@ -88,8 +92,8 @@ public class AllyUnit : baseUnit
 				aSource.maxDistance = unitSound.maxDistance;
 				aSource.dopplerLevel = unitSound.dopplerLevel;
 				aSource.volume = 1.0f;
-				aSource.Play();
-				Destroy(tempGO, clip.length);
+				aSource.Play ();
+				Destroy (tempGO, clip.length);
 				return aSource;
 		}
 }
