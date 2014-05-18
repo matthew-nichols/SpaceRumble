@@ -191,11 +191,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   allies:
-  - {fileID: 11400004, guid: 3ff0892ef0cf34044a03a506debd5f7c, type: 2}
-  - {fileID: 11400004, guid: 3ff0892ef0cf34044a03a506debd5f7c, type: 2}
-  - {fileID: 11400004, guid: 3ff0892ef0cf34044a03a506debd5f7c, type: 2}
-  - {fileID: 11400004, guid: 3ff0892ef0cf34044a03a506debd5f7c, type: 2}
-  - {fileID: 11400004, guid: 3ff0892ef0cf34044a03a506debd5f7c, type: 2}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   spawners:
   - {fileID: 0}
   - {fileID: 0}
@@ -219,6 +234,7 @@ MonoBehaviour:
     width: 4000
     height: 4000
   maxDist: 250
+  data: {fileID: 0}
 --- !u!4 &183074255
 Transform:
   m_ObjectHideFlags: 0
