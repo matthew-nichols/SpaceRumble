@@ -9,3 +9,5 @@ EditorBuildSettings:
     path: Assets/Scenes/FirstMap.unity
   - enabled: 1
     path: Assets/Scenes/mission.unity
+  - enabled: 1
+    path: Assets/Scenes/StartScene.unity
