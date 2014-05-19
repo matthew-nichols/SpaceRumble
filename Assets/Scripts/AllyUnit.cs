@@ -12,8 +12,8 @@ public class AllyUnit : baseUnit
 		public AudioClip fireSound;
 		public AudioClip deathSound;
 		public bool canMove;
-		public int energy;
-		public int currentEnergy;
+		public float energy;
+		public float currentEnergy;
 		public Vector3 cpos, ppos;
 		public Weapon weapon;
 		public Armor armor;
@@ -45,7 +45,7 @@ public class AllyUnit : baseUnit
 						
 				}
 				if (ppos != transform.position && canMove) {
-						currentEnergy--;
+						currentEnergy -= 20 * Time.deltaTime; // TODO
 				}
 
 				if (ppos != transform.position && currentEnergy <= 0) {
