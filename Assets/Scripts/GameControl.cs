@@ -100,7 +100,7 @@ public class GameControl : MonoBehaviour
 		void waveStart ()
 		{
 				gameState = true;
-				//musicObj.gameState = gameState;
+				musicObj.gameState = gameState;
 				//gets called by GUI button
 				//after the wave starts
 				//set all allies to stop movement.
@@ -118,7 +118,7 @@ public class GameControl : MonoBehaviour
 		void waveEnd ()
 		{
 				gameState = false;
-				//musicObj.gameState = gameState;
+				musicObj.gameState = gameState;
 				for (int i = 0; i < allies.Length; i++) {
 						if (allies [i] != null) {
 								AllyUnit ally = allies [i];
