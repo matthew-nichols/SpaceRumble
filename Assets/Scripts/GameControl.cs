@@ -47,14 +47,14 @@ public class GameControl : MonoBehaviour
 				//range might be better as int 
 				//create unit
 				GameObject e = enemy;
-				EnemyUnit enemyUnit = e.GetComponent<EnemyUnit> ();
-				enemyUnit.attackDmg = d;
-				enemyUnit.attackRange = (int)rng;
-				enemyUnit.attackRate = r;
-				enemyUnit.health = h;
-				enemyUnit.currentHealth = h;//can change to reduce dificulty
-				enemyUnit.control = this;
-				enemyUnit.maxDist = m;
+				EnemyUnit unit = e.GetComponent<EnemyUnit> ();
+				unit.attackDmg = d;
+				unit.attackRange = (int)rng;
+				unit.attackRate = r;
+				unit.health = h;
+				unit.currentHealth = h;//can change to reduce dificulty
+				unit.control = this;
+				unit.maxDist = m;
         
 				EnemySpawn s = spawner;
 				s.control = GetComponent<GameControl> ();
@@ -117,8 +117,9 @@ public class GameControl : MonoBehaviour
 				gameState = false;
 				for (int i = 0; i < allies.Length; i++) {
 						if (allies [i] != null) {
-								((AllyUnit)allies [i]).canMove = true;
-								((AllyUnit)allies [i]).currentEnergy = ((AllyUnit)allies [i]).energy;
+								AllyUnit ally = (AllyUnit)allies [i];
+								ally.canMove = true;
+								ally.currentEnergy = ally.energy;
 						}
 
 				}
