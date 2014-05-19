@@ -40,7 +40,6 @@ public class AllyUnit : baseUnit
 				}
 				ppos = transform.position;
 				if (isClicked) {
-						print (gameObject.name + " is active: " + gameObject.activeSelf);
 						renderer.material = onHoverMaterial;
 						if (canMove && currentEnergy > 0) {
 								moveUnit ();
@@ -74,7 +73,6 @@ public class AllyUnit : baseUnit
 		void moveUnit ()
 		{
 				if (updateRightClick) {
-						Debug.Log ("moving unit");
 						agent.SetDestination (destinationVector);
 						updateRightClick = false;
 				}

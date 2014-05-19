@@ -7,8 +7,8 @@ public class EnemySpawn : MonoBehaviour
 		public GameObject unitType;
 		public double totalEnemies = 50;
 		public Vector3 targetLocation;
-		float spawnTime = 0.0f;
-		public float sTime = 0.0f;
+		float spawnTime = 0;
+		public float sTime = 0;
 		public bool done = false;
 		public GameControl control;
 

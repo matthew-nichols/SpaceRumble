@@ -4,7 +4,7 @@ public class missionSelect : MonoBehaviour
 {
 		public globalData data;
 		public AllyUnit baseAlly;
-		Object[] units = new Object[20];
+		AllyUnit[] units = new AllyUnit[20];
 		Object[] items = new Object[40];//for when we have inventory
 		int numUnits = 0;
 		public missionSettings defaultmission;
@@ -14,7 +14,6 @@ public class missionSelect : MonoBehaviour
 
 		void Start ()
 		{
-				//set globalData to not be destroyed.
 				//populate list from global
 				data = GameObject.Find ("GlobalData").GetComponent<globalData> ();
 				//every time it starts parse the list to get all units, and gets the number of units.
@@ -70,7 +69,7 @@ public class missionSelect : MonoBehaviour
 						if (units [i] != null) {
 								AllyUnit a = (AllyUnit)units [i];
 
-								s = a.name + "\n Dmg: " + a.attackDmg + "\n Rng: " + a.attackRange + "\n HP: " + a.health;
+								s = a.UnitName + "\n Dmg: " + a.attackDmg + "\n Rng: " + a.attackRange + "\n HP: " + a.health;
 						} else {
 								s = "no unit";
 						}

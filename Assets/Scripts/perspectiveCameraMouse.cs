@@ -19,7 +19,6 @@ public class perspectiveCameraMouse : MonoBehaviour
 		{
 				PanCamera ();
 				if (Input.GetMouseButtonUp (0)) {
-						print ("isSelected: " + hasUnitSelected);
 						LeftClick ();
 				}
 				if (Input.GetMouseButtonUp (1)) {
@@ -33,7 +32,7 @@ public class perspectiveCameraMouse : MonoBehaviour
 				transform.Translate (Input.GetAxis (keyboardXAxis) * scrollSpeed * Time.deltaTime,
 						Input.GetAxis (keyboardYAxis) * scrollSpeed * Time.deltaTime,
 						1.66f * Input.GetAxis (keyboardYAxis) * scrollSpeed * Time.deltaTime);
-		/*
+				/*
 				//up 
 				if (Input.mousePosition.y >= Screen.height - (Screen.height * edgeOfScreen) && Input.mousePosition.y <= Screen.height)
 						transform.position += (Vector3.forward + Vector3.right) * Time.deltaTime * scrollSpeed;
@@ -56,16 +55,16 @@ public class perspectiveCameraMouse : MonoBehaviour
 		{
 				if (selectedUnit != null) {
 						if (selectedUnit != rayGO.GetComponent<baseUnit> ()) {
-								((SelectionDisplay)selectedUnit.GetComponent ("SelectionDisplay")).disp = false;
+								selectedUnit.GetComponent<SelectionDisplay> ().disp = false;
 								selectedUnit.isClicked = false;
 						}
 				}
 				selectedUnit = rayGO.GetComponent<baseUnit> ();
 				if (!selectedUnit.isClicked) {
 						selectedUnit.isClicked = true;
-						((SelectionDisplay)selectedUnit.GetComponent ("SelectionDisplay")).disp = true;
+						selectedUnit.GetComponent<SelectionDisplay> ().disp = true;
 				} else {
-						((SelectionDisplay)selectedUnit.GetComponent ("SelectionDisplay")).disp = false;
+						selectedUnit.GetComponent<SelectionDisplay> ().disp = false;
 						selectedUnit.isClicked = false;
 				}
 		}
@@ -80,13 +79,11 @@ public class perspectiveCameraMouse : MonoBehaviour
 
 		void LeftClick ()
 		{
-				Debug.Log ("LeftClick");
 				RaycastHit hit;
 				bool isHit = Physics.Raycast (Camera.main.ScreenPointToRay (Input.mousePosition), out hit, 1000.0f);
 				if (isHit) {
 						GameObject rayGO = hit.collider.gameObject;
 						mouseLocation = hit.point;
-						Debug.Log ("Hit " + hit.transform.gameObject.name + " ID: " + rayGO.GetInstanceID ());
 
 						//if clicked object is selectable
 						//still buggy
@@ -96,7 +93,6 @@ public class perspectiveCameraMouse : MonoBehaviour
 								hasUnitSelected = true;
 								previousSelectedID = rayGO.GetInstanceID ();
 						} else {
-								Debug.Log ("unselect");
 								if (selectedUnit != null) {
 										selectedUnit.GetComponent<SelectionDisplay> ().disp = false;
 										selectedUnit.isClicked = false;
@@ -110,11 +106,9 @@ public class perspectiveCameraMouse : MonoBehaviour
 
 		void RightClick ()
 		{
-				Debug.Log ("RightClick");
 				RaycastHit hit;
 				bool isHit = Physics.Raycast (Camera.main.ScreenPointToRay (Input.mousePosition), out hit, 1000.0f);
 				if (isHit) {
-						Debug.Log ("Hit " + hit.transform.gameObject.name);
 						GameObject rayGO = hit.collider.gameObject;
 						mouseLocation = hit.point;
 						RightClickSelectable (); 

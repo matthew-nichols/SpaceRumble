@@ -28,14 +28,15 @@ public class projectileMovement : MonoBehaviour
 		void OnCollisionEnter (Collision other)
 		{
 				if (other.gameObject.tag == "Enemy" || other.gameObject.tag == "Terrain") {
-						ContactPoint contact = other.contacts[0];
+						ContactPoint contact = other.contacts [0];
 						Vector3 pos = contact.point;
-						Quaternion rot = Quaternion.FromToRotation(Vector3.up, contact.normal); 
-						ParticleSystem temp = Instantiate(impactEffect, pos, rot) as ParticleSystem;
+						Quaternion rot = Quaternion.FromToRotation (Vector3.up, contact.normal); 
+						ParticleSystem temp = Instantiate (impactEffect, pos, rot) as ParticleSystem;
 						Destroy (gameObject);
 						Destroy (temp.gameObject, 1);
-						baseUnit unit = other.gameObject.GetComponent<baseUnit>();
-						if (unit) unit.currentHealth -= 10;
+						baseUnit unit = other.gameObject.GetComponent<baseUnit> ();
+						if (unit)
+								unit.currentHealth -= 10;
 				}
 		}
 }

@@ -13,7 +13,7 @@ public class baseUnit : MonoBehaviour
 		public bool updateRightClick = false;
 		public Vector3 destinationVector;
 		protected NavMeshAgent agent;
-		public string name = "unit";
+		public string UnitName = "unset";
 		public baseUnit currentTarget;
 		public ParticleSystem deathExplosion;
 		public GameControl control;
@@ -26,7 +26,6 @@ public class baseUnit : MonoBehaviour
 		protected virtual void Update ()
 		{
 				if (isClicked) {
-						print (gameObject.name + " is active: " + gameObject.activeSelf);
 						renderer.material = onHoverMaterial;
 				} else {
 						renderer.material = defaultMaterial;

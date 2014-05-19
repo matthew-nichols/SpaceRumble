@@ -36,7 +36,6 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
 */
 
 #region Namespaces
-
 using UnityEngine;
 using System.Collections;
 
@@ -50,7 +49,8 @@ using System.Collections;
 * Left/Right key to switch particle in current Element.
 **************/
 
-public class TestParticles : MonoBehaviour {
+public class TestParticles : MonoBehaviour
+{
 	
 	#region Variables
 	
@@ -84,170 +84,145 @@ public class TestParticles : MonoBehaviour {
 	
 	#endregion
 	
-	// ######################################################################
-	// MonoBehaviour Functions
-	// ######################################################################
+		// ######################################################################
+		// MonoBehaviour Functions
+		// ######################################################################
 
 	#region Component Segments
 		
 		// Use this for initialization
-		void Start () {
+		void Start ()
+		{
 	
-			// Check if there is any particle in prefab list
-			if(m_PrefabListFire.Length>0 ||
-				m_PrefabListWind.Length>0 ||
-				m_PrefabListWater.Length>0 ||
-				m_PrefabListEarth.Length>0 ||
-				m_PrefabListIce.Length>0 ||
-				m_PrefabListThunder.Length>0 ||
-				m_PrefabListLight.Length>0 ||
-				m_PrefabListDarkness.Length>0)
-			{
-				// reset indices of element and particle
-				m_CurrentElementIndex = 0;
-				m_CurrentParticleIndex = 0;
+				// Check if there is any particle in prefab list
+				if (m_PrefabListFire.Length > 0 ||
+						m_PrefabListWind.Length > 0 ||
+						m_PrefabListWater.Length > 0 ||
+						m_PrefabListEarth.Length > 0 ||
+						m_PrefabListIce.Length > 0 ||
+						m_PrefabListThunder.Length > 0 ||
+						m_PrefabListLight.Length > 0 ||
+						m_PrefabListDarkness.Length > 0) {
+						// reset indices of element and particle
+						m_CurrentElementIndex = 0;
+						m_CurrentParticleIndex = 0;
 			
-				// Show particle
-				ShowParticle();
-			}
+						// Show particle
+						ShowParticle ();
+				}
 		}
 		
 		// Update is called once per frame
-		void Update () {
+		void Update ()
+		{
 			
-			// Check if there is any particle in prefab list
-			if(m_CurrentElementIndex!=-1 && m_CurrentParticleIndex!=-1)
-			{
-				// User released Up arrow key
-				if(Input.GetKeyUp(KeyCode.UpArrow))
-				{
-					m_CurrentElementIndex++;
-					m_CurrentParticleIndex = 0;
-					ShowParticle();
-				}
+				// Check if there is any particle in prefab list
+				if (m_CurrentElementIndex != -1 && m_CurrentParticleIndex != -1) {
+						// User released Up arrow key
+						if (Input.GetKeyUp (KeyCode.UpArrow)) {
+								m_CurrentElementIndex++;
+								m_CurrentParticleIndex = 0;
+								ShowParticle ();
+						}
 				// User released Down arrow key
-				else if(Input.GetKeyUp(KeyCode.DownArrow))
-				{
-					m_CurrentElementIndex--;
-					m_CurrentParticleIndex = 0;
-					ShowParticle();
-				}
+				else if (Input.GetKeyUp (KeyCode.DownArrow)) {
+								m_CurrentElementIndex--;
+								m_CurrentParticleIndex = 0;
+								ShowParticle ();
+						}
 				// User released Left arrow key
-				else if(Input.GetKeyUp(KeyCode.LeftArrow))
-				{
-					m_CurrentParticleIndex--;
-					ShowParticle();
-				}
+				else if (Input.GetKeyUp (KeyCode.LeftArrow)) {
+								m_CurrentParticleIndex--;
+								ShowParticle ();
+						}
 				// User released Right arrow key
-				else if(Input.GetKeyUp(KeyCode.RightArrow))
-				{
-					m_CurrentParticleIndex++;
-					ShowParticle();
+				else if (Input.GetKeyUp (KeyCode.RightArrow)) {
+								m_CurrentParticleIndex++;
+								ShowParticle ();
+						}
 				}
-			}
 		}
 	
 		// OnGUI is called for rendering and handling GUI events.
-		void OnGUI () {
+		void OnGUI ()
+		{
 		
-			float Window1PosX = (Screen.width-250)/2;
+				float Window1PosX = (Screen.width - 250) / 2;
 
-			// Show Help GUI window
-			GUI.Window(2, new Rect(Window1PosX, Screen.height-105, 250, 100), ParticleInformationWindow, "Information");
+				// Show Help GUI window
+				GUI.Window (2, new Rect (Window1PosX, Screen.height - 105, 250, 100), ParticleInformationWindow, "Information");
 		}
 	
 	#endregion Component Segments
 	
-	// ######################################################################
-	// Functions Functions
-	// ######################################################################
+		// ######################################################################
+		// Functions Functions
+		// ######################################################################
 
 	#region Functions
 		
 		// Remove old Particle and do Create new Particle GameObject
-		void ShowParticle()
+		void ShowParticle ()
 		{
-			// Make m_CurrentElementIndex be rounded
-			if(m_CurrentElementIndex>7)
-			{
-				m_CurrentElementIndex = 0;
-			}
-			else if(m_CurrentElementIndex<0)
-			{
-				m_CurrentElementIndex = 7;
-			}
+				// Make m_CurrentElementIndex be rounded
+				if (m_CurrentElementIndex > 7) {
+						m_CurrentElementIndex = 0;
+				} else if (m_CurrentElementIndex < 0) {
+						m_CurrentElementIndex = 7;
+				}
 			
-			// update current m_CurrentElementList and m_ElementName
-			if(m_CurrentElementIndex==0)
-			{
-				m_CurrentElementList = m_PrefabListFire;
-				m_ElementName = "FIRE";
-			}
-			else if(m_CurrentElementIndex==2)
-			{
-				m_CurrentElementList = m_PrefabListWind;
-				m_ElementName = "WIND";
-			}
-			else if(m_CurrentElementIndex==1)
-			{
-				m_CurrentElementList = m_PrefabListWater;
-				m_ElementName = "WATER";
-			}
-			else if(m_CurrentElementIndex==3)
-			{
-				m_CurrentElementList = m_PrefabListEarth;
-				m_ElementName = "EARTH";
-			}
-			else if(m_CurrentElementIndex==4)
-			{
-				m_CurrentElementList = m_PrefabListIce;
-				m_ElementName = "ICE";
-			}
-			else if(m_CurrentElementIndex==4)
-			{
-				m_CurrentElementList = m_PrefabListThunder;
-				m_ElementName = "THUNDER";
-			}
-			else if(m_CurrentElementIndex==4)
-			{
-				m_CurrentElementList = m_PrefabListLight;
-				m_ElementName = "LIGHT";
-			}
-			else if(m_CurrentElementIndex==5)
-			{
-				m_CurrentElementList = m_PrefabListDarkness;
-				m_ElementName = "DARKNESS";
-			}
+				// update current m_CurrentElementList and m_ElementName
+				if (m_CurrentElementIndex == 0) {
+						m_CurrentElementList = m_PrefabListFire;
+						m_ElementName = "FIRE";
+				} else if (m_CurrentElementIndex == 2) {
+						m_CurrentElementList = m_PrefabListWind;
+						m_ElementName = "WIND";
+				} else if (m_CurrentElementIndex == 1) {
+						m_CurrentElementList = m_PrefabListWater;
+						m_ElementName = "WATER";
+				} else if (m_CurrentElementIndex == 3) {
+						m_CurrentElementList = m_PrefabListEarth;
+						m_ElementName = "EARTH";
+				} else if (m_CurrentElementIndex == 4) {
+						m_CurrentElementList = m_PrefabListIce;
+						m_ElementName = "ICE";
+				} else if (m_CurrentElementIndex == 4) {
+						m_CurrentElementList = m_PrefabListThunder;
+						m_ElementName = "THUNDER";
+				} else if (m_CurrentElementIndex == 4) {
+						m_CurrentElementList = m_PrefabListLight;
+						m_ElementName = "LIGHT";
+				} else if (m_CurrentElementIndex == 5) {
+						m_CurrentElementList = m_PrefabListDarkness;
+						m_ElementName = "DARKNESS";
+				}
 	
-			// Make m_CurrentParticleIndex be rounded
-			if(m_CurrentParticleIndex>=m_CurrentElementList.Length)
-			{
-				m_CurrentParticleIndex = 0;
-			}
-			else if(m_CurrentParticleIndex<0)
-			{
-				m_CurrentParticleIndex = m_CurrentElementList.Length-1;
-			}
+				// Make m_CurrentParticleIndex be rounded
+				if (m_CurrentParticleIndex >= m_CurrentElementList.Length) {
+						m_CurrentParticleIndex = 0;
+				} else if (m_CurrentParticleIndex < 0) {
+						m_CurrentParticleIndex = m_CurrentElementList.Length - 1;
+				}
 	
-			// update current m_ParticleName
-			m_ParticleName = m_CurrentElementList[m_CurrentParticleIndex].name;
+				// update current m_ParticleName
+				m_ParticleName = m_CurrentElementList [m_CurrentParticleIndex].name;
 	
-			// Remove Old particle
-			if(m_CurrentParticle!=null)
-			{
-				DestroyObject(m_CurrentParticle);
-			}
+				// Remove Old particle
+				if (m_CurrentParticle != null) {
+						DestroyObject (m_CurrentParticle);
+				}
 	
-			// Create new particle
-			m_CurrentParticle = (GameObject) Instantiate(m_CurrentElementList[m_CurrentParticleIndex]);
+				// Create new particle
+				m_CurrentParticle = (GameObject)Instantiate (m_CurrentElementList [m_CurrentParticleIndex]);
 		}
 		
 		// Show Help window
-		void ParticleInformationWindow(int id)
+		void ParticleInformationWindow (int id)
 		{
-			GUI.Label(new Rect(12, 25, 225, 20), "Up/Down: Elements");
-			GUI.Label(new Rect(12, 45, 225, 20), "Left/Right: Particles");
-			GUI.Label(new Rect(12, 70, 225, 20), "Current: "+ m_ElementName +" "+ (m_CurrentParticleIndex+1) + " of " + m_CurrentElementList.Length +" - "+m_ParticleName);
+				GUI.Label (new Rect (12, 25, 225, 20), "Up/Down: Elements");
+				GUI.Label (new Rect (12, 45, 225, 20), "Left/Right: Particles");
+				GUI.Label (new Rect (12, 70, 225, 20), "Current: " + m_ElementName + " " + (m_CurrentParticleIndex + 1) + " of " + m_CurrentElementList.Length + " - " + m_ParticleName);
 		}
 		
 	#endregion {Functions}

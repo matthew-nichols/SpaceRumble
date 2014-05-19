@@ -9,7 +9,7 @@ public class SelectionDisplay : MonoBehaviour
 		public int height = 200;
 		int menuX;
 		int menuY;
-		string health, energy, name, attack, toDisplay;
+		string health, energy, UnitName, attack, toDisplay;
 
 		void Start ()
 		{
@@ -21,8 +21,7 @@ public class SelectionDisplay : MonoBehaviour
 		{
 				// update display info
 				if (selected != null) {
-						// display Unit name
-						name = selected.name;
+						UnitName = selected.UnitName;
 						// display health info(max current)
 						health = "Health: " + selected.currentHealth + "/" + selected.health;
 						// display energy info
@@ -31,10 +30,10 @@ public class SelectionDisplay : MonoBehaviour
 						// display attack info
 						attack = "Attack Damage:" + selected.attackDmg + "\nAttack Range:" + selected.attackRange;
 
-						// display on cursor during MOVEMENT phase stamina cost
+						// TODO?: display on cursor during MOVEMENT phase stamina cost
 
 						// Display during DEFEND phase current target.
-						toDisplay = "Selection Info for Unit; " + name + "\n" + health + "\n" + energy + "\n" + attack;
+						toDisplay = "Selection Info for Unit; " + UnitName + "\n" + health + "\n" + energy + "\n" + attack;
 						// TODO: ADD INFO ABOUT EQUPIMENT
 				}
 		}
