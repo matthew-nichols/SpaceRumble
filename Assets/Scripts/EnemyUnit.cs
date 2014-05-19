@@ -34,6 +34,7 @@ public class EnemyUnit : baseUnit
 
 				currentTarget = FindObjectOfType<AllyUnit> ();
 				if (currentTarget) {
+						transform.LookAt (currentTarget.transform);
 						if (Vector3.Distance (transform.position, currentTarget.transform.position) < maxDist) {
 								agent.Stop ();
 						} else {

@@ -291,8 +291,8 @@ MonoBehaviour:
   onHoverMaterial: {fileID: 2100000, guid: 13f2273eee249e24f92aa2d8fabfc2af, type: 2}
   health: 1000
   currentHealth: 1000
-  attackDmg: 1020
-  attackRange: 601
+  attackDmg: 1370
+  attackRange: 500
   attackRate: .5
   isClicked: 0
   updateRightClick: 0
@@ -304,7 +304,7 @@ MonoBehaviour:
   targetLocation: {x: 5, y: 0, z: 0}
   lastAttack: 0
   projectile: {fileID: 5400000, guid: 69ff15e6563e37c4384b67a4d802f5ae, type: 2}
-  offset: {x: 0, y: 6, z: 0}
+  offset: {x: 0, y: 4, z: 0}
   velocity: 100
   delay: 3
   unitSound: {fileID: 8200000}
@@ -332,7 +332,7 @@ NavMeshAgent:
   m_AutoBraking: 1
   m_AutoRepath: 1
   m_Height: 1
-  m_BaseOffset: 6
+  m_BaseOffset: 5
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
 --- !u!198 &19800000
