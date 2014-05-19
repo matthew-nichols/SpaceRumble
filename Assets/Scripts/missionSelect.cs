@@ -7,8 +7,13 @@ public class missionSelect : MonoBehaviour {
     public globalData data;
     public AllyUnit baseAlly;
     private Object[] units = new Object[20];
+    private Object[] items = new Object[40];//for when we have inventory
     private int numUnits = 0;
- 
+    public missionSettings defaultmission;
+    private missionSettings m1;
+    private missionSettings m2;
+    private missionSettings m3;
+
 	void Start () {
 	    //set globalData to not be destroyed.
         //populate list from global
@@ -23,6 +28,22 @@ public class missionSelect : MonoBehaviour {
                 numUnits++;
             }
         }
+        //build missions
+        m1 = (missionSettings)Instantiate(defaultmission);
+        m1.difficulty = (int)Random.Range(1, 4);
+        m1.allowedUnits = 10 - m1.difficulty;
+        m1.goldReward = 100 + m1.difficulty * 20;
+
+        m2 = (missionSettings)Instantiate(defaultmission);
+        m2.difficulty = (int)Random.Range(1, 4);
+        m2.allowedUnits = 10 - m2.difficulty;
+        m2.goldReward = 100 + m2.difficulty * 20;
+
+        m3 = (missionSettings)Instantiate(defaultmission);
+        m3.difficulty = (int)Random.Range(1, 4);
+        m3.allowedUnits = 10 - m3.difficulty;
+        m3.goldReward = 100 + m3.difficulty * 20;
+
 
     }
 
@@ -73,23 +94,90 @@ public class missionSelect : MonoBehaviour {
             }
         }
     }
-	void OnGUI () {
-		// Make a background box
-		GUI.Box(new Rect(10,10,100,90), "Loader Menu");
-        displayUnits();
-		// Make the first button. If it is pressed, Application.Loadlevel (1) will be executed
-		if(GUI.Button(new Rect(20,40,80,20), "Level 1")) {
-            AllyUnit a = baseAlly;
-            //for testing no units in ally
-            for(int i = 0; i<5; i++){
-                a.attackDmg += 10;
-                data.allyUnits[i] = a;
-            }
-            Application.LoadLevel("FirstMap");
-		}
+    string buildMission(missionSettings m)
+    {
+        string s;
+        if (m == null) return "No mission";
+        //Difficulty
+        if (m.difficulty == 0)//Difficulty intepreted by gamecontrol possibly
+        {
+            s = "Mission difficulty: Easy";
+        }
+        else if(m.difficulty == 1)
+        {
+            s = "Mission difficulty: Medium";
+        }
+        else if (m.difficulty == 2)
+        {
+            s = "Mission difficulty: Hard";
+        }
+        else
+        {
+            s = "Mission difficulty: Impossible";
+        }
+        s+="\n";
+        //other constraints(unit number)
+        s += "You can bring " + m.allowedUnits + " units on this Mission\n";
+        //gold value
+        s += "Expected Rewards: \n";
+        s += "Gold: " + m.goldReward;
+        s += "\nOtherstuffs";
 
-		// Make the second button.
-		if(GUI.Button(new Rect(20,70,80,20), "Level 2")) {
+        return s;
+    }
+    void displayMissions()
+    {
+        //have 3 missions on the left side of the 
+        int w = Screen.width;
+        int h = Screen.height;
+        //start in top left corner
+        int width = w / 3;
+        int dy = h / 3;
+        //mission 1;
+        string s;
+        s = buildMission(m1);
+        if (GUI.Button(new Rect(0, 0, width, dy), s))
+        {
+            //            Application.LoadLevel("FirstMap");
+        }  
+        //mission 2;
+        s = "";
+        s = buildMission(m2);
+        if (GUI.Button(new Rect(0, dy, width, dy), s))
+        {
+            //            Application.LoadLevel("FirstMap");
+        }
+        //mission 3;
+        s = "";
+        s = buildMission(m3);
+        if (GUI.Button(new Rect(0, 2*dy, width, dy), s))
+        {
+            //            Application.LoadLevel("FirstMap");
+        }
+    }
+    void displayInventory()
+    {
+        int w = Screen.width;
+        int h = Screen.height;
+        int x = w - w / 4;
+        int width = w / 4;
+        int dy = h - h / 4;
+        string msg = "This is the inventory box!";
+        GUI.Box(new Rect(x, 0, width, dy), msg);
+    }
+	void OnGUI () {
+        int w = Screen.width;
+        int h = Screen.height;
+        int x = w /3;
+        int y = h - h / 4;
+        int height = h / 4;
+        int width = w / 2 - w / 3;
+		// Make a background box
+		GUI.Box(new Rect(x,y,width,height), "Mission Menu");
+        displayUnits();
+        displayMissions();
+        displayInventory();
+		if(GUI.Button(new Rect(x+width/10,y+height/8,width*8/10,height/7), "Start Mission")) {//should be grayed out if no mission is selected
             AllyUnit a = baseAlly;
             //for testing no units in ally
             for (int i = 0; i < 10; i++)
