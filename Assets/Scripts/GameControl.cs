@@ -6,7 +6,6 @@ public class GameControl : MonoBehaviour
 		public EnemySpawn[] spawners = new EnemySpawn[5];//at most 5 enemy spawners
 		public GameObject enemy;
 		public EnemySpawn spawner;
-		//enum gameStates { SETUP, WAVE };
 		bool gameState;//Holds if the game is in setup(false), or wave(true) mode
 		public int currentEnemies;
 		public int wave = 1;//holds the wave number
@@ -17,18 +16,16 @@ public class GameControl : MonoBehaviour
 		public Vector3 enemyPos;
 		public Rect end;
 		public int maxDist;
-        public globalData data;
+		public globalData data;
 		// Use this for initialization
 		void Start ()
 		{
-            //populate list from global
-            GameObject p = GameObject.Find("GlobalData");
-            data = (globalData)p.GetComponent("globalData");
-            //build ally units
-            for (int i = 0; i < data.allyUnits.Length; i++)
-            {
-                allies[i] = data.allyUnits[i];
-            }
+				//populate list from global
+				data = GameObject.Find ("GlobalData").GetComponent<globalData> ();
+				//build ally units
+				for (int i = 0; i < data.allyUnits.Length; i++) {
+						allies [i] = data.allyUnits [i];
+				}
 				gameState = false;
 				//spawn allies
 				for (int i = 0; i < allies.Length; i++) {
@@ -50,16 +47,17 @@ public class GameControl : MonoBehaviour
 				//range might be better as int 
 				//create unit
 				GameObject e = enemy;
-				e.GetComponent<EnemyUnit> ().attackDmg = d;
-				e.GetComponent<EnemyUnit> ().attackRange = (int)rng;
-				e.GetComponent<EnemyUnit> ().attackRate = r;
-				e.GetComponent<EnemyUnit> ().health = h;
-				e.GetComponent<EnemyUnit> ().currentHealth = h;//can change to reduce dificulty
-				e.GetComponent<EnemyUnit> ().control = this;
-				e.GetComponent<EnemyUnit> ().maxDist = m;
+				EnemyUnit enemyUnit = e.GetComponent<EnemyUnit> ();
+				enemyUnit.attackDmg = d;
+				enemyUnit.attackRange = (int)rng;
+				enemyUnit.attackRate = r;
+				enemyUnit.health = h;
+				enemyUnit.currentHealth = h;//can change to reduce dificulty
+				enemyUnit.control = this;
+				enemyUnit.maxDist = m;
         
 				EnemySpawn s = spawner;
-				s.control = this.GetComponent<GameControl> ();
+				s.control = GetComponent<GameControl> ();
 				s.sTime = t;
 				s.totalEnemies = n;
  
@@ -73,9 +71,9 @@ public class GameControl : MonoBehaviour
 				if (gameState) {
 						//wait for player to finish moving units
 						//if all enemies are dead call waveEnd
-						if (spawners [0] && spawners [0].done == true) {
+						if (spawners [0] && spawners [0].done) {
 								Destroy (spawners [0]);
-								Destroy ((spawners [0].gameObject));
+								Destroy (spawners [0].gameObject);
 								spawners [0] = null;
 						}
 						if (currentEnemies == 0 && spawners [0] == null) {
@@ -87,7 +85,8 @@ public class GameControl : MonoBehaviour
 						for (int i = 0; i < allies.Length; i++) {
 								if (allies [i] != null) {
 										Vector3 p;
-										p = new Vector3 ((((AllyUnit)allies [i]).transform.position).x, (((AllyUnit)allies [i]).transform.position).z, (((AllyUnit)allies [i]).transform.position).z);
+										Vector3 pos = ((AllyUnit)allies [i]).transform.position;
+										p = new Vector3 (pos.x, pos.z, pos.z);
 										if (end.Contains (p)) {
 												win = true;
 										}
@@ -135,9 +134,8 @@ public class GameControl : MonoBehaviour
 								waveStart ();
 						}
 				}
-                if (GUI.Button(new Rect(20, 30, 160, 20), ("Return to Mission Select")))
-                {
-                    Application.LoadLevel("mission");
-                }
+				if (GUI.Button (new Rect (20, 30, 160, 20), ("Return to Mission Select"))) {
+						Application.LoadLevel ("mission");
+				}
 		}
 }
