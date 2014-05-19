@@ -2,22 +2,22 @@
 
 public class GameControl : MonoBehaviour
 {
-		public Object[] allies = new Object[20];//10 allied units
-		public EnemySpawn[] spawners = new EnemySpawn[5];//at most 5 enemy spawners
+		public AllyUnit[] allies = new AllyUnit[20];
+		public EnemySpawn[] spawners = new EnemySpawn[5]; // at most 5 enemy spawners (for now)
 		public GameObject enemy;
 		public EnemySpawn spawner;
-		bool gameState;//Holds if the game is in setup(false), or wave(true) mode
+		bool gameState; // true in wave mode, false in setup mode
 		public int currentEnemies;
-		public int wave = 1;//holds the wave number
+		public int wave = 1; // holds the wave number
 		bool win;
-		//variables that determine enemy stats;
+		// variables that determine enemy stats;
 		public int health, damage, spawnNumber;
 		public double rate, range;
 		public Vector3 enemyPos;
 		public Rect end;
 		public int maxDist;
 		public globalData data;
-		// Use this for initialization
+
 		void Start ()
 		{
 				//populate list from global
@@ -31,12 +31,12 @@ public class GameControl : MonoBehaviour
 				for (int i = 0; i < allies.Length; i++) {
 						if (allies [i] != null) {
 								//code to place ally, will need some sort of offset so not placed on top of each other
-								allies [i] = Instantiate (allies [i], new Vector3 (i * 40.0f + 700, 10, 0 + 200), Quaternion.identity);
+								allies [i] = Instantiate (allies [i], new Vector3 (i * 40.0f + 700, 10, 0 + 200), Quaternion.identity) as AllyUnit;
 						}
 				}
 				for (int i = 0; i < allies.Length; i++) {
 						if (allies [i] != null)
-								((AllyUnit)allies [i]).canMove = true;
+								allies [i].canMove = true;
 
 				} 
 		}
@@ -85,7 +85,7 @@ public class GameControl : MonoBehaviour
 						for (int i = 0; i < allies.Length; i++) {
 								if (allies [i] != null) {
 										Vector3 p;
-										Vector3 pos = ((AllyUnit)allies [i]).transform.position;
+										Vector3 pos = allies [i].transform.position;
 										p = new Vector3 (pos.x, pos.z, pos.z);
 										if (end.Contains (p)) {
 												win = true;
@@ -103,7 +103,7 @@ public class GameControl : MonoBehaviour
 				//set all allies to stop movement.
 				for (int i = 0; i < allies.Length; i++) {
 						if (allies [i] != null) {
-								((AllyUnit)allies [i]).canMove = false;
+								allies [i].canMove = false;
 						}
 				}
         
@@ -117,7 +117,7 @@ public class GameControl : MonoBehaviour
 				gameState = false;
 				for (int i = 0; i < allies.Length; i++) {
 						if (allies [i] != null) {
-								AllyUnit ally = (AllyUnit)allies [i];
+								AllyUnit ally = allies [i];
 								ally.canMove = true;
 								ally.currentEnergy = ally.energy;
 						}

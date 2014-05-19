@@ -3,7 +3,7 @@ using System.Collections;
 
 public class globalData : MonoBehaviour {
     //pass in the difficulty of the mission.
-    public Object[] allyUnits = new Object[20];
+    public AllyUnit[] allyUnits = new AllyUnit[20];
     public int gold;
 
 

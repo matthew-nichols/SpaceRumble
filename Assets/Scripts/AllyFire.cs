@@ -7,21 +7,21 @@ public class AllyFire : baseUnit
 		public int delay = 3;
 		public float velocity = 100;
 		public Vector3 offset;
-		public float lastAttack = 0f;
+		public float lastAttack = 0;
 		public AudioSource unitSound;
 		public AudioClip fireSound;
 
-		void Start ()
+		protected override void Start ()
 		{
 		
 		}
-	
-		void Update ()
+
+		protected override void Update ()
 		{
 				currentTarget = FindObjectOfType<EnemyUnit> ();
 				if (Vector3.Distance (transform.position, currentTarget.transform.position) < attackRange && lastAttack > attackRate) {
 						Rigidbody clone;
-						clone = (Rigidbody)Instantiate (projectile, transform.position + offset, transform.rotation);
+						clone = Instantiate (projectile, transform.position + offset, transform.rotation) as Rigidbody;
 						unitSound.PlayOneShot (fireSound, 1);
 						clone.velocity = transform.TransformDirection (Vector3.forward * velocity) + new Vector3 (Time.deltaTime * velocity, 0, 0);
 						
