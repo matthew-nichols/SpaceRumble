@@ -17,18 +17,17 @@ public class GameControl : MonoBehaviour
 		public Vector3 enemyPos;
 		public Rect end;
 		public int maxDist;
-        public globalData data;
+		public globalData data;
 		// Use this for initialization
 		void Start ()
 		{
-            //populate list from global
-            GameObject p = GameObject.Find("GlobalData");
-            data = (globalData)p.GetComponent("globalData");
-            //build ally units
-            for (int i = 0; i < data.allyUnits.Length; i++)
-            {
-                allies[i] = data.allyUnits[i];
-            }
+				//populate list from global
+				GameObject p = GameObject.Find ("GlobalData");
+				data = p.GetComponent<globalData> ();
+				//build ally units
+				for (int i = 0; i < data.allyUnits.Length; i++) {
+						allies [i] = data.allyUnits [i];
+				}
 				gameState = false;
 				//spawn allies
 				for (int i = 0; i < allies.Length; i++) {
@@ -73,7 +72,7 @@ public class GameControl : MonoBehaviour
 				if (gameState) {
 						//wait for player to finish moving units
 						//if all enemies are dead call waveEnd
-						if (spawners [0] && spawners [0].done == true) {
+						if (spawners [0] && spawners [0].done) {
 								Destroy (spawners [0]);
 								Destroy ((spawners [0].gameObject));
 								spawners [0] = null;
@@ -135,9 +134,8 @@ public class GameControl : MonoBehaviour
 								waveStart ();
 						}
 				}
-                if (GUI.Button(new Rect(20, 30, 160, 20), ("Return to Mission Select")))
-                {
-                    Application.LoadLevel("mission");
-                }
+				if (GUI.Button (new Rect (20, 30, 160, 20), ("Return to Mission Select"))) {
+						Application.LoadLevel ("mission");
+				}
 		}
 }
