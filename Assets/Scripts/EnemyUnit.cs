@@ -7,7 +7,7 @@ public class EnemyUnit : baseUnit
 		public int delay = 3;
 		public float velocity = 100;
 		public Vector3 offset;
-		public float lastAttack = 0f;
+		public float lastAttack = 0;
 		public int maxDist = 100;
 		public AudioSource unitSound;
 		public AudioClip fireSound;
@@ -22,9 +22,7 @@ public class EnemyUnit : baseUnit
 		{
 				base.Update ();
 				if (currentHealth <= 0) {
-						Debug.Log ("Before");
-						ParticleSystem temp = (ParticleSystem)Instantiate (deathExplosion, transform.position, transform.rotation);
-						Debug.Log ("After");
+						ParticleSystem temp = Instantiate (deathExplosion, transform.position, transform.rotation) as ParticleSystem;
 						AudioSource tempSound = PlayClipAt (deathSound, transform.position);
 						Destroy (gameObject.rigidbody);
 						Destroy (gameObject);

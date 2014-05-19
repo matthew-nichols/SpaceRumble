@@ -3,7 +3,7 @@ using UnityEngine;
 public class AllyUnit : baseUnit
 {
 		public Vector3 targetLocation;
-		public float lastAttack = 0f;
+		public float lastAttack = 0;
 		public Rigidbody projectile;
 		public Vector3 offset;
 		public float velocity = 100;
@@ -24,7 +24,7 @@ public class AllyUnit : baseUnit
 		protected override void Update ()
 		{
 				if (currentHealth <= 0) {
-						ParticleSystem temp = (ParticleSystem)Instantiate (deathExplosion, transform.position, transform.rotation);
+						ParticleSystem temp = Instantiate (deathExplosion, transform.position, transform.rotation) as ParticleSystem;
 						AudioSource tempSound = PlayClipAt (deathSound, transform.position);
 						Destroy (gameObject.rigidbody);
 						Destroy (gameObject);
