@@ -34,7 +34,6 @@ public class EnemyUnit : baseUnit
 
 				currentTarget = FindObjectOfType<AllyUnit> ();
 				if (currentTarget) {
-						transform.LookAt (currentTarget.transform);
 						if (Vector3.Distance (transform.position, currentTarget.transform.position) < maxDist) {
 								agent.Stop ();
 						} else {
@@ -50,6 +49,7 @@ public class EnemyUnit : baseUnit
 								Destroy (clone, delay);
 								Destroy (clone.gameObject, delay);
 						}
+						transform.LookAt (currentTarget.transform);
 				}
 				lastAttack += Time.deltaTime;
 		}
