@@ -33,7 +33,7 @@ public class projectileMovement : MonoBehaviour
 						Quaternion rot = Quaternion.FromToRotation(Vector3.up, contact.normal); 
 						ParticleSystem temp = Instantiate(impactEffect, pos, rot) as ParticleSystem;
 						Destroy (gameObject);
-						Destroy (temp.gameObject, 3);
+						Destroy (temp.gameObject, 1);
 						baseUnit unit = other.gameObject.GetComponent<baseUnit>();
 						if (unit) unit.currentHealth -= 10;
 				}
