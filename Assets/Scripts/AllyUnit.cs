@@ -23,22 +23,22 @@ public class AllyUnit : baseUnit
 		protected override void Start ()
 		{
 				base.Start ();
-				base.health += armor.healthBoost;
-				base.currentHealth += armor.healthBoost;
-				
+				if (armor) {
+						base.health += armor.healthBoost;
+						base.currentHealth += armor.healthBoost;
+				}				
 		}
 
 		protected override void Update ()
 		{
 				if (currentHealth <= 0) {
-					if(!deathExplosion)
-					{
-						ParticleSystem temp = Instantiate (deathExplosion, transform.position, transform.rotation) as ParticleSystem;
-						Destroy (temp.gameObject, 5);
-					}
-					if(!deathSound){
-						AudioSource tempSound = PlayClipAt (deathSound, transform.position);
-					}
+						if (!deathExplosion) {
+								ParticleSystem temp = Instantiate (deathExplosion, transform.position, transform.rotation) as ParticleSystem;
+								Destroy (temp.gameObject, 5);
+						}
+						if (!deathSound) {
+								AudioSource tempSound = PlayClipAt (deathSound, transform.position);
+						}
 
 						Destroy (gameObject.rigidbody);
 						Destroy (gameObject);
