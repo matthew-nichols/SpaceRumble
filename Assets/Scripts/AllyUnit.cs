@@ -15,20 +15,34 @@ public class AllyUnit : baseUnit
 		public int energy;
 		public int currentEnergy;
 		public Vector3 cpos, ppos;
+		public Weapon weapon;
+		public Armor armor;
+		public Accessory accessory;
+		public Secondary secondary;
 
 		protected override void Start ()
 		{
 				base.Start ();
+				base.health += armor.healthBoost;
+				base.currentHealth += armor.healthBoost;
+				
 		}
 
 		protected override void Update ()
 		{
 				if (currentHealth <= 0) {
+					if(!deathExplosion)
+					{
 						ParticleSystem temp = Instantiate (deathExplosion, transform.position, transform.rotation) as ParticleSystem;
+						Destroy (temp.gameObject, 5);
+					}
+					if(!deathSound){
 						AudioSource tempSound = PlayClipAt (deathSound, transform.position);
+					}
+
 						Destroy (gameObject.rigidbody);
 						Destroy (gameObject);
-						Destroy (temp.gameObject, 5);
+						
 				}
 				if (ppos != transform.position && canMove) {
 						currentEnergy--;
