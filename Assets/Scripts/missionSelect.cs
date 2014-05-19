@@ -158,13 +158,6 @@ public class missionSelect : MonoBehaviour
 				displayMissions ();
 				displayInventory ();
 				if (GUI.Button (new Rect (x + width / 10, y + height / 8, width * 8 / 10, height / 7), "Start Mission")) {//should be grayed out if no mission is selected
-						AllyUnit a = baseAlly;
-						//for testing no units in ally
-						for (int i = 0; i < 10; i++) {
-								a.attackDmg += 10;
-								data.allyUnits [i] = a;
-						}
-          
 						Application.LoadLevel ("FirstMap");
 				}
 		}

@@ -166,6 +166,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6753398e823a05b4eba7f7b1cae70447, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  baseAlly: {fileID: 11400004, guid: 3ff0892ef0cf34044a03a506debd5f7c, type: 2}
   data: {fileID: 1846960092}
 --- !u!1 &1846960089
 GameObject:

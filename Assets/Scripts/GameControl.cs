@@ -7,7 +7,7 @@ public class GameControl : MonoBehaviour
 		public GameObject enemy;
 		public EnemySpawn spawner;
 		bool gameState; // true in wave mode, false in setup mode
-		//public Music musicObj;
+		public Music musicObj;
 		public int currentEnemies;
 		public int wave = 1; // holds the wave number
 		bool win;
@@ -28,7 +28,7 @@ public class GameControl : MonoBehaviour
 						allies [i] = data.allyUnits [i];
 				}
 				gameState = false;
-				//musicObj.gameState = gameState;
+				musicObj.gameState = gameState;
 				//spawn allies
 				for (int i = 0; i < allies.Length; i++) {
 						if (allies [i] != null) {
