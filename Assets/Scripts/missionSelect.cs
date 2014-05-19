@@ -1,193 +1,173 @@
 ﻿using UnityEngine;
-using System.Collections;
 
+public class missionSelect : MonoBehaviour
+{
+		public globalData data;
+		public AllyUnit baseAlly;
+		Object[] units = new Object[20];
+		Object[] items = new Object[40];//for when we have inventory
+		int numUnits = 0;
+		public missionSettings defaultmission;
+		missionSettings m1;
+		missionSettings m2;
+		missionSettings m3;
 
-public class missionSelect : MonoBehaviour {
-	// Use this for initialization
-    public globalData data;
-    public AllyUnit baseAlly;
-    private Object[] units = new Object[20];
-    private Object[] items = new Object[40];//for when we have inventory
-    private int numUnits = 0;
-    public missionSettings defaultmission;
-    private missionSettings m1;
-    private missionSettings m2;
-    private missionSettings m3;
+		void Start ()
+		{
+				//set globalData to not be destroyed.
+				//populate list from global
+				data = GameObject.Find ("GlobalData").GetComponent<globalData> ();
+				//every time it starts parse the list to get all units, and gets the number of units.
+				for (int i = 0; i < data.allyUnits.Length; i++) {
+						if (data.allyUnits [i] != null) {
+								units [numUnits] = data.allyUnits [i];
+								numUnits++;
+						}
+				}
+				//build missions
+				m1 = Instantiate (defaultmission) as missionSettings;
+				m1.difficulty = Random.Range (1, 4);
+				m1.allowedUnits = 10 - m1.difficulty;
+				m1.goldReward = 100 + m1.difficulty * 20;
 
-	void Start () {
-	    //set globalData to not be destroyed.
-        //populate list from global
-        GameObject p = GameObject.Find("GlobalData");
-        data = (globalData)p.GetComponent("globalData");
-        //every time it starts parse the list to get all units, and gets the number of units.
-        for (int i = 0; i < data.allyUnits.Length; i++)
-        {
-            if (data.allyUnits[i] != null)
-            {
-                units[numUnits] = data.allyUnits[i];
-                numUnits++;
-            }
-        }
-        //build missions
-        m1 = (missionSettings)Instantiate(defaultmission);
-        m1.difficulty = (int)Random.Range(1, 4);
-        m1.allowedUnits = 10 - m1.difficulty;
-        m1.goldReward = 100 + m1.difficulty * 20;
+				m2 = Instantiate (defaultmission) as missionSettings;
+				m2.difficulty = Random.Range (1, 4);
+				m2.allowedUnits = 10 - m2.difficulty;
+				m2.goldReward = 100 + m2.difficulty * 20;
 
-        m2 = (missionSettings)Instantiate(defaultmission);
-        m2.difficulty = (int)Random.Range(1, 4);
-        m2.allowedUnits = 10 - m2.difficulty;
-        m2.goldReward = 100 + m2.difficulty * 20;
-
-        m3 = (missionSettings)Instantiate(defaultmission);
-        m3.difficulty = (int)Random.Range(1, 4);
-        m3.allowedUnits = 10 - m3.difficulty;
-        m3.goldReward = 100 + m3.difficulty * 20;
-
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-	}
-
-    //function that builds the unit output.
-    void displayUnits()
-    {
-        //figure out where to start;
-        //try screen width over/2
-        int w = Screen.width;
-        int h = Screen.height;
-        int x = w / 2;
-        int y = h - h / 4;
-        int dx = x / 10;
-        int dy = (h - y) / 2;
-        for (int i = 0; i < 20; i++)//20 should be numUnits
-        {
-            int k;//to help with rows;
-            int ry;
-            if (i >= 10)
-            {
-                k = i - 10;
-                ry = y + dy;
-            }
-            else
-            {
-                ry = y;
-                k = i;
-            }
-            string s;
-            if (units[i] != null)
-            {
-                AllyUnit a = (AllyUnit)units[i];
-
-                s = a.name + "\n Dmg: " + a.attackDmg + "\n Rng: " + a.attackRange + "\n HP: " + a.health;
-            }
-            else
-            {
-                s = "no unit";
-            }
-            if (GUI.Button(new Rect(x+k*dx, ry, dx, dy), s))
-            {
-               // Application.LoadLevel("FirstMap");
-            }
-        }
-    }
-    string buildMission(missionSettings m)
-    {
-        string s;
-        if (m == null) return "No mission";
-        //Difficulty
-        if (m.difficulty == 0)//Difficulty intepreted by gamecontrol possibly
-        {
-            s = "Mission difficulty: Easy";
-        }
-        else if(m.difficulty == 1)
-        {
-            s = "Mission difficulty: Medium";
-        }
-        else if (m.difficulty == 2)
-        {
-            s = "Mission difficulty: Hard";
-        }
-        else
-        {
-            s = "Mission difficulty: Impossible";
-        }
-        s+="\n";
-        //other constraints(unit number)
-        s += "You can bring " + m.allowedUnits + " units on this Mission\n";
-        //gold value
-        s += "Expected Rewards: \n";
-        s += "Gold: " + m.goldReward;
-        s += "\nOtherstuffs";
-
-        return s;
-    }
-    void displayMissions()
-    {
-        //have 3 missions on the left side of the 
-        int w = Screen.width;
-        int h = Screen.height;
-        //start in top left corner
-        int width = w / 3;
-        int dy = h / 3;
-        //mission 1;
-        string s;
-        s = buildMission(m1);
-        if (GUI.Button(new Rect(0, 0, width, dy), s))
-        {
-            //            Application.LoadLevel("FirstMap");
-        }  
-        //mission 2;
-        s = "";
-        s = buildMission(m2);
-        if (GUI.Button(new Rect(0, dy, width, dy), s))
-        {
-            //            Application.LoadLevel("FirstMap");
-        }
-        //mission 3;
-        s = "";
-        s = buildMission(m3);
-        if (GUI.Button(new Rect(0, 2*dy, width, dy), s))
-        {
-            //            Application.LoadLevel("FirstMap");
-        }
-    }
-    void displayInventory()
-    {
-        int w = Screen.width;
-        int h = Screen.height;
-        int x = w - w / 4;
-        int width = w / 4;
-        int dy = h - h / 4;
-        string msg = "This is the inventory box!";
-        GUI.Box(new Rect(x, 0, width, dy), msg);
-    }
-	void OnGUI () {
-        int w = Screen.width;
-        int h = Screen.height;
-        int x = w /3;
-        int y = h - h / 4;
-        int height = h / 4;
-        int width = w / 2 - w / 3;
-		// Make a background box
-		GUI.Box(new Rect(x,y,width,height), "Mission Menu");
-        displayUnits();
-        displayMissions();
-        displayInventory();
-		if(GUI.Button(new Rect(x+width/10,y+height/8,width*8/10,height/7), "Start Mission")) {//should be grayed out if no mission is selected
-            AllyUnit a = baseAlly;
-            //for testing no units in ally
-            for (int i = 0; i < 10; i++)
-            {
-                a.attackDmg += 10;
-                data.allyUnits[i] = a;
-            }
-          
-            Application.LoadLevel("FirstMap");
+				m3 = Instantiate (defaultmission) as missionSettings;
+				m3.difficulty = Random.Range (1, 4);
+				m3.allowedUnits = 10 - m3.difficulty;
+				m3.goldReward = 100 + m3.difficulty * 20;
 		}
-	}
+	
+		void Update ()
+		{
+		}
+
+		//function that builds the unit output.
+		void displayUnits ()
+		{
+				//figure out where to start;
+				//try screen width over/2
+				int w = Screen.width;
+				int h = Screen.height;
+				int x = w / 2;
+				int y = h - h / 4;
+				int dx = x / 10;
+				int dy = (h - y) / 2;
+				for (int i = 0; i < 20; i++) {//20 should be numUnits
+						int k;//to help with rows;
+						int ry;
+						if (i >= 10) {
+								k = i - 10;
+								ry = y + dy;
+						} else {
+								ry = y;
+								k = i;
+						}
+						string s;
+						if (units [i] != null) {
+								AllyUnit a = (AllyUnit)units [i];
+
+								s = a.name + "\n Dmg: " + a.attackDmg + "\n Rng: " + a.attackRange + "\n HP: " + a.health;
+						} else {
+								s = "no unit";
+						}
+						if (GUI.Button (new Rect (x + k * dx, ry, dx, dy), s)) {
+								// Application.LoadLevel("FirstMap");
+						}
+				}
+		}
+
+		string buildMission (missionSettings m)
+		{
+				string s;
+				if (m == null)
+						return "No mission";
+				//Difficulty
+				if (m.difficulty == 0) {//Difficulty intepreted by gamecontrol possibly
+						s = "Mission difficulty: Easy";
+				} else if (m.difficulty == 1) {
+						s = "Mission difficulty: Medium";
+				} else if (m.difficulty == 2) {
+						s = "Mission difficulty: Hard";
+				} else {
+						s = "Mission difficulty: Impossible";
+				}
+				s += "\n";
+				//other constraints(unit number)
+				s += "You can bring " + m.allowedUnits + " units on this Mission\n";
+				//gold value
+				s += "Expected Rewards: \n";
+				s += "Gold: " + m.goldReward;
+				s += "\nOtherstuffs";
+
+				return s;
+		}
+
+		void displayMissions ()
+		{
+				//have 3 missions on the left side of the 
+				int w = Screen.width;
+				int h = Screen.height;
+				//start in top left corner
+				int width = w / 3;
+				int dy = h / 3;
+				//mission 1;
+				string s;
+				s = buildMission (m1);
+				if (GUI.Button (new Rect (0, 0, width, dy), s)) {
+						//            Application.LoadLevel("FirstMap");
+				}  
+				//mission 2;
+				s = "";
+				s = buildMission (m2);
+				if (GUI.Button (new Rect (0, dy, width, dy), s)) {
+						//            Application.LoadLevel("FirstMap");
+				}
+				//mission 3;
+				s = "";
+				s = buildMission (m3);
+				if (GUI.Button (new Rect (0, 2 * dy, width, dy), s)) {
+						//            Application.LoadLevel("FirstMap");
+				}
+		}
+
+		void displayInventory ()
+		{
+				int w = Screen.width;
+				int h = Screen.height;
+				int x = w - w / 4;
+				int width = w / 4;
+				int dy = h - h / 4;
+				string msg = "This is the inventory box!";
+				GUI.Box (new Rect (x, 0, width, dy), msg);
+		}
+
+		void OnGUI ()
+		{
+				int w = Screen.width;
+				int h = Screen.height;
+				int x = w / 3;
+				int y = h - h / 4;
+				int height = h / 4;
+				int width = w / 2 - w / 3;
+				// Make a background box
+				GUI.Box (new Rect (x, y, width, height), "Mission Menu");
+				displayUnits ();
+				displayMissions ();
+				displayInventory ();
+				if (GUI.Button (new Rect (x + width / 10, y + height / 8, width * 8 / 10, height / 7), "Start Mission")) {//should be grayed out if no mission is selected
+						AllyUnit a = baseAlly;
+						//for testing no units in ally
+						for (int i = 0; i < 10; i++) {
+								a.attackDmg += 10;
+								data.allyUnits [i] = a;
+						}
+          
+						Application.LoadLevel ("FirstMap");
+				}
+		}
 
 }
