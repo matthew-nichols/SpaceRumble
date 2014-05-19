@@ -98,7 +98,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1039748584}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 134c48d8ed4341843ab4849d58ab200a, type: 3}
+  m_Script: {fileID: 11500000, guid: 46bbcdf5a1fe39b4e911b211e4f2c9e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   allyUnits:
@@ -146,7 +146,6 @@ GameObject:
   - 92: {fileID: 1623954198}
   - 124: {fileID: 1623954197}
   - 81: {fileID: 1623954196}
-  - 114: {fileID: 1623954195}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -154,19 +153,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1623954195
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1623954194}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e0ff67427f3199b4ba10f58a537bc796, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  data: {fileID: 0}
-  baseAlly: {fileID: 0}
 --- !u!81 &1623954196
 AudioListener:
   m_ObjectHideFlags: 0
@@ -252,10 +238,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1686157743}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e0ff67427f3199b4ba10f58a537bc796, type: 3}
+  m_Script: {fileID: 11500000, guid: fd1dc9ab8ff0055499bd0e0df8e66af1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  data: {fileID: 1039748585}
+  data: {fileID: 0}
   baseAlly: {fileID: 11400004, guid: 3ff0892ef0cf34044a03a506debd5f7c, type: 2}
 --- !u!4 &1686157745
 Transform:

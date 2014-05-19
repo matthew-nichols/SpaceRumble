@@ -211,7 +211,7 @@ MonoBehaviour:
   destinationVector: {x: 0, y: 0, z: 0}
   name: unit
   currentTarget: {fileID: 0}
-  deathExplosion: {fileID: 19800004, guid: 987d09edf8cc09949a93c64e4e18591c, type: 2}
+  deathExplosion: {fileID: 19800000, guid: bc2183d25a8846d44802a301ddf6d41f, type: 2}
   control: {fileID: 0}
   targetLocation: {x: 0, y: 0, z: 0}
   projectile: {fileID: 5400000, guid: eb1bdaf9e42eb1e4d9b834184d517b64, type: 2}

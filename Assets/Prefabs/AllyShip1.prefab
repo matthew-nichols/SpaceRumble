@@ -291,7 +291,7 @@ MonoBehaviour:
   onHoverMaterial: {fileID: 2100000, guid: 13f2273eee249e24f92aa2d8fabfc2af, type: 2}
   health: 1000
   currentHealth: 1000
-  attackDmg: 20
+  attackDmg: 1020
   attackRange: 601
   attackRate: .5
   isClicked: 0
@@ -299,7 +299,7 @@ MonoBehaviour:
   destinationVector: {x: 0, y: 0, z: 0}
   name: Bob
   currentTarget: {fileID: 0}
-  deathExplosion: {fileID: 19800004, guid: 987d09edf8cc09949a93c64e4e18591c, type: 2}
+  deathExplosion: {fileID: 19800002, guid: 4af7bf6c4ab3a0741b2b4741dcff2a30, type: 2}
   control: {fileID: 0}
   targetLocation: {x: 5, y: 0, z: 0}
   lastAttack: 0
