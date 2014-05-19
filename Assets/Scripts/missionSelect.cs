@@ -2,6 +2,7 @@
 
 public class missionSelect : MonoBehaviour
 {
+		enum states {DEFAULT, UNIT_SELECT, UNIT_EQUIP, SHOP};
 		public globalData data;
 		public AllyUnit baseAlly;
 		AllyUnit[] units = new AllyUnit[20];
@@ -11,7 +12,10 @@ public class missionSelect : MonoBehaviour
 		missionSettings m1;
 		missionSettings m2;
 		missionSettings m3;
-
+        AllyUnit[] selectedUnits = new AllyUnit[10];//at most 10 ally units per mission
+		private states state = states.DEFAULT;
+		private int numSelected = 0;
+		private missionSettings selected;
 		void Start ()
 		{
 				//populate list from global
@@ -23,6 +27,7 @@ public class missionSelect : MonoBehaviour
 								numUnits++;
 						}
 				}
+                data.allyUnits = units;//clear dead units
 				//build missions
 				m1 = Instantiate (defaultmission) as missionSettings;
 				m1.difficulty = Random.Range (1, 4);
@@ -39,9 +44,27 @@ public class missionSelect : MonoBehaviour
 				m3.allowedUnits = 10 - m3.difficulty;
 				m3.goldReward = 100 + m3.difficulty * 20;
 		}
-	
+		void selectUnits(){
+            numSelected = 0;
+			state = states.UNIT_SELECT;
+		}
 		void Update ()
 		{
+            switch (state)
+            {
+                case states.DEFAULT:
+                    break;
+                case states.SHOP:
+                    break;
+                case states.UNIT_EQUIP:
+                    break;
+                case states.UNIT_SELECT://ends if numSelected = selecttedmission.allowedUnits
+                    if (numSelected == selected.allowedUnits||numSelected==numUnits)
+                    {
+                        state = states.DEFAULT;
+                    }
+                    break;
+            }
 		}
 
 		//function that builds the unit output.
@@ -68,13 +91,16 @@ public class missionSelect : MonoBehaviour
 						string s;
 						if (units [i] != null) {
 								AllyUnit a = (AllyUnit)units [i];
-
 								s = a.UnitName + "\n Dmg: " + a.attackDmg + "\n Rng: " + a.attackRange + "\n HP: " + a.health;
 						} else {
 								s = "no unit";
 						}
 						if (GUI.Button (new Rect (x + k * dx, ry, dx, dy), s)) {
-								// Application.LoadLevel("FirstMap");
+								if(state==states.UNIT_SELECT){
+                                    AllyUnit a = (AllyUnit)units[i];
+                                    selectedUnits[numSelected] = a;
+									numSelected++;
+								}
 						}
 				}
 		}
@@ -104,7 +130,39 @@ public class missionSelect : MonoBehaviour
 
 				return s;
 		}
+		void displayContext ()
+		{
+				//start of context menu y = 0; x = 1/3 Screen.width;
+				int w = Screen.width;
+				int h = Screen.height;		
+				int x = w/3;
+				int y = 0;
 
+				if(state == states.DEFAULT){
+					return;
+				}else if(state == states.SHOP){
+
+				}else if(state == states.UNIT_EQUIP){
+
+				}else if (state ==states.UNIT_SELECT){
+						//display selected units
+						int dx = w / 20;
+						int dy = (h /4) / 2;
+						for(int i = 0; i<numSelected; i++){
+								string s;
+								if (units [i] != null) {
+										AllyUnit a = (AllyUnit)units [i];
+
+										s = a.UnitName + "\n Dmg: " + a.attackDmg + "\n Rng: " + a.attackRange + "\n HP: " + a.health;
+								} else {
+										s = "no unit";
+								}
+								if (GUI.Button (new Rect (x + i * dx, 0, dx, dy), s)) {
+										// Application.LoadLevel("FirstMap");
+								}			
+						}
+				}
+		}
 		void displayMissions ()
 		{
 				//have 3 missions on the left side of the 
@@ -117,21 +175,22 @@ public class missionSelect : MonoBehaviour
 				string s;
 				s = buildMission (m1);
 				if (GUI.Button (new Rect (0, 0, width, dy), s)) {
-						//            Application.LoadLevel("FirstMap");
+						selected = m1;
 				}  
 				//mission 2;
 				s = "";
 				s = buildMission (m2);
 				if (GUI.Button (new Rect (0, dy, width, dy), s)) {
-						//            Application.LoadLevel("FirstMap");
+						selected = m2;
 				}
 				//mission 3;
 				s = "";
 				s = buildMission (m3);
 				if (GUI.Button (new Rect (0, 2 * dy, width, dy), s)) {
-						//            Application.LoadLevel("FirstMap");
+						selected = m3;
 				}
 		}
+
 
 		void displayInventory ()
 		{
@@ -157,9 +216,24 @@ public class missionSelect : MonoBehaviour
 				displayUnits ();
 				displayMissions ();
 				displayInventory ();
-				if (GUI.Button (new Rect (x + width / 10, y + height / 8, width * 8 / 10, height / 7), "Start Mission")) {//should be grayed out if no mission is selected
-						Application.LoadLevel ("FirstMap");
-				}
+                displayContext();
+                if (GUI.Button(new Rect(x + width / 10, y + height / 8, width * 8 / 10, height / 7), "Start Mission"))
+                {//should be grayed out if no mission is selected
+                        if (state == states.DEFAULT)
+                        {
+                            Application.LoadLevel("FirstMap");
+                        }
+                }
+                if (state != states.UNIT_SELECT)
+                {
+                    if (GUI.Button(new Rect(x + width / 10, y + 2 * height / 8, width * 8 / 10, height / 7), "Select Units"))
+                    {//should be grayed out if no mission is selected
+                        if (state == states.DEFAULT&&selected!=null)
+                        {
+                            selectUnits();
+                        }
+                    }
+                }
 		}
 
 }

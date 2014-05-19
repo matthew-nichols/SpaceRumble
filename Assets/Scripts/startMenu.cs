@@ -21,10 +21,15 @@ public class startMenu : MonoBehaviour
 		void OnGUI ()
 		{
 				// Make a background box
-				GUI.Box (new Rect (10, 10, 100, 90), "Loader Menu");
-
+//				GUI.Box (new Rect (10, 10, 100, 90), "Loader Menu");
+                int w = Screen.width;
+                int h = Screen.height;
+                int x = w / 3;
+                int y = h / 3;
+                int dy = h / 9;
+                int mw = w / 3;
 				// Make the first button. If it is pressed, Application.Loadlevel (1) will be executed
-				if (GUI.Button (new Rect (20, 40, 80, 40), "Start Game(Easy)")) {
+				if (GUI.Button (new Rect (x, y, mw, dy), "Start Game(Easy)")) {
                     AllyUnit a = baseAlly;
                     //for testing no units in ally
                     for (int i = 0; i < 10; i++)
@@ -35,7 +40,7 @@ public class startMenu : MonoBehaviour
 				}
 
                 // Make the first button. If it is pressed, Application.Loadlevel (1) will be executed
-                if (GUI.Button(new Rect(20, 70, 80, 40), "Start Game(hard)"))
+                if (GUI.Button(new Rect(x, y+dy, mw, dy), "Start Game(hard)"))
                 {
                     AllyUnit a = baseAlly;
                     //for testing no units in ally
