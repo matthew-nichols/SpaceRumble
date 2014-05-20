@@ -297,9 +297,9 @@ MonoBehaviour:
   isClicked: 0
   updateRightClick: 0
   destinationVector: {x: 0, y: 0, z: 0}
-  name: Bob
+  UnitName: unset
   currentTarget: {fileID: 0}
-  deathExplosion: {fileID: 19800002, guid: 4af7bf6c4ab3a0741b2b4741dcff2a30, type: 2}
+  deathExplosion: {fileID: 19800000, guid: e6ab56e4714ff4154ac034cf28db78b2, type: 2}
   control: {fileID: 0}
   targetLocation: {x: 5, y: 0, z: 0}
   lastAttack: 0
@@ -315,6 +315,10 @@ MonoBehaviour:
   currentEnergy: 500
   cpos: {x: 0, y: 0, z: 0}
   ppos: {x: 0, y: 0, z: 0}
+  weapon: {fileID: 0}
+  armor: {fileID: 0}
+  accessory: {fileID: 0}
+  secondary: {fileID: 0}
 --- !u!195 &19500000
 NavMeshAgent:
   m_ObjectHideFlags: 1
