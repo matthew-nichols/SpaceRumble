@@ -44,7 +44,7 @@ public class EnemyUnit : baseUnit
 
 						if (Vector3.Distance (transform.position, currentTarget.transform.position) < attackRange && lastAttack > attackRate) {
 								Rigidbody clone;
-								clone = (Rigidbody)Instantiate (projectile, transform.position + offset, transform.rotation);
+								clone = Instantiate (projectile, transform.position + offset, transform.rotation) as Rigidbody;
 								unitSound.PlayOneShot (fireSound, 0.1f);
 								clone.velocity = transform.TransformDirection (Vector3.forward * velocity) + new Vector3 (Time.deltaTime * velocity, 0, 0);
 								lastAttack = 0;
