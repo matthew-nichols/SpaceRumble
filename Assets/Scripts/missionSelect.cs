@@ -43,6 +43,8 @@ public class missionSelect : MonoBehaviour
 				m3.difficulty = Random.Range (1, 4);
 				m3.allowedUnits = 10 - m3.difficulty;
 				m3.goldReward = 100 + m3.difficulty * 20;
+                //by default selected mission is m1;
+                selected = m1;
 		}
 		void selectUnits(){
             numSelected = 0;
@@ -221,6 +223,24 @@ public class missionSelect : MonoBehaviour
                 {//should be grayed out if no mission is selected
                         if (state == states.DEFAULT)
                         {
+                            //populate list of units.
+                            if (numSelected == 0)
+                            {
+                                for (int i = 0; (i < selected.allowedUnits) && (i < numUnits); i++)//Either goes to the number of units allowed, or the current number of units
+                                {
+                                    selectedUnits[i] = units[i];
+                                    numSelected = i;
+                                }
+
+                                data.selectedUnits = selectedUnits;
+                                data.numUnits = numSelected;
+                            }
+                            else
+                            {
+                                data.selectedUnits = selectedUnits;
+                                data.numUnits = numSelected;
+                            }
+                            
                             Application.LoadLevel("FirstMap");
                         }
                 }

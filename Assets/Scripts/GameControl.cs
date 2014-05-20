@@ -24,9 +24,10 @@ public class GameControl : MonoBehaviour
 				//populate list from global
 				data = GameObject.Find ("GlobalData").GetComponent<globalData> ();
 				//build ally units
-				for (int i = 0; i < data.allyUnits.Length; i++) {
-						allies [i] = data.allyUnits [i];
-				}
+                for (int i = 0; i < data.selectedUnits.Length; i++)
+                {
+                    allies[i] = data.selectedUnits[i];
+                }
 				gameState = false;
 				musicObj.gameState = gameState;
 				//spawn allies
