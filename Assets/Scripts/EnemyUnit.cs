@@ -22,14 +22,13 @@ public class EnemyUnit : baseUnit
 		{
 				base.Update ();
 				if (currentHealth <= 0) {
-					if(!deathExplosion)
-					{
-						ParticleSystem temp = Instantiate (deathExplosion, transform.position, transform.rotation) as ParticleSystem;
-						Destroy (temp.gameObject, 5);
-					}
-					if(!deathSound){
-						AudioSource tempSound = PlayClipAt (deathSound, transform.position);
-					}
+						if (deathExplosion) {
+								ParticleSystem temp = Instantiate (deathExplosion, transform.position, transform.rotation) as ParticleSystem;
+								Destroy (temp.gameObject, 5);
+						}
+						if (deathSound) {
+								PlayClipAt (deathSound, transform.position);
+						}
 						Destroy (gameObject.rigidbody);
 						Destroy (gameObject);
 						control.currentEnemies--;
