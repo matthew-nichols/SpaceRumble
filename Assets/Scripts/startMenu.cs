@@ -3,7 +3,7 @@ using System.Collections;
 
 public class startMenu : MonoBehaviour
 {
-        public AllyUnit baseAlly;
+        public AllyUnitStats baseAlly;
         
 		public globalData data;
 		// Use this for initialization
@@ -30,11 +30,15 @@ public class startMenu : MonoBehaviour
                 int mw = w / 3;
 				// Make the first button. If it is pressed, Application.Loadlevel (1) will be executed
 				if (GUI.Button (new Rect (x, y, mw, dy), "Start Game(Easy)")) {
-                    AllyUnit a = baseAlly;
-                    //for testing no units in ally
+
                     for (int i = 0; i < 10; i++)
                     {
+                        AllyUnitStats a = Instantiate(baseAlly) as AllyUnitStats; 
+               
+                        a.UnitName = "Bob " + i;//change to randomized name.
+                        a.attackDmg += i * 10;
                         data.allyUnits[i] = a;
+                        DontDestroyOnLoad(a);
                     }
 						Application.LoadLevel ("Mission");
 				}
@@ -42,10 +46,15 @@ public class startMenu : MonoBehaviour
                 // Make the first button. If it is pressed, Application.Loadlevel (1) will be executed
                 if (GUI.Button(new Rect(x, y+dy, mw, dy), "Start Game(hard)"))
                 {
-                    AllyUnit a = baseAlly;
+
                     //for testing no units in ally
                     for (int i = 0; i < 5; i++)
                     {
+                        //m3 = Instantiate(defaultmission) as missionSettings;
+                        AllyUnitStats a = Instantiate(baseAlly) as AllyUnitStats;
+                        a.UnitName = "Bob " + i;//change to randomized name.
+                        a.attackDmg += i * 10;
+                        DontDestroyOnLoad(a);
                         data.allyUnits[i] = a;
                     }
                     Application.LoadLevel("Mission");

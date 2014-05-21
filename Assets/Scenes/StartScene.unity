@@ -166,8 +166,58 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6753398e823a05b4eba7f7b1cae70447, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseAlly: {fileID: 11400004, guid: 3ff0892ef0cf34044a03a506debd5f7c, type: 2}
+  baseAlly: {fileID: 819655528}
   data: {fileID: 1846960092}
+--- !u!1 &819655527
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 819655529}
+  - 114: {fileID: 819655528}
+  m_Layer: 0
+  m_Name: DefaultStats
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &819655528
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 819655527}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec76f662e5ee84445b48dd40b1ecca65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 1000
+  UnitName: unset
+  currentHealth: 1000
+  attackDmg: 100
+  attackRange: 500
+  attackRate: .5
+  energy: 125
+  currentEnergy: 125
+  weapon: {fileID: 0}
+  armor: {fileID: 0}
+  accessory: {fileID: 0}
+  secondary: {fileID: 0}
+--- !u!4 &819655529
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 819655527}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
 --- !u!1 &1846960089
 GameObject:
   m_ObjectHideFlags: 0
@@ -227,4 +277,16 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  selectedUnits:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  numUnits: 0
   gold: 0

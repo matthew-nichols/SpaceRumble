@@ -4,15 +4,15 @@ public class missionSelect : MonoBehaviour
 {
 		enum states {DEFAULT, UNIT_SELECT, UNIT_EQUIP, SHOP};
 		public globalData data;
-		public AllyUnit baseAlly;
-		AllyUnit[] units = new AllyUnit[20];
+		public AllyUnitStats baseAlly;
+		AllyUnitStats[] units = new AllyUnitStats[20];
 		Object[] items = new Object[40];//for when we have inventory
 		int numUnits = 0;
 		public missionSettings defaultmission;
 		missionSettings m1;
 		missionSettings m2;
 		missionSettings m3;
-        AllyUnit[] selectedUnits = new AllyUnit[10];//at most 10 ally units per mission
+        AllyUnitStats[] selectedUnits = new AllyUnitStats[10];//at most 10 ally units per mission
 		private states state = states.DEFAULT;
 		private int numSelected = 0;
 		private missionSettings selected;
@@ -92,14 +92,15 @@ public class missionSelect : MonoBehaviour
 						}
 						string s;
 						if (units [i] != null) {
-								AllyUnit a = (AllyUnit)units [i];
+								AllyUnitStats a = units [i];
 								s = a.UnitName + "\n Dmg: " + a.attackDmg + "\n Rng: " + a.attackRange + "\n HP: " + a.health;
 						} else {
 								s = "no unit";
 						}
 						if (GUI.Button (new Rect (x + k * dx, ry, dx, dy), s)) {
 								if(state==states.UNIT_SELECT){
-                                    AllyUnit a = (AllyUnit)units[i];
+                                    AllyUnitStats a = units[i];
+
                                     selectedUnits[numSelected] = a;
 									numSelected++;
 								}
@@ -152,8 +153,8 @@ public class missionSelect : MonoBehaviour
 						int dy = (h /4) / 2;
 						for(int i = 0; i<numSelected; i++){
 								string s;
-								if (units [i] != null) {
-										AllyUnit a = (AllyUnit)units [i];
+								if (selectedUnits [i] != null) {
+										AllyUnitStats a = (AllyUnitStats)selectedUnits [i];
 
 										s = a.UnitName + "\n Dmg: " + a.attackDmg + "\n Rng: " + a.attackRange + "\n HP: " + a.health;
 								} else {

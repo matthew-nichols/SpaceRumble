@@ -2,10 +2,13 @@
 
 public class GameControl : MonoBehaviour
 {
-		public AllyUnit[] allies = new AllyUnit[20];
+        public AllyUnitStats[] allyStats = new AllyUnitStats[20];
+        public AllyUnit[] allies = new AllyUnit[20];
+
 		public EnemySpawn[] spawners = new EnemySpawn[5]; // at most 5 enemy spawners (for now)
 		public GameObject enemy;
 		public EnemySpawn spawner;
+        public AllyUnit baseUnit;
 		bool gameState; // true in wave mode, false in setup mode
 		public Music musicObj;
 		public int currentEnemies;
@@ -27,15 +30,17 @@ public class GameControl : MonoBehaviour
 				//build ally units
                 for (int i = 0; i < data.selectedUnits.Length; i++)
                 {
-                    allies[i] = data.selectedUnits[i];
+                    allyStats[i] = data.selectedUnits[i];
                 }
 				gameState = false;
 				musicObj.gameState = gameState;
 				//spawn allies
-				for (int i = 0; i < allies.Length; i++) {
-						if (allies [i] != null) {
+				for (int i = 0; i < allyStats.Length; i++) {
+						if (allyStats [i] != null) {
+                                
 								//code to place ally, will need some sort of offset so not placed on top of each other
-								allies [i] = Instantiate (allies [i], allySpawnLocation + new Vector3(i * 20.0f, transform.position.y, 0), Quaternion.identity) as AllyUnit;
+								allies [i] = Instantiate (baseUnit, allySpawnLocation + new Vector3(i * 20.0f, transform.position.y, 0), Quaternion.identity) as AllyUnit;
+                                allies[i].SendMessage("SetInfo",allyStats[i]);
 						}
 				}
 				for (int i = 0; i < allies.Length; i++) {

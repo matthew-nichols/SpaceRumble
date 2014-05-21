@@ -104,6 +104,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f3d6dd31f18624439fd654798dc8243, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  allyStats:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   allies:
   - {fileID: 0}
   - {fileID: 0}
@@ -133,6 +154,7 @@ MonoBehaviour:
   - {fileID: 0}
   enemy: {fileID: 100002, guid: 8158a1d4d2700eb42abd3f90e6815d5e, type: 2}
   spawner: {fileID: 11400000, guid: 07fccf3e710650444b4ba40f11e0cb2c, type: 2}
+  baseUnit: {fileID: 11400004, guid: 25c92dfc9f0ccdf44a212d0cac50dcc9, type: 2}
   musicObj: {fileID: 1847089276}
   currentEnemies: 0
   wave: 0
