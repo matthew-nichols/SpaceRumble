@@ -2,8 +2,8 @@
 
 public class GameControl : MonoBehaviour
 {
-        public AllyUnitStats[] allyStats = new AllyUnitStats[20];
-        public AllyUnit[] allies = new AllyUnit[20];
+        public AllyUnitStats[] allyStats = new AllyUnitStats[10];
+        public AllyUnit[] allies = new AllyUnit[10];
 
 		public EnemySpawn[] spawners = new EnemySpawn[5]; // at most 5 enemy spawners (for now)
 		public GameObject enemy;
@@ -127,16 +127,64 @@ public class GameControl : MonoBehaviour
 				gameState = false;
 				musicObj.gameState = gameState;
 				for (int i = 0; i < allies.Length; i++) {
-						if (allies [i] != null) {
-								AllyUnit ally = allies [i];
-								ally.canMove = true;
-								ally.currentEnergy = ally.energy;
-						}
+                    if (allies[i] != null)
+                    {
+                        AllyUnit ally = allies[i];
+                        ally.canMove = true;
+                        ally.currentEnergy = ally.energy;
+                    }
+                    
 
 				}
 		}
+        void GetInfo2(AllyUnitStats a, AllyUnit b)//calling member function isn't working
+        {
+            /* a.targetLocation = targetLocation;
+             a.lastAttack = lastAttack;
+             a.projectile = projectile;
+             a.offset = offset;
+             a.velocity = velocity;
+             a.delay = delay;
+             a.unitSound = unitSound;
+             a.fireSound = fireSound;
+             a.deathSound = deathSound;
+             a.canMove = canMove;*/
+            a.energy = b.energy;
+            a.currentEnergy = b.currentEnergy;
+            //   a.cpos = cpos;
+            //  a.ppos = ppos;
+            a.weapon = b.weapon;
+            a.armor = b.armor;
+            a.accessory = b.accessory;
+            a.secondary = b.secondary;
+            a.health = health;
+            a.currentHealth = b.currentHealth;
+            a.attackDmg = b.attackDmg;
+            a.attackRange = b.attackRange;
+            a.attackRate = b.attackRate;
+            a.UnitName = b.UnitName;
+        }
+        void missionOver()//do mission overy stuff
+        {
 
-		void OnGUI ()
+            //clear list of allyStats
+
+            AllyUnitStats[] selectedUnits = new AllyUnitStats[10];
+            for (int i = 0; i < allies.Length; i++)
+            {
+                if (allies[i] != null)
+                {
+                    GetInfo2(data.selectedUnits[i], allies[i]);
+                    // allies[i].SendMessage("GetInfo", selectedUnits[numAlive]);
+
+                }
+                else
+                {
+                    data.selectedUnits[i] = null;
+                }
+            }
+        }
+        void OnGUI()
 		{
 				if (win)
 						GUI.Box (new Rect (Screen.width / 2, Screen.height / 2, 200, 200), "You Win !!!");
@@ -147,7 +195,8 @@ public class GameControl : MonoBehaviour
 						}
 				}
 				if (GUI.Button (new Rect (20, 30, 160, 20), ("Return to Mission Select"))) {
-						Application.LoadLevel ("mission");
+                        missionOver();
+                        Application.LoadLevel ("mission");
 				}
 		}
 }

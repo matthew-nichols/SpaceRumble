@@ -22,7 +22,8 @@ public class AllyUnitStats : MonoBehaviour {
     public Armor armor;
     public Accessory accessory; 
     public Secondary secondary;
-	
+    public int index;
+
     // Use this for initialization
 	void Start () {
 	

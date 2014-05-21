@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Armor : MonoBehaviour {
+public class Armor : Item {
 
 	public int healthBoost;
 	public int energy;

@@ -8,6 +8,7 @@ public class missionSelect : MonoBehaviour
 		AllyUnitStats[] units = new AllyUnitStats[20];
 		Object[] items = new Object[40];//for when we have inventory
 		int numUnits = 0;
+        int[] selectedIndexes = new int[10];
 		public missionSettings defaultmission;
 		missionSettings m1;
 		missionSettings m2;
@@ -16,17 +17,66 @@ public class missionSelect : MonoBehaviour
 		private states state = states.DEFAULT;
 		private int numSelected = 0;
 		private missionSettings selected;
-		void Start ()
+        bool contains(int n)//function to check if unit is selected
+        {
+            bool f = false;
+            for (int i = 0; i < selectedUnits.Length; i++)
+            {
+                if (selectedIndexes[i] == n) return true;
+            }
+            return false;
+        }
+        void clearIndexes()
+        {
+            for (int i = 0; i < selectedIndexes.Length; i++) selectedIndexes[i] = -1;
+        }
+        void Start()
 		{
+                for (int i = 0; i < selectedIndexes.Length; i++)
+                {
+                    selectedIndexes[i] = -1;
+                }
+                numUnits = 0;
 				//populate list from global
 				data = GameObject.Find ("GlobalData").GetComponent<globalData> ();
 				//every time it starts parse the list to get all units, and gets the number of units.
-				for (int i = 0; i < data.allyUnits.Length; i++) {
-						if (data.allyUnits [i] != null) {
-								units [numUnits] = data.allyUnits [i];
-								numUnits++;
-						}
-				}
+                if (data.selectedUnits[0] == null && data.unselectedUnits[0] == null)
+                {
+                    for (int i = 0; i < data.allyUnits.Length; i++)
+                    {
+                        if (data.allyUnits[i] != null)
+                        {
+                            units[numUnits] = data.allyUnits[i];
+                            units[numUnits].index = numUnits;
+                            numUnits++;
+                        }
+                        //if( numUnits == 0) game over
+                    }
+                }
+                else
+                {//build list of units selected then unselected
+   
+                    for (int i = 0; i < data.selectedUnits.Length; i++)
+                    {
+                        if (data.selectedUnits[i] != null)
+                        {
+                            units[numUnits] = data.selectedUnits[i];
+                            units[numUnits].index = numUnits;
+                            numUnits++;
+                        }
+                        //if( numUnits == 0) game over
+                    }
+                    for (int i = 0; i < data.unselectedUnits.Length; i++)
+                    {
+                        if (data.unselectedUnits[i] != null)
+                        {
+                            units[numUnits] = data.unselectedUnits[i];
+                            units[numUnits].index = numUnits;
+                            numUnits++;
+                        }
+                        //if( numUnits == 0) game over
+                    }
+                }
                 data.allyUnits = units;//clear dead units
 				//build missions
 				m1 = Instantiate (defaultmission) as missionSettings;
@@ -48,6 +98,7 @@ public class missionSelect : MonoBehaviour
 		}
 		void selectUnits(){
             numSelected = 0;
+            clearIndexes();
 			state = states.UNIT_SELECT;
 		}
 		void Update ()
@@ -98,10 +149,10 @@ public class missionSelect : MonoBehaviour
 								s = "no unit";
 						}
 						if (GUI.Button (new Rect (x + k * dx, ry, dx, dy), s)) {
-								if(state==states.UNIT_SELECT){
+								if(state==states.UNIT_SELECT&& !(contains(i))){
                                     AllyUnitStats a = units[i];
-
                                     selectedUnits[numSelected] = a;
+                                    selectedIndexes[numSelected] = a.index;
 									numSelected++;
 								}
 						}
@@ -232,7 +283,6 @@ public class missionSelect : MonoBehaviour
                                     selectedUnits[i] = units[i];
                                     numSelected = i;
                                 }
-
                                 data.selectedUnits = selectedUnits;
                                 data.numUnits = numSelected;
                             }
@@ -241,7 +291,19 @@ public class missionSelect : MonoBehaviour
                                 data.selectedUnits = selectedUnits;
                                 data.numUnits = numSelected;
                             }
-                            
+                            //build unselected units list;
+                            int unselected = 0;
+                            for (int i = 0; i < units.Length; i++)
+                            {
+                                if (contains(i))
+                                {
+                                }
+                                else
+                                {
+                                    data.unselectedUnits[unselected] = units[i];
+                                    unselected++;
+                                }
+                            }
                             Application.LoadLevel("FirstMap");
                         }
                 }

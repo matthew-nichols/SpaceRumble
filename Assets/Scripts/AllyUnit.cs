@@ -19,6 +19,7 @@ public class AllyUnit : baseUnit
 		public Armor armor;
 		public Accessory accessory;
 		public Secondary secondary;
+        public int index;
 
 		protected override void Start ()
 		{
@@ -81,7 +82,7 @@ public class AllyUnit : baseUnit
 		    a.attackDmg = attackDmg;
 		    a.attackRange = attackRange;
 		    a.attackRate = attackRate;
-            a.UnitName = UnitName;
+            a.UnitName = UnitName; 
     }
 
 		protected override void Update ()

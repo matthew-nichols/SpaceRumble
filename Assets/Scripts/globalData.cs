@@ -3,6 +3,7 @@
 public class globalData : MonoBehaviour {
     // TODO: pass in the difficulty of the mission.
     public AllyUnitStats[] allyUnits = new AllyUnitStats[20];
+    public AllyUnitStats[] unselectedUnits = new AllyUnitStats[20];//unselected
     public AllyUnitStats[] selectedUnits = new AllyUnitStats[10];//at most 10 units;
     public int numUnits;
     public int gold;
