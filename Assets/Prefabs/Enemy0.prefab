@@ -55,9 +55,9 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100002}
-  m_LocalRotation: {x: 2.18556941e-08, y: 0, z: -0, w: 1}
-  m_LocalPosition: {x: 1023.66071, y: 17.2749748, z: 170.237122}
-  m_LocalScale: {x: .5, y: .5, z: .5}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 379.922729, y: 7.30000019, z: 91.1185913}
+  m_LocalScale: {x: .25, y: .25, z: .25}
   m_Children:
   - {fileID: 400000}
   m_Father: {fileID: 0}
@@ -114,7 +114,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 15, y: 55, z: 18}
+  m_Size: {x: 15, y: 40, z: 18}
   m_Center: {x: 0, y: -9, z: 0}
 --- !u!82 &8200000
 AudioSource:
@@ -217,9 +217,9 @@ MonoBehaviour:
   projectile: {fileID: 5400000, guid: eb1bdaf9e42eb1e4d9b834184d517b64, type: 2}
   delay: 3
   velocity: 100
-  offset: {x: 0, y: 0, z: 0}
+  offset: {x: 0, y: -1, z: 0}
   lastAttack: 0
-  maxDist: 250
+  maxDist: 125
   unitSound: {fileID: 8200000}
   fireSound: {fileID: 8300000, guid: 25a8f4668dfb3c546bfdc8a0ea0cb194, type: 3}
   deathSound: {fileID: 8300000, guid: 41b79386a04a03e4aa9385c156aa5473, type: 3}
@@ -240,7 +240,7 @@ NavMeshAgent:
   m_AutoBraking: 1
   m_AutoRepath: 1
   m_Height: 1
-  m_BaseOffset: 35
+  m_BaseOffset: 30
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
 --- !u!1001 &100100000

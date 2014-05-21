@@ -107,8 +107,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100002}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 799.105164, y: 4.86519003, z: 439.475067}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 196.995239, y: 2.10092163, z: 51.3577652}
+  m_LocalScale: {x: .349999994, y: .349999994, z: .349999994}
   m_Children:
   - {fileID: 400008}
   - {fileID: 400000}
@@ -189,7 +189,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 1
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 16
   m_CollisionDetection: 0
 --- !u!65 &6500000
 BoxCollider:
@@ -201,7 +201,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 20, y: 20, z: 20}
+  m_Size: {x: 20, y: 30, z: 20}
   m_Center: {x: 0, y: 4, z: 0}
 --- !u!82 &8200000
 AudioSource:
@@ -292,7 +292,7 @@ MonoBehaviour:
   health: 1000
   currentHealth: 1000
   attackDmg: 1370
-  attackRange: 500
+  attackRange: 125
   attackRate: .5
   isClicked: 0
   updateRightClick: 0
@@ -304,15 +304,15 @@ MonoBehaviour:
   targetLocation: {x: 5, y: 0, z: 0}
   lastAttack: 0
   projectile: {fileID: 5400000, guid: 69ff15e6563e37c4384b67a4d802f5ae, type: 2}
-  offset: {x: 0, y: 4, z: 0}
-  velocity: 100
+  offset: {x: 0, y: 1.5, z: 0}
+  velocity: 25
   delay: 3
   unitSound: {fileID: 8200000}
   fireSound: {fileID: 8300000, guid: 8d98c6698217d634eb6521d09335a30f, type: 3}
   deathSound: {fileID: 8300000, guid: ab2b2c9abeaae614faf97117cc30e640, type: 3}
   canMove: 0
-  energy: 500
-  currentEnergy: 500
+  energy: 125
+  currentEnergy: 125
   cpos: {x: 0, y: 0, z: 0}
   ppos: {x: 0, y: 0, z: 0}
   weapon: {fileID: 0}
@@ -327,7 +327,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 100002}
   m_Enabled: 1
   m_Radius: 10
-  m_Speed: 50
+  m_Speed: 12.5
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -336,7 +336,7 @@ NavMeshAgent:
   m_AutoBraking: 1
   m_AutoRepath: 1
   m_Height: 1
-  m_BaseOffset: 5
+  m_BaseOffset: 6
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
 --- !u!198 &19800000

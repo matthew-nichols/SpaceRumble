@@ -2,7 +2,7 @@
 %TAG !u! tag:unity3d.com,2011:
 --- !u!1 &100000
 GameObject:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 4
@@ -26,9 +26,11 @@ GameObject:
   - 4: {fileID: 400002}
   - 33: {fileID: 3300000}
   - 23: {fileID: 2300000}
+  - 95: {fileID: 9500000}
+  - 65: {fileID: 6500000}
   m_Layer: 0
-  m_Name: Tower_Rocket Launcher-R
-  m_TagString: Untagged
+  m_Name: Guard Tower
+  m_TagString: Terrain
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -43,13 +45,12 @@ GameObject:
   - 4: {fileID: 400004}
   - 33: {fileID: 3300002}
   - 23: {fileID: 2300002}
-  - 95: {fileID: 9500000}
-  - 65: {fileID: 6500000}
   - 114: {fileID: 11400000}
   - 195: {fileID: 19500000}
+  - 65: {fileID: 6500002}
   - 54: {fileID: 5400000}
   m_Layer: 0
-  m_Name: Guard Tower
+  m_Name: Tower_Rocket Launcher-R
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -61,9 +62,9 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: -.707106829, z: 0, w: .707106829}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: .5, y: .5, z: .5}
+  m_LocalScale: {x: .499999881, y: .5, z: .499999881}
   m_Children: []
   m_Father: {fileID: 400004}
 --- !u!4 &400002
@@ -72,11 +73,12 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100002}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -.0211708676, y: 3.12254906, z: .0255944841}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 400004}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 840.725769, y: 3.05089116, z: 506.382996}
+  m_LocalScale: {x: 5, y: 5, z: 5}
+  m_Children:
+  - {fileID: 400004}
+  m_Father: {fileID: 0}
 --- !u!4 &400004
 Transform:
   m_ObjectHideFlags: 1
@@ -84,12 +86,11 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100004}
   m_LocalRotation: {x: 0, y: .707106829, z: 0, w: .707106829}
-  m_LocalPosition: {x: 914.914429, y: 3.11459351, z: 1289.62292}
-  m_LocalScale: {x: 5, y: 5, z: 5}
+  m_LocalPosition: {x: 0, y: 3, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400000}
-  - {fileID: 400002}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 400002}
 --- !u!23 &2300000
 Renderer:
   m_ObjectHideFlags: 1
@@ -138,14 +139,14 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100002}
-  m_Mesh: {fileID: 4300002, guid: 01ab59fa4ffa9534fb5f4179fa50371d, type: 3}
+  m_Mesh: {fileID: 4300000, guid: 01ab59fa4ffa9534fb5f4179fa50371d, type: 3}
 --- !u!33 &3300002
 MeshFilter:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100004}
-  m_Mesh: {fileID: 4300000, guid: 01ab59fa4ffa9534fb5f4179fa50371d, type: 3}
+  m_Mesh: {fileID: 4300002, guid: 01ab59fa4ffa9534fb5f4179fa50371d, type: 3}
 --- !u!54 &5400000
 Rigidbody:
   m_ObjectHideFlags: 1
@@ -153,10 +154,10 @@ Rigidbody:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100004}
   serializedVersion: 2
-  m_Mass: 50
+  m_Mass: 1
   m_Drag: 0
   m_AngularDrag: .0500000007
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 126
@@ -166,13 +167,25 @@ BoxCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100002}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Size: {x: 9.89999962, y: 3.70029163, z: 9.89999962}
+  m_Center: {x: 7.15255737e-07, y: 1.23996758, z: -1.71661377e-05}
+--- !u!65 &6500002
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100004}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 11.0892401, y: 11, z: 10.1914225}
-  m_Center: {x: 7.15255908e-07, y: 4.5, z: -1.90734909e-06}
+  m_Size: {x: 10, y: 10, z: 10}
+  m_Center: {x: -0, y: 1.39999998, z: 0}
 --- !u!82 &8200000
 AudioSource:
   m_ObjectHideFlags: 1
@@ -237,8 +250,8 @@ Animator:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100004}
-  m_Enabled: 1
+  m_GameObject: {fileID: 100002}
+  m_Enabled: 0
   m_Avatar: {fileID: 9000000, guid: 01ab59fa4ffa9534fb5f4179fa50371d, type: 3}
   m_Controller: {fileID: 0}
   m_CullingMode: 0
@@ -260,26 +273,26 @@ MonoBehaviour:
   onHoverMaterial: {fileID: 2100000, guid: c5b2d3eb078b2894e99cfe2a90f9c8e9, type: 2}
   health: 1000
   currentHealth: 1000
-  attackDmg: 250
-  attackRange: 500
+  attackDmg: 200
+  attackRange: 1000
   attackRate: 1
   isClicked: 0
   updateRightClick: 0
   destinationVector: {x: 0, y: 0, z: 0}
-  name: unit
+  UnitName: unset
   currentTarget: {fileID: 0}
-  deathExplosion: {fileID: 19800004, guid: 987d09edf8cc09949a93c64e4e18591c, type: 2}
+  deathExplosion: {fileID: 19800000, guid: bf3f387d006f0414b80b25ba2b9cdf38, type: 2}
   control: {fileID: 0}
   targetLocation: {x: 0, y: 0, z: 0}
-  projectile: {fileID: 5400000, guid: eb1bdaf9e42eb1e4d9b834184d517b64, type: 2}
+  projectile: {fileID: 5400000, guid: 67c0def0d3a843c45bbf2cf7e331624f, type: 2}
   delay: 3
-  velocity: 200
-  offset: {x: 0, y: 25, z: 0}
+  velocity: 400
+  offset: {x: 0, y: 0, z: -20}
   lastAttack: 0
   maxDist: 100
   unitSound: {fileID: 8200000}
-  fireSound: {fileID: 8300000, guid: de0feb12d17dba446b6521daeda8693b, type: 3}
-  deathSound: {fileID: 8300000, guid: 2081494e048573e42bf109ee4f2a62a0, type: 3}
+  fireSound: {fileID: 8300000, guid: 740a0507d56989341965337df1cd45fb, type: 3}
+  deathSound: {fileID: 8300000, guid: ab600c3e8885a1743bf3868e6b7fb3e5, type: 3}
 --- !u!195 &19500000
 NavMeshAgent:
   m_ObjectHideFlags: 1
@@ -287,18 +300,18 @@ NavMeshAgent:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100004}
   m_Enabled: 1
-  m_Radius: 5.54462099
+  m_Radius: 3.13574028
   m_Speed: 0
   m_Acceleration: 0
   avoidancePriority: 50
-  m_AngularSpeed: 0
+  m_AngularSpeed: 120
   m_StoppingDistance: 0
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
-  m_Height: 1
-  m_BaseOffset: .699999988
-  m_WalkableMask: 4294967295
+  m_Height: 9
+  m_BaseOffset: 4
+  m_WalkableMask: 0
   m_ObstacleAvoidanceType: 4
 --- !u!1001 &100100000
 Prefab:
@@ -309,6 +322,6 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 100004}
+  m_RootGameObject: {fileID: 100002}
   m_IsPrefabParent: 1
   m_IsExploded: 1

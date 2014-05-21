@@ -18,6 +18,7 @@ public class GameControl : MonoBehaviour
 		public Rect end;
 		public int maxDist;
 		public globalData data;
+		public Vector3 allySpawnLocation;
 
 		void Start ()
 		{
@@ -34,7 +35,7 @@ public class GameControl : MonoBehaviour
 				for (int i = 0; i < allies.Length; i++) {
 						if (allies [i] != null) {
 								//code to place ally, will need some sort of offset so not placed on top of each other
-								allies [i] = Instantiate (allies [i], new Vector3 (i * 40.0f + 700, 10, 0 + 200), Quaternion.identity) as AllyUnit;
+								allies [i] = Instantiate (allies [i], allySpawnLocation + new Vector3(i * 20.0f, transform.position.y, 0), Quaternion.identity) as AllyUnit;
 						}
 				}
 				for (int i = 0; i < allies.Length; i++) {

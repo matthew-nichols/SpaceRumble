@@ -7,11 +7,11 @@ public class ParticleScale : MonoBehaviour {
 	public float scale = 1;
 
 	void Start () {
-		
+		UpdateScale ();
 	}
 
 	void Update(){
-		UpdateScale ();
+		//UpdateScale ();
 	}
 
 	void UpdateScale()
