@@ -207,6 +207,7 @@ MonoBehaviour:
   armor: {fileID: 0}
   accessory: {fileID: 0}
   secondary: {fileID: 0}
+  index: 0
 --- !u!4 &819655529
 Transform:
   m_ObjectHideFlags: 0
@@ -257,6 +258,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   allyUnits:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  unselectedUnits:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
