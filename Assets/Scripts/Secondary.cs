@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Secondary : MonoBehaviour {
+public class Secondary : Item {
 
 	public int healthBoost;
 	public int damageBoost;
