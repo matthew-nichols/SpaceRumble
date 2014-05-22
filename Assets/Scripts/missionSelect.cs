@@ -281,6 +281,8 @@ public class missionSelect : MonoBehaviour
                                 for (int i = 0; (i < selected.allowedUnits) && (i < numUnits); i++)//Either goes to the number of units allowed, or the current number of units
                                 {
                                     selectedUnits[i] = units[i];
+                                    selectedUnits[i].index = i;
+                                    selectedIndexes[i] = i;
                                     numSelected = i;
                                 }
                                 data.selectedUnits = selectedUnits;
@@ -295,10 +297,10 @@ public class missionSelect : MonoBehaviour
                             int unselected = 0;
                             for (int i = 0; i < units.Length; i++)
                             {
-                                if (contains(i))
+                                if (contains(i))//if i is selected
                                 {
                                 }
-                                else
+                                else if (units[i] !=null)
                                 {
                                     data.unselectedUnits[unselected] = units[i];
                                     unselected++;

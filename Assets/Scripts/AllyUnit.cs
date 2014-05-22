@@ -129,6 +129,7 @@ public class AllyUnit : baseUnit
 
 								Rigidbody clone;
 								clone = (Rigidbody)Instantiate (projectile, transform.position + offset, transform.rotation);
+                                clone.SendMessage("updateDmg", attackDmg);
 								unitSound.PlayOneShot (fireSound, 0.1f);
 								clone.velocity = transform.TransformDirection (Vector3.forward * velocity) + new Vector3 (Time.deltaTime * velocity, 0, 0);
 

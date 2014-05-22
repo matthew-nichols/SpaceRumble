@@ -14,7 +14,10 @@ public class projectileMovement : MonoBehaviour
 		{
 	
 		}
-
+        void updateDmg(int d)
+        {
+            dmg = d;
+        }
 		void Update ()
 		{
 				float amntToMove = projectileSpeed * Time.deltaTime;
@@ -36,7 +39,7 @@ public class projectileMovement : MonoBehaviour
 						Destroy (temp.gameObject, 1);
 						baseUnit unit = other.gameObject.GetComponent<baseUnit> ();
 						if (unit)
-								unit.currentHealth -= 10;
+								unit.currentHealth -= dmg;
 				}
 		}
 }

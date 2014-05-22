@@ -14,7 +14,10 @@ public class enemyProjectiles : MonoBehaviour
 		{
 
 		}
-
+        void updateDmg(int d)
+        {
+            dmg = d;
+        }
 		void Update ()
 		{
 				float amntToMove = projectileSpeed * Time.deltaTime;

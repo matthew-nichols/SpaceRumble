@@ -74,8 +74,17 @@ public class GameControl : MonoBehaviour
         
 				return Instantiate (s, pos, Quaternion.identity) as EnemySpawn;
 		}
-
-		void Update ()
+        //function that checks if all units are alive.
+        bool checkUnits()
+        {
+            bool f = false;
+            for (int i = 0; i < allies.Length; i++)
+            {
+                if (allies[i] != null) f = true;
+            }
+            return f;
+        }
+        void Update()
 		{
 				if (gameState) {
 						//wait for player to finish moving units
@@ -102,6 +111,10 @@ public class GameControl : MonoBehaviour
 								}
 						}
 				}
+                if (!checkUnits())
+                {
+                    missionFail();
+                }
 		}
 
 		void waveStart ()
@@ -133,9 +146,8 @@ public class GameControl : MonoBehaviour
                         ally.canMove = true;
                         ally.currentEnergy = ally.energy;
                     }
-                    
-
 				}
+                Application.LoadLevel("mission");
 		}
         void GetInfo2(AllyUnitStats a, AllyUnit b)//calling member function isn't working
         {
@@ -183,6 +195,14 @@ public class GameControl : MonoBehaviour
                     data.selectedUnits[i] = null;
                 }
             }
+        }
+        void missionFail()
+        {
+            for (int i = 0; i < data.selectedUnits.Length; i++)
+            {
+                data.selectedUnits[i] = null;
+            }
+            Application.LoadLevel("mission");
         }
         void OnGUI()
 		{

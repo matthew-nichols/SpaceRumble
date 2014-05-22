@@ -46,6 +46,7 @@ public class EnemyUnit : baseUnit
 								Rigidbody clone;
 								clone = Instantiate (projectile, transform.position + offset, transform.rotation) as Rigidbody;
 								unitSound.PlayOneShot (fireSound, 0.1f);
+                                clone.SendMessage("updateDmg", attackDmg);
 								clone.velocity = transform.TransformDirection (Vector3.forward * velocity) + new Vector3 (Time.deltaTime * velocity, 0, 0);
 								lastAttack = 0;
 								Destroy (clone, delay);
