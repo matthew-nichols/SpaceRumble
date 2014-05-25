@@ -8,9 +8,6 @@ public class AllyUnit : baseUnit
 		public Vector3 offset;
 		public float velocity = 100;
 		public int delay = 3;
-		public AudioSource unitSound;
-		public AudioClip fireSound;
-		public AudioClip deathSound;
 		public bool canMove;
 		public float energy;
 		public float currentEnergy;
@@ -20,10 +17,18 @@ public class AllyUnit : baseUnit
 		public Accessory accessory;
 		public Secondary secondary;
         public int index;
+		public AudioSource unitSound;
+		public AudioClip fireSound;
+		public AudioClip deathSound;
+		public AudioClip selectSound;
+		public AudioClip moveSound;
+
+		private bool playSound;
 
 		protected override void Start ()
 		{
 				base.Start ();
+				playSound = true;
 				if (armor) {
 						base.health += armor.healthBoost;
 						base.currentHealth += armor.healthBoost;
@@ -110,12 +115,19 @@ public class AllyUnit : baseUnit
 				}
 				ppos = transform.position;
 				if (isClicked) {
-						renderer.material = onHoverMaterial;
+						if(playSound){
+							unitSound.PlayOneShot (selectSound, unitSound.volume);
+							playSound = false;
+						}
+
+						if(renderer)
+							renderer.material = onHoverMaterial;
 						if (canMove && currentEnergy > 0) {
 								moveUnit ();
 						}
 				} else {
 						renderer.material = defaultMaterial;
+						playSound = true;
 				}
 
 				if (!currentTarget) {
@@ -144,6 +156,7 @@ public class AllyUnit : baseUnit
 		void moveUnit ()
 		{
 				if (updateRightClick) {
+						unitSound.PlayOneShot (moveSound, unitSound.volume);
 						agent.SetDestination (destinationVector);
 						updateRightClick = false;
 				}
@@ -154,7 +167,7 @@ public class AllyUnit : baseUnit
 				GameObject tempGO = new GameObject ("TempAudio " + clip.name);
 				tempGO.transform.position = pos;
 				AudioSource aSource = tempGO.AddComponent<AudioSource> ();
-				aSource.clip = deathSound;
+				aSource.clip = clip;
 				aSource.rolloffMode = unitSound.rolloffMode;
 				aSource.pitch = unitSound.pitch;
 				aSource.minDistance = unitSound.minDistance;

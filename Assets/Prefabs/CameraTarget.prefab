@@ -84,7 +84,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100004}
   m_LocalRotation: {x: .239117622, y: .369643867, z: -.0990457758, w: .892399132}
-  m_LocalPosition: {x: 136.475311, y: 33.2562599, z: 39.4885025}
+  m_LocalPosition: {x: 88.9098206, y: 38.2854538, z: 74.6459427}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400002}
@@ -214,8 +214,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bgm: {fileID: 8200000}
-  idleMusic: {fileID: 8300000, guid: df94defdc6fbeee4da807e694d8413ae, type: 3}
-  battleMusic: {fileID: 8300000, guid: 9d5c89142bf30ad44a535feff7ca35bd, type: 3}
+  idleMusic: {fileID: 8300000, guid: f43693a3c84846741b4f78c3fc0e9b5e, type: 3}
+  battleMusic: {fileID: 8300000, guid: a7384605060ca644685cc71074c0055e, type: 3}
   gameState: 0
 --- !u!114 &11400002
 MonoBehaviour:

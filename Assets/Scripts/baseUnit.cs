@@ -25,21 +25,23 @@ public class baseUnit : MonoBehaviour
 		
 		protected virtual void Update ()
 		{
-				if (isClicked) {
+				if (isClicked && renderer) {
 						renderer.material = onHoverMaterial;
-				} else {
+				} else if(renderer) {
 						renderer.material = defaultMaterial;
 				}
 		}
 
 		void OnMouseEnter ()
 		{
-				renderer.material = onHoverMaterial;
+				if(renderer)
+					renderer.material = onHoverMaterial;
 		}
 
 		void OnMouseExit ()
 		{
-				renderer.material = defaultMaterial;
+				if(renderer)
+					renderer.material = defaultMaterial;
 		}
 
 		public virtual void ApplyDamage (int n)

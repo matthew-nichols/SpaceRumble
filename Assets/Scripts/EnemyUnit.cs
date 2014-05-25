@@ -62,7 +62,7 @@ public class EnemyUnit : baseUnit
 				GameObject tempGO = new GameObject ("TempAudio " + clip.name);
 				tempGO.transform.position = pos;
 				AudioSource aSource = tempGO.AddComponent<AudioSource> ();
-				aSource.clip = deathSound;
+				aSource.clip = clip;
 				aSource.rolloffMode = unitSound.rolloffMode;
 				aSource.pitch = unitSound.pitch;
 				aSource.minDistance = unitSound.minDistance;
