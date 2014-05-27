@@ -147,8 +147,7 @@ public class GameControl : MonoBehaviour
                         ally.currentEnergy = ally.energy;
                     }
 				}
-                Application.LoadLevel("mission");
-		}
+        }
         void GetInfo2(AllyUnitStats a, AllyUnit b)//calling member function isn't working
         {
             /* a.targetLocation = targetLocation;
