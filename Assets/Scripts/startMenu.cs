@@ -4,7 +4,7 @@ using System.Collections;
 public class startMenu : MonoBehaviour
 {
         public AllyUnitStats baseAlly;
-        
+        public Texture2D test;
 		public globalData data;
 		// Use this for initialization
 		void Start ()
@@ -29,7 +29,7 @@ public class startMenu : MonoBehaviour
                 int dy = h / 9;
                 int mw = w / 3;
 				// Make the first button. If it is pressed, Application.Loadlevel (1) will be executed
-				if (GUI.Button (new Rect (x, y, mw, dy), "Start Game(Easy)")) {
+				if (GUI.Button (new Rect (x, y, mw, dy), new GUIContent("Start Game(Easy)", test))) {
 
                     for (int i = 0; i < 10; i++)
                     {

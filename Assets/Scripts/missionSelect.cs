@@ -13,6 +13,7 @@ public class missionSelect : MonoBehaviour
 		missionSettings m1;
 		missionSettings m2;
 		missionSettings m3;
+        public Texture2D test;
         AllyUnitStats[] selectedUnits = new AllyUnitStats[10];//at most 10 ally units per mission
 		private states state = states.DEFAULT;
 		private int numSelected = 0;
@@ -134,28 +135,47 @@ public class missionSelect : MonoBehaviour
 				for (int i = 0; i < 20; i++) {//20 should be numUnits
 						int k;//to help with rows;
 						int ry;
-						if (i >= 10) {
-								k = i - 10;
-								ry = y + dy;
-						} else {
-								ry = y;
-								k = i;
-						}
-						string s;
-						if (units [i] != null) {
-								AllyUnitStats a = units [i];
-								s = a.UnitName + "\n Dmg: " + a.attackDmg + "\n Rng: " + a.attackRange + "\n HP: " + a.health;
-						} else {
-								s = "no unit";
-						}
-						if (GUI.Button (new Rect (x + k * dx, ry, dx, dy), s)) {
-								if(state==states.UNIT_SELECT&& !(contains(i))){
+                    //only build if unit exists
+                        if (units[i] != null)
+                        {
+                            if (i >= 10)
+                            {
+                                k = i - 10;
+                                ry = y + dy;
+                            }
+                            else
+                            {
+                                ry = y;
+                                k = i;
+                            }
+                            string s;
+                            if (units[i] != null)
+                            {
+                                AllyUnitStats a = units[i];
+                                s = a.UnitName + "\n Dmg: " + a.attackDmg + "\n Rng: " + a.attackRange + "\n HP: " + a.health;
+                            }
+                            else
+                            {
+                                s = "no unit";
+                            }
+                            Rect t = new Rect(x + k * dx, ry, dx, dy);
+                            if (GUI.Button(t, new GUIContent(test)))
+                            {
+
+                                if (state == states.UNIT_SELECT && !(contains(i)))
+                                {
                                     AllyUnitStats a = units[i];
                                     selectedUnits[numSelected] = a;
                                     selectedIndexes[numSelected] = a.index;
-									numSelected++;
-								}
-						}
+                                    numSelected++;
+                                }
+                            }
+                            GUI.tooltip = s;
+                            if (t.Contains(Event.current.mousePosition))
+                            {
+                                GUI.Label(new Rect(x + k * dx, ry -  dy, dx, dy), GUI.tooltip);
+                            }
+                        }
 				}
 		}
 
