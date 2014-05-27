@@ -33,6 +33,10 @@ public class AllyUnit : baseUnit
 						base.health += armor.healthBoost;
 						base.currentHealth += armor.healthBoost;
 				}				
+				if(weapon)
+				{
+					attackDmg = weapon.damage;
+				}
 		}
 
         void SetInfo(AllyUnitStats a)
