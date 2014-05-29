@@ -8,7 +8,9 @@ public class perspectiveCameraMouse : MonoBehaviour
 		//percent of screen that cursor needs to be on to scroll camera
 		//should be less than 0.5
 		public float edgeOfScreen = .15f;
-
+		private int maxHeight = 14;
+		private int currHeight = 7;
+		private int zoomAmount = 3;
 		//returns where mouse cursor is on click
 		public Vector3 mouseLocation;
 		baseUnit selectedUnit;
@@ -33,11 +35,11 @@ public class perspectiveCameraMouse : MonoBehaviour
 						Input.GetAxis (keyboardYAxis) * scrollSpeed * Time.deltaTime,
 						1.66f * Input.GetAxis (keyboardYAxis) * scrollSpeed * Time.deltaTime);
 				/*
-				//up 
+				//forward
 				if (Input.mousePosition.y >= Screen.height - (Screen.height * edgeOfScreen) && Input.mousePosition.y <= Screen.height)
 						transform.position += (Vector3.forward + Vector3.right) * Time.deltaTime * scrollSpeed;
 		
-				//down
+				//backward
 				if (Input.mousePosition.y <= Screen.height * edgeOfScreen && Input.mousePosition.y >= 0.0f)
 						transform.position += -(Vector3.forward - Vector3.left) * Time.deltaTime * scrollSpeed;
 		
@@ -49,6 +51,15 @@ public class perspectiveCameraMouse : MonoBehaviour
 				if (Input.mousePosition.x >= Screen.width - (Screen.width * edgeOfScreen) && Input.mousePosition.y <= Screen.width)
 						transform.position += (Vector3.right - Vector3.forward) * Time.deltaTime * scrollSpeed;
 		*/
+				//up
+				if (Input.GetAxis ("Mouse ScrollWheel") > 0 && currHeight < maxHeight) {
+					transform.position += Vector3.up * zoomAmount;// * Time.deltaTime * scrollSpeed;
+						++currHeight;
+				}
+				if (Input.GetAxis ("Mouse ScrollWheel") < 0 && currHeight > 0) {
+					transform.position += Vector3.down * zoomAmount;// * Time.deltaTime * scrollSpeed;
+						--currHeight;
+				}
 		}
 
 		void RayHitSelectable (GameObject rayGO)
