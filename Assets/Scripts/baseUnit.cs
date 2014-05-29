@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 
+public delegate void DeathEventHandler (baseUnit b);
+
 public class baseUnit : MonoBehaviour
 {
 		public Material defaultMaterial;
@@ -18,6 +20,16 @@ public class baseUnit : MonoBehaviour
 		public ParticleSystem deathExplosion;
 		public GameControl control;
 
+		public bool IsAlive { get { return health <= 0; } }
+
+		public event DeathEventHandler Death;
+
+		protected virtual void OnDeath ()
+		{
+				if (Death != null)
+						Death (this);
+		}
+
 		protected virtual void Start ()
 		{
 				agent = GetComponent<NavMeshAgent> ();
@@ -27,21 +39,21 @@ public class baseUnit : MonoBehaviour
 		{
 				if (isClicked && renderer) {
 						renderer.material = onHoverMaterial;
-				} else if(renderer) {
+				} else if (renderer) {
 						renderer.material = defaultMaterial;
 				}
 		}
 
 		void OnMouseEnter ()
 		{
-				if(renderer)
-					renderer.material = onHoverMaterial;
+				if (renderer)
+						renderer.material = onHoverMaterial;
 		}
 
 		void OnMouseExit ()
 		{
-				if(renderer)
-					renderer.material = defaultMaterial;
+				if (renderer)
+						renderer.material = defaultMaterial;
 		}
 
 		public virtual void ApplyDamage (int n)

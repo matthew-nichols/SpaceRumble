@@ -32,9 +32,19 @@ public class EnemyUnit : baseUnit
 						Destroy (gameObject.rigidbody);
 						Destroy (gameObject);
 						control.currentEnemies--;
+						OnDeath ();
 				}
 
-				currentTarget = FindObjectOfType<AllyUnit> ();
+				AllyUnit[] allTargets = FindObjectsOfType<AllyUnit> ();
+				float dist = float.PositiveInfinity;
+				foreach (AllyUnit u in allTargets) {
+						float d = Vector3.Distance (u.transform.position, transform.position);
+						if (d < dist) {
+								dist = d;
+								currentTarget = u;
+						}
+				}
+
 				if (currentTarget) {
 						if (Vector3.Distance (transform.position, currentTarget.transform.position) < maxDist) {
 								agent.Stop ();
@@ -43,10 +53,9 @@ public class EnemyUnit : baseUnit
 						}
 
 						if (Vector3.Distance (transform.position, currentTarget.transform.position) < attackRange && lastAttack > attackRate) {
-								Rigidbody clone;
-								clone = Instantiate (projectile, transform.position + offset, transform.rotation) as Rigidbody;
+								Rigidbody clone = Instantiate (projectile, transform.position + offset, transform.rotation) as Rigidbody;
 								unitSound.PlayOneShot (fireSound, 0.1f);
-                                clone.SendMessage("updateDmg", attackDmg);
+								clone.SendMessage ("updateDmg", attackDmg);
 								clone.velocity = transform.TransformDirection (Vector3.forward * velocity) + new Vector3 (Time.deltaTime * velocity, 0, 0);
 								lastAttack = 0;
 								Destroy (clone, delay);

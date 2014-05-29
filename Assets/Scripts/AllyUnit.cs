@@ -16,13 +16,12 @@ public class AllyUnit : baseUnit
 		public Armor armor;
 		public Accessory accessory;
 		public Secondary secondary;
-        public int index;
+		public int index;
 		public AudioSource unitSound;
 		public AudioClip fireSound;
 		public AudioClip deathSound;
 		public AudioClip selectSound;
 		public AudioClip moveSound;
-
 		private bool playSound;
 
 		protected override void Start ()
@@ -33,15 +32,14 @@ public class AllyUnit : baseUnit
 						base.health += armor.healthBoost;
 						base.currentHealth += armor.healthBoost;
 				}				
-				if(weapon)
-				{
-					attackDmg = weapon.damage;
+				if (weapon) {
+						attackDmg = weapon.damage;
 				}
 		}
 
-        void SetInfo(AllyUnitStats a)
-        {
-            	/*targetLocation = a.targetLocation;
+		void SetInfo (AllyUnitStats a)
+		{
+				/*targetLocation = a.targetLocation;
 		        lastAttack = a.lastAttack;
 		        projectile = a.projectile;
 		        offset= a.offset;
@@ -51,24 +49,25 @@ public class AllyUnit : baseUnit
 		        fireSound = a.fireSound;
 		        deathSound = a.deathSound;
 		        canMove = a.canMove;*/
-		        energy = a.energy;
-		        currentEnergy = a.currentEnergy;
-               // cpos = a.cpos;
-               // ppos = a.ppos;
-                weapon = a.weapon;
-		        armor = a.armor;
-		        accessory = a.accessory;
-		        secondary = a.secondary;
-                health = a.health;
-		        currentHealth = a.currentHealth;
-		        attackDmg = a.attackDmg;
-		        attackRange = a.attackRange;
-                attackRate = a.attackRate;
-		        UnitName = a.UnitName;
-        }
-        void GetInfo(AllyUnitStats a)
-        {
-           /* a.targetLocation = targetLocation;
+				energy = a.energy;
+				currentEnergy = a.currentEnergy;
+				// cpos = a.cpos;
+				// ppos = a.ppos;
+				weapon = a.weapon;
+				armor = a.armor;
+				accessory = a.accessory;
+				secondary = a.secondary;
+				health = a.health;
+				currentHealth = a.currentHealth;
+				attackDmg = a.attackDmg;
+				attackRange = a.attackRange;
+				attackRate = a.attackRate;
+				UnitName = a.UnitName;
+		}
+
+		void GetInfo (AllyUnitStats a)
+		{
+				/* a.targetLocation = targetLocation;
             a.lastAttack = lastAttack;
             a.projectile = projectile;
             a.offset = offset;
@@ -78,21 +77,21 @@ public class AllyUnit : baseUnit
             a.fireSound = fireSound;
             a.deathSound = deathSound;
             a.canMove = canMove;*/
-            a.energy = energy;
-            a.currentEnergy = currentEnergy;
-         //   a.cpos = cpos;
-          //  a.ppos = ppos;
-            a.weapon = weapon;
-            a.armor = armor;
-            a.accessory = accessory;
-            a.secondary = secondary;
-            a.health = health;
-		    a.currentHealth = currentHealth;
-		    a.attackDmg = attackDmg;
-		    a.attackRange = attackRange;
-		    a.attackRate = attackRate;
-            a.UnitName = UnitName; 
-    }
+				a.energy = energy;
+				a.currentEnergy = currentEnergy;
+				//   a.cpos = cpos;
+				//  a.ppos = ppos;
+				a.weapon = weapon;
+				a.armor = armor;
+				a.accessory = accessory;
+				a.secondary = secondary;
+				a.health = health;
+				a.currentHealth = currentHealth;
+				a.attackDmg = attackDmg;
+				a.attackRange = attackRange;
+				a.attackRate = attackRate;
+				a.UnitName = UnitName; 
+		}
 
 		protected override void Update ()
 		{
@@ -107,6 +106,7 @@ public class AllyUnit : baseUnit
 
 						Destroy (gameObject.rigidbody);
 						Destroy (gameObject);
+						OnDeath ();
 						
 				}
 				if (ppos != transform.position && canMove) {
@@ -119,13 +119,13 @@ public class AllyUnit : baseUnit
 				}
 				ppos = transform.position;
 				if (isClicked) {
-						if(playSound){
-							unitSound.PlayOneShot (selectSound, unitSound.volume);
-							playSound = false;
+						if (playSound) {
+								unitSound.PlayOneShot (selectSound, unitSound.volume);
+								playSound = false;
 						}
 
-						if(renderer)
-							renderer.material = onHoverMaterial;
+						if (renderer)
+								renderer.material = onHoverMaterial;
 						if (canMove && currentEnergy > 0) {
 								moveUnit ();
 						}
@@ -134,8 +134,14 @@ public class AllyUnit : baseUnit
 						playSound = true;
 				}
 
-				if (!currentTarget) {
-						currentTarget = FindObjectOfType<EnemyUnit> ();	
+				EnemyUnit[] allTargets = FindObjectsOfType<EnemyUnit> ();
+				float dist = float.PositiveInfinity;
+				foreach (EnemyUnit u in allTargets) {
+						float d = Vector3.Distance (u.transform.position, transform.position);
+						if (d < dist) {
+								dist = d;
+								currentTarget = u;
+						}
 				}
 				
 				// possible for above to not find an enemy unit
@@ -143,9 +149,8 @@ public class AllyUnit : baseUnit
 						transform.LookAt (currentTarget.transform);
 						if (Vector3.Distance (transform.position, currentTarget.transform.position) <= attackRange && lastAttack >= attackRate) {
 
-								Rigidbody clone;
-								clone = (Rigidbody)Instantiate (projectile, transform.position + offset, transform.rotation);
-                                clone.SendMessage("updateDmg", attackDmg);
+								Rigidbody clone = Instantiate (projectile, transform.position + offset, transform.rotation) as Rigidbody;
+								clone.SendMessage ("updateDmg", attackDmg);
 								unitSound.PlayOneShot (fireSound, 0.1f);
 								clone.velocity = transform.TransformDirection (Vector3.forward * velocity) + new Vector3 (Time.deltaTime * velocity, 0, 0);
 
