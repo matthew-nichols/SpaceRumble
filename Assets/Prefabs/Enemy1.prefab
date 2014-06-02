@@ -628,7 +628,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100042}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 156.747299, y: 2.45747185, z: 250.778381}
+  m_LocalPosition: {x: 205.053299, y: 2.0970459, z: 304.723907}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400036}
@@ -1295,10 +1295,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   defaultMaterial: {fileID: 2100000, guid: 1d499f9f8fc12cf4bbb31945a0548ee0, type: 2}
   onHoverMaterial: {fileID: 2100000, guid: 1d499f9f8fc12cf4bbb31945a0548ee0, type: 2}
-  health: 200000
-  currentHealth: 200000
+  health: 2000
+  currentHealth: 2000
   attackDmg: 100
-  attackRange: 500
+  attackRange: 75
   attackRate: 1
   isClicked: 0
   updateRightClick: 0
@@ -1313,7 +1313,7 @@ MonoBehaviour:
   velocity: 100
   offset: {x: 0, y: 3, z: -2}
   lastAttack: 0
-  maxDist: 125
+  maxDist: 50
   unitSound: {fileID: 8200002}
   fireSound: {fileID: 8300000, guid: 08e8bdf6cc9b0dd4ab061efc223c047f, type: 3}
   deathSound: {fileID: 8300000, guid: dec94b1fa9d7717459f18cf7b24080e5, type: 3}
@@ -1329,7 +1329,7 @@ NavMeshAgent:
   m_Acceleration: 10
   avoidancePriority: 50
   m_AngularSpeed: 100
-  m_StoppingDistance: 0
+  m_StoppingDistance: 75
   m_AutoTraverseOffMeshLink: 0
   m_AutoBraking: 1
   m_AutoRepath: 1
