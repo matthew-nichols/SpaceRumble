@@ -102,10 +102,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f2fb4f94ad78194094284d06176c2f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemName: 
+  itemName: asl;dkfj
   sellValue: 0
   buyValue: 0
-  slot: 
+  slot: Accessory
   healthBoost: 0
   damageBoost: 0
   energyBoost: 0
@@ -157,6 +157,14 @@ Prefab:
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 376736720775a444d9628487c7f78fcc, type: 2}
+      propertyPath: itemName
+      value: aaaaaaa
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 376736720775a444d9628487c7f78fcc, type: 2}
+      propertyPath: slot
+      value: Weapon
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 376736720775a444d9628487c7f78fcc, type: 2}
   m_RootGameObject: {fileID: 1858571512}
@@ -196,6 +204,14 @@ Prefab:
     - target: {fileID: 400000, guid: fdf6926c1b5c3a84eabe02bc0918afae, type: 2}
       propertyPath: m_LocalRotation.w
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: fdf6926c1b5c3a84eabe02bc0918afae, type: 2}
+      propertyPath: itemName
+      value: fds
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: fdf6926c1b5c3a84eabe02bc0918afae, type: 2}
+      propertyPath: slot
+      value: Armor
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fdf6926c1b5c3a84eabe02bc0918afae, type: 2}
@@ -328,7 +344,7 @@ MonoBehaviour:
   UnitName: unset
   currentHealth: 1000
   attackDmg: 100
-  attackRange: 500
+  attackRange: 50
   attackRate: .5
   energy: 125
   currentEnergy: 125
@@ -383,6 +399,14 @@ Prefab:
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 73b0fcecd5cca34458b0dff7c82062bb, type: 2}
+      propertyPath: itemName
+      value: dlfkaj
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 73b0fcecd5cca34458b0dff7c82062bb, type: 2}
+      propertyPath: slot
+      value: Secondary
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 73b0fcecd5cca34458b0dff7c82062bb, type: 2}
   m_RootGameObject: {fileID: 1989032630}
@@ -423,6 +447,14 @@ Prefab:
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: ba4f7d9317c30da41937ea1328fc320b, type: 2}
+      propertyPath: itemName
+      value: asl;dkfj
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: ba4f7d9317c30da41937ea1328fc320b, type: 2}
+      propertyPath: slot
+      value: Accessory
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ba4f7d9317c30da41937ea1328fc320b, type: 2}
   m_RootGameObject: {fileID: 272699364}
@@ -456,10 +488,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cec527c73f44cae4e9023d21442e30e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemName: 
+  itemName: fds
   sellValue: 0
   buyValue: 0
-  slot: 
+  slot: Armor
   healthBoost: 500
   energy: 0
 --- !u!4 &1769474782
@@ -566,6 +598,50 @@ MonoBehaviour:
   - {fileID: 0}
   numUnits: 0
   gold: 0
+  weapons:
+  - {fileID: 1858571513}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  secondaries:
+  - {fileID: 1989032631}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  armors:
+  - {fileID: 1769474781}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  accessories:
+  - {fileID: 272699365}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!1 &1858571512
 GameObject:
   m_ObjectHideFlags: 0
@@ -594,10 +670,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b10609288dfa1e14496131d8f1176cf5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemName: 
+  itemName: aaaaaaa
   sellValue: 0
   buyValue: 0
-  slot: 
+  slot: Weapon
   damage: 150
   range: 0
   atkRate: 0
@@ -640,10 +716,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bf8f28ccbc2da04b9a3a480a7e0fb16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemName: 
+  itemName: dlfkaj
   sellValue: 0
   buyValue: 0
-  slot: 
+  slot: Secondary
   healthBoost: 0
   damageBoost: 0
   atkRtBoost: 0

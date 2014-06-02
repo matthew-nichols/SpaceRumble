@@ -20,7 +20,6 @@ public class missionSelect : MonoBehaviour
 		private missionSettings selected;
         bool contains(int n)//function to check if unit is selected
         {
-            bool f = false;
             for (int i = 0; i < selectedUnits.Length; i++)
             {
                 if (selectedIndexes[i] == n) return true;
@@ -120,7 +119,42 @@ public class missionSelect : MonoBehaviour
                     break;
             }
 		}
+        string buildItem(Item t)
+        {
+            string s = "";
+            //Item
+            //Name, Slot, SellValue
+            // DMGmod, RNGmod, ATR, Healthmod, EnergyMod,
+            if (t != null)
+            {
+                s = " exists";
+                s = t.itemName + " " + t.slot + " Sells for:" + t.sellValue + "\n";
+                if (t.slot == "Weapon")
+                {//Possibly set each one to have at most 3 bonuses???
+                    Weapon w = (Weapon)t;
+                    s += "Damage:" + w.damage + " Range:" + w.range + " Rate:" + w.atkRate;
+                }
+                else if (t.slot == "Secondary")
+                {
+                    Secondary w = (Secondary)t;
+                    s += "Damage:" + w.damageBoost + " Range:" + w.rangeBoost + " Rate:" + w.atkRtBoost + " Health:" + w.healthBoost;
+                }
+                else if (t.slot == "Armor")
+                {
+                    Armor w = (Armor)t;
+                    s += "Health:" + w.healthBoost + " Energy" + w.energy;
+                }
+                else if (t.slot == "Accessory")
+                {
+                    Accessory w = (Accessory)t;
+                    s += "Damage:" + w.damageBoost + " Range:" + w.rangeBoost + " Rate:" + w.atkRtBoost + " Health:" + w.healthBoost + " Energy:" + w.energyBoost;
 
+                }
+            }
+            return s;
+        //    return new GUIContent(t.icon, s);
+        }
+        
 		//function that builds the unit output.
 		void displayUnits ()
 		{
@@ -149,10 +183,13 @@ public class missionSelect : MonoBehaviour
                                 k = i;
                             }
                             string s;
+                            string n = "";
                             if (units[i] != null)
                             {
                                 AllyUnitStats a = units[i];
-                                s = a.UnitName + "\n Dmg: " + a.attackDmg + "\n Rng: " + a.attackRange + "\n HP: " + a.health;
+                                s = a.UnitName + "\nDamage: " + a.attackDmg + " Range: " + a.attackRange + " Rate: " + a.attackRate + "\nHealth: " + a.health + " Energy: " + a.energy;
+                                //s = a.UnitName + "\n" + buildItem((Item)a.weapon) + "\n" + buildItem((Item)a.secondary) + "\n" + buildItem((Item)a.armor) + "\n" + buildItem((Item)a.accessory);
+                                n = a.UnitName;
                             }
                             else
                             {
@@ -170,10 +207,12 @@ public class missionSelect : MonoBehaviour
                                     numSelected++;
                                 }
                             }
+                            GUI.BeginGroup(new Rect(x+k*dx+ dx/4, ry + dy/10, dx, dy), n);
+                            GUI.EndGroup();
                             GUI.tooltip = s;
                             if (t.Contains(Event.current.mousePosition))
                             {
-                                GUI.Label(new Rect(x + k * dx, ry -  dy, dx, dy), GUI.tooltip);
+                                GUI.Label(new Rect(x, ry-dy, dx*5, dy), GUI.tooltip);
                             }
                         }
 				}
@@ -275,7 +314,29 @@ public class missionSelect : MonoBehaviour
 				int dy = h - h / 4;
 				string msg = "This is the inventory box!";
 				GUI.Box (new Rect (x, 0, width, dy), msg);
-		}
+                //now display default items
+                int y = dy/12;
+                if (GUI.Button(new Rect(x, y, width, y), buildItem(data.weapons[0])))
+                {
+                } 
+                if (GUI.Button(new Rect(x, y*2, width, y), buildItem(data.armors[0])))
+                {
+                }
+                if (GUI.Button(new Rect(x, y*3, width, y), buildItem(data.secondaries[0])))
+                {
+                }
+                if (GUI.Button(new Rect(x, y*4, width, y), buildItem(data.accessories[0])))
+                {
+                }
+            //  GUI.Box(new Rect (x, y, width, y), buildItem(data.weapons[0]));
+                //GUI.EndGroup();
+             /*   GUI.BeginGroup(new Rect (x, y*2, width, y), buildItem(data.secondaries[0]));
+                GUI.EndGroup();
+                GUI.BeginGroup(new Rect (x, y*3, width, y), buildItem(data.armors[0]));
+                GUI.EndGroup();
+        		GUI.BeginGroup(new Rect (x, y*4, width, y), buildItem(data.accessories[0]));
+                GUI.EndGroup();*/
+        }
 
 		void OnGUI ()
 		{
