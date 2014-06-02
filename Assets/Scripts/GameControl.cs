@@ -164,9 +164,10 @@ public class GameControl : MonoBehaviour
             a.currentEnergy = b.currentEnergy;
             //   a.cpos = cpos;
             //  a.ppos = ppos;
-            a.weapon = b.weapon;
-            a.armor = b.armor;
-            a.accessory = b.accessory;
+            //a.weapon = b.weapon;
+            //a.armor = b.armor;
+            //a.accessory = b.accessory;
+            a.mainslot = b.mainslot;
             a.secondary = b.secondary;
             a.health = health;
             a.currentHealth = b.currentHealth;

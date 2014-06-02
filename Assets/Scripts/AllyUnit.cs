@@ -12,10 +12,11 @@ public class AllyUnit : baseUnit
 		public float energy;
 		public float currentEnergy;
 		public Vector3 cpos, ppos;
-		public Weapon weapon;
-		public Armor armor;
-		public Accessory accessory;
+		//public Weapon weapon;
+		//public Armor armor;
+		//public Accessory accessory;
 		public Secondary secondary;
+		public mainSlot mainslot;
 		public int index;
 		public AudioSource unitSound;
 		public AudioClip fireSound;
@@ -28,12 +29,12 @@ public class AllyUnit : baseUnit
 		{
 				base.Start ();
 				playSound = true;
-				if (armor) {
-						base.health += armor.healthBoost;
-						base.currentHealth += armor.healthBoost;
+				if (mainslot) {
+						base.health += mainslot.healthBoost;
+						base.currentHealth += mainslot.healthBoost;
 				}				
-				if (weapon) {
-						attackDmg = weapon.damage;
+				if (mainslot) {
+						attackDmg = mainslot.damage;
 				}
 		}
 
@@ -53,9 +54,10 @@ public class AllyUnit : baseUnit
 				currentEnergy = a.currentEnergy;
 				// cpos = a.cpos;
 				// ppos = a.ppos;
-				weapon = a.weapon;
-				armor = a.armor;
-				accessory = a.accessory;
+				mainslot = a.mainslot;
+				//weapon = a.weapon;
+				//armor = a.armor;
+				//accessory = a.accessory;
 				secondary = a.secondary;
 				health = a.health;
 				currentHealth = a.currentHealth;
@@ -81,9 +83,9 @@ public class AllyUnit : baseUnit
 				a.currentEnergy = currentEnergy;
 				//   a.cpos = cpos;
 				//  a.ppos = ppos;
-				a.weapon = weapon;
-				a.armor = armor;
-				a.accessory = accessory;
+				//a.weapon = weapon;
+				//a.armor = armor;
+				//a.accessory = accessory;
 				a.secondary = secondary;
 				a.health = health;
 				a.currentHealth = currentHealth;

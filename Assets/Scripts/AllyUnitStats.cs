@@ -18,10 +18,11 @@ public class AllyUnitStats : MonoBehaviour {
     public float energy;
     public float currentEnergy;
     //public Vector3 cpos, ppos;
-    public Weapon weapon;
-    public Armor armor;
-    public Accessory accessory; 
+    //public Weapon weapon;
+    //public Armor armor;
+    //public Accessory accessory; 
     public Secondary secondary;
+    public mainSlot mainslot;
     public int index;
 
     // Use this for initialization

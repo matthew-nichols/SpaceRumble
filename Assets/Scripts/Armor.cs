@@ -5,6 +5,7 @@ public class Armor : Item {
 
 	public int healthBoost;
 	public int energy;
+	public int damageBoost;
 
 	// Use this for initialization
 	void Start () {
