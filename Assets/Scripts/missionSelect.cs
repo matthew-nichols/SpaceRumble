@@ -19,6 +19,7 @@ public class missionSelect : MonoBehaviour
 		private states state = states.DEFAULT;
 		private int numSelected = 0;
 		private missionSettings selected;
+        private int itemEquip;//0 if main 1 if second
         bool contains(int n)//function to check if unit is selected
         {
             for (int i = 0; i < selectedUnits.Length; i++)
@@ -201,6 +202,7 @@ public class missionSelect : MonoBehaviour
                                 {
                                     state = states.UNIT_EQUIP;
                                     selectedUnit = units[i];
+                                    itemEquip = 0;
                                 }
                             }
                             GUI.BeginGroup(new Rect(x+k*dx+ dx/4, ry + dy/10, dx, dy), n);
@@ -250,8 +252,41 @@ public class missionSelect : MonoBehaviour
 				if(state == states.DEFAULT){
 					return;
 				}else if(state == states.SHOP){
-
+   
 				}else if(state == states.UNIT_EQUIP){
+                    //DISPLAY SELECTED UNITS STUFFS
+                                     //DISPLAY NAME
+                    string info;
+                    string m;
+                    if(itemEquip == 0){
+                        m = "Main";
+                    }else{
+                        m = "Secondary";
+                    }
+
+                    info = "Changing Units equipment... Either select the \ncurrently equiped " + m + " \nor a main slot item from your inventory";
+                    GUIStyle s = new GUIStyle();
+                    s.normal.textColor = Color.white;
+                    s.fontSize = 12;
+                    GUI.BeginGroup(new Rect(x, y, x, h / 14), info, s);
+
+                    GUI.EndGroup();
+                    s.normal.textColor = Color.white;
+                    s.fontSize = 20;
+                    s.alignment = TextAnchor.MiddleLeft;
+                    GUI.BeginGroup(new Rect(x, y + h / 14, x, h / 14), "Main:", s);
+                    GUI.EndGroup();
+                    if (GUI.Button(new Rect(x + 110, y + h / 14, x, h / 14), buildItem(selectedUnit.mainslot)))
+                    {
+                    }
+                    s.normal.textColor = Color.white;
+                    s.fontSize = 20;
+                    s.alignment = TextAnchor.MiddleLeft;
+                    GUI.BeginGroup(new Rect(x, y + h / 14+h/14, x, h / 14), "Secondary:", s);
+                    GUI.EndGroup();
+                    if (GUI.Button(new Rect(x + 110, y + h / 14 + h/14, x, h / 14), buildItem(selectedUnit.secondary)))
+                    {
+                    }
 
 				}else if (state ==states.UNIT_SELECT){
 						//display selected units

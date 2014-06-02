@@ -95,74 +95,90 @@ public class AllyUnit : baseUnit
 				a.UnitName = UnitName; 
 		}
 
-		protected override void Update ()
-		{
-				if (currentHealth <= 0) {
-						if (deathExplosion) {
-								ParticleSystem temp = Instantiate (deathExplosion, transform.position, transform.rotation) as ParticleSystem;
-								Destroy (temp.gameObject, 5);
-						}
-						if (deathSound) {
-								PlayClipAt (deathSound, transform.position);
-						}
+        protected override void Update()
+        {
+            if (currentHealth <= 0)
+            {
+                if (deathExplosion)
+                {
+                    ParticleSystem temp = Instantiate(deathExplosion, transform.position, transform.rotation) as ParticleSystem;
+                    Destroy(temp.gameObject, 5);
+                }
+                if (deathSound)
+                {
+                    PlayClipAt(deathSound, transform.position);
+                }
 
-						Destroy (gameObject.rigidbody);
-						Destroy (gameObject);
-						OnDeath ();
-						
-				}
-				if (ppos != transform.position && canMove) {
-						currentEnergy -= 20 * Time.deltaTime; // TODO
-				}
+                Destroy(gameObject.rigidbody);
+                Destroy(gameObject);
+                OnDeath();
 
-				if (ppos != transform.position && currentEnergy <= 0) {
-						currentEnergy = 0;
-						agent.SetDestination (rigidbody.position);
-				}
-				ppos = transform.position;
-				if (isClicked) {
-						if (playSound) {
-								unitSound.PlayOneShot (selectSound, unitSound.volume);
-								playSound = false;
-						}
+            }
+            if (ppos != transform.position && canMove)
+            {
+                currentEnergy -= 20 * Time.deltaTime; // TODO
+            }
 
-						if (renderer)
-								renderer.material = onHoverMaterial;
-						if (canMove && currentEnergy > 0) {
-								moveUnit ();
-						}
-				} else {
-						renderer.material = defaultMaterial;
-						playSound = true;
-				}
+            if (ppos != transform.position && currentEnergy <= 0)
+            {
+                currentEnergy = 0;
+                agent.SetDestination(rigidbody.position);
+            }
+            ppos = transform.position;
+            if (isClicked)
+            {
+                if (playSound)
+                {
+                    unitSound.PlayOneShot(selectSound, unitSound.volume);
+                    playSound = false;
+                }
 
-				EnemyUnit[] allTargets = FindObjectsOfType<EnemyUnit> ();
-				float dist = float.PositiveInfinity;
-				foreach (EnemyUnit u in allTargets) {
-						float d = Vector3.Distance (u.transform.position, transform.position);
-						if (d < dist) {
-								dist = d;
-								currentTarget = u;
-						}
-				}
-				
-				// possible for above to not find an enemy unit
-				if (currentTarget) {
-						transform.LookAt (currentTarget.transform);
-						if (Vector3.Distance (transform.position, currentTarget.transform.position) <= attackRange && lastAttack >= attackRate) {
+                if (renderer)
+                    renderer.material = onHoverMaterial;
+                if (canMove && currentEnergy > 0)
+                {
+                    moveUnit();
+                }
+            }
+            else
+            {
+                renderer.material = defaultMaterial;
+                playSound = true;
+            }
+            if (!canMove)
+            {
+                EnemyUnit[] allTargets = FindObjectsOfType<EnemyUnit>();
+                float dist = float.PositiveInfinity;
+                foreach (EnemyUnit u in allTargets)
+                {
+                    float d = Vector3.Distance(u.transform.position, transform.position);
+                    if (d < dist)
+                    {
+                        dist = d;
+                        currentTarget = u;
+                    }
+                }
 
-								Rigidbody clone = Instantiate (projectile, transform.position + offset, transform.rotation) as Rigidbody;
-								clone.SendMessage ("updateDmg", attackDmg);
-								unitSound.PlayOneShot (fireSound, 0.1f);
-								clone.velocity = transform.TransformDirection (Vector3.forward * velocity) + new Vector3 (Time.deltaTime * velocity, 0, 0);
+                // possible for above to not find an enemy unit
+                if (currentTarget)
+                {
+                    transform.LookAt(currentTarget.transform);
+                    if (Vector3.Distance(transform.position, currentTarget.transform.position) <= attackRange && lastAttack >= attackRate)
+                    {
 
-								lastAttack = 0;
-								Destroy (clone, delay);
-								Destroy (clone.gameObject, delay);
-						}
-				}
-				lastAttack += Time.deltaTime;       
-		}
+                        Rigidbody clone = Instantiate(projectile, transform.position + offset, transform.rotation) as Rigidbody;
+                        clone.SendMessage("updateDmg", attackDmg);
+                        unitSound.PlayOneShot(fireSound, 0.1f);
+                        clone.velocity = transform.TransformDirection(Vector3.forward * velocity) + new Vector3(Time.deltaTime * velocity, 0, 0);
+
+                        lastAttack = 0;
+                        Destroy(clone, delay);
+                        Destroy(clone.gameObject, delay);
+                    }
+                }
+                lastAttack += Time.deltaTime;
+            }
+        }
 
 		void moveUnit ()
 		{
