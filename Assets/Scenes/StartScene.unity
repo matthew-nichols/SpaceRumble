@@ -348,10 +348,8 @@ MonoBehaviour:
   attackRate: .5
   energy: 125
   currentEnergy: 125
-  weapon: {fileID: 11400000, guid: 376736720775a444d9628487c7f78fcc, type: 2}
-  armor: {fileID: 11400000, guid: fdf6926c1b5c3a84eabe02bc0918afae, type: 2}
-  accessory: {fileID: 11400000, guid: ba4f7d9317c30da41937ea1328fc320b, type: 2}
   secondary: {fileID: 11400000, guid: 73b0fcecd5cca34458b0dff7c82062bb, type: 2}
+  mainslot: {fileID: 11400000, guid: e5741a33207cbde4eb1f6d4eb676a85a, type: 2}
   index: 0
 --- !u!4 &819655529
 Transform:
@@ -494,6 +492,7 @@ MonoBehaviour:
   slot: Armor
   healthBoost: 500
   energy: 0
+  damageBoost: 0
 --- !u!4 &1769474782
 Transform:
   m_ObjectHideFlags: 0
@@ -599,7 +598,7 @@ MonoBehaviour:
   numUnits: 0
   gold: 0
   weapons:
-  - {fileID: 1858571513}
+  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
@@ -610,7 +609,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   secondaries:
-  - {fileID: 1989032631}
+  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
@@ -621,7 +620,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   armors:
-  - {fileID: 1769474781}
+  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
@@ -632,7 +631,18 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   accessories:
-  - {fileID: 272699365}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  mains:
+  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
@@ -677,6 +687,7 @@ MonoBehaviour:
   damage: 150
   range: 0
   atkRate: 0
+  healthBoost: 0
 --- !u!4 &1858571514
 Transform:
   m_ObjectHideFlags: 0

@@ -13,10 +13,11 @@ public class startMenu : MonoBehaviour
             //not sure if needed.
                 for (int i = 0; i < 10; i++)
                 {
-                    Object.DontDestroyOnLoad(data.weapons[i]);
-                    Object.DontDestroyOnLoad(data.accessories[i]);
-                    Object.DontDestroyOnLoad(data.armors[i]);
+                    //Object.DontDestroyOnLoad(data.weapons[i]);
+                    //Object.DontDestroyOnLoad(data.accessories[i]);
+                    //Object.DontDestroyOnLoad(data.armors[i]);
                     Object.DontDestroyOnLoad(data.secondaries[i]);
+                    Object.DontDestroyOnLoad(data.mains[i]);
                 }
 		}
 
@@ -45,10 +46,11 @@ public class startMenu : MonoBehaviour
                
                         a.UnitName = "Bob " + i;//change to randomized name.
                         a.attackDmg += i * 10;
-                        a.accessory = data.accessories[0];
-                        a.weapon = data.weapons[0];
+                        //a.accessory = data.accessories[0];
+                        //a.weapon = data.weapons[0];
                         a.secondary = data.secondaries[0];
-                        a.armor = data.armors[0];
+                        //a.armor = data.armors[0];
+                        a.mainslot = data.mains[0];
                         data.allyUnits[i] = a;
                         DontDestroyOnLoad(a);
                     }

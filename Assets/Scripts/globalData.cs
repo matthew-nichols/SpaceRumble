@@ -13,6 +13,7 @@ public class globalData : MonoBehaviour {
     public Secondary[] secondaries = new Secondary[10];//probably too many???
     public Armor[] armors = new Armor[10];//probably too many???
     public Accessory[] accessories = new Accessory[10];//probably too many???
+    public mainSlot[] mains = new mainSlot[10];
 
 
 	// Use this for initialization
