@@ -9,10 +9,8 @@ public class globalData : MonoBehaviour {
     public int gold;
 
     //Item lists In each category the 0th element is the default
-    public Weapon[] weapons = new Weapon[10];//probably too many???
     public Secondary[] secondaries = new Secondary[10];//probably too many???
-    public Armor[] armors = new Armor[10];//probably too many???
-    public Accessory[] accessories = new Accessory[10];//probably too many???
+
     public mainSlot[] mains = new mainSlot[10];
 
 

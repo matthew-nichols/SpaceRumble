@@ -4,6 +4,7 @@ public class missionSelect : MonoBehaviour
 {
 		enum states {DEFAULT, UNIT_SELECT, UNIT_EQUIP, SHOP};
 		public globalData data;
+        private AllyUnitStats selectedUnit;
 		public AllyUnitStats baseAlly;
 		AllyUnitStats[] units = new AllyUnitStats[20];
 		Object[] items = new Object[40];//for when we have inventory
@@ -83,16 +84,18 @@ public class missionSelect : MonoBehaviour
 				m1.difficulty = Random.Range (1, 4);
 				m1.allowedUnits = 10 - m1.difficulty;
 				m1.goldReward = 100 + m1.difficulty * 20;
+                m1.type = "Attack";
 
 				m2 = Instantiate (defaultmission) as missionSettings;
 				m2.difficulty = Random.Range (1, 4);
 				m2.allowedUnits = 10 - m2.difficulty;
 				m2.goldReward = 100 + m2.difficulty * 20;
-
+                m2.type = "Find";
 				m3 = Instantiate (defaultmission) as missionSettings;
 				m3.difficulty = Random.Range (1, 4);
 				m3.allowedUnits = 10 - m3.difficulty;
 				m3.goldReward = 100 + m3.difficulty * 20;
+                m3.type = "Defend";    
                 //by default selected mission is m1;
                 selected = m1;
 		}
@@ -129,26 +132,15 @@ public class missionSelect : MonoBehaviour
             {
                 s = " exists";
                 s = t.itemName + " " + t.slot + " Sells for:" + t.sellValue + "\n";
-                if (t.slot == "Weapon")
+                if (t.slot == "Main")
                 {//Possibly set each one to have at most 3 bonuses???
-                    Weapon w = (Weapon)t;
-                    s += "Damage:" + w.damage + " Range:" + w.range + " Rate:" + w.atkRate;
+                    mainSlot w = (mainSlot)t;
+                    s += "Damage:" + w.damage + " Range:" + w.range + " Rate:" + w.atkRate + " Health:" + w.healthBoost + " Energy:" + w.energyBoost;
                 }
                 else if (t.slot == "Secondary")
                 {
                     Secondary w = (Secondary)t;
-                    s += "Damage:" + w.damageBoost + " Range:" + w.rangeBoost + " Rate:" + w.atkRtBoost + " Health:" + w.healthBoost;
-                }
-                else if (t.slot == "Armor")
-                {
-                    Armor w = (Armor)t;
-                    s += "Health:" + w.healthBoost + " Energy" + w.energy;
-                }
-                else if (t.slot == "Accessory")
-                {
-                    Accessory w = (Accessory)t;
-                    s += "Damage:" + w.damageBoost + " Range:" + w.rangeBoost + " Rate:" + w.atkRtBoost + " Health:" + w.healthBoost + " Energy:" + w.energyBoost;
-
+                    s += "Damage:" + w.damageBoost + " Range:" + w.rangeBoost + " Rate:" + w.atkRtBoost + " Health:" + w.healthBoost + " Energy:";// +  w.energyBoost;
                 }
             }
             return s;
@@ -198,13 +190,17 @@ public class missionSelect : MonoBehaviour
                             Rect t = new Rect(x + k * dx, ry, dx, dy);
                             if (GUI.Button(t, new GUIContent(test)))
                             {
-
                                 if (state == states.UNIT_SELECT && !(contains(i)))
                                 {
                                     AllyUnitStats a = units[i];
                                     selectedUnits[numSelected] = a;
                                     selectedIndexes[numSelected] = a.index;
                                     numSelected++;
+                                }
+                                if (state == states.DEFAULT)
+                                {
+                                    state = states.UNIT_EQUIP;
+                                    selectedUnit = units[i];
                                 }
                             }
                             GUI.BeginGroup(new Rect(x+k*dx+ dx/4, ry + dy/10, dx, dy), n);
@@ -225,13 +221,13 @@ public class missionSelect : MonoBehaviour
 						return "No mission";
 				//Difficulty
 				if (m.difficulty == 0) {//Difficulty intepreted by gamecontrol possibly
-						s = "Mission difficulty: Easy";
+                    s = "Mission difficulty: Easy\t\t Mission type: " + m.type;
 				} else if (m.difficulty == 1) {
-						s = "Mission difficulty: Medium";
+                    s = "Mission difficulty: Medium\t\t Mission type: " + m.type;
 				} else if (m.difficulty == 2) {
-						s = "Mission difficulty: Hard";
+						s = "Mission difficulty: Hard\t\t Mission type: " + m.type;
 				} else {
-						s = "Mission difficulty: Impossible";
+                    s = "Mission difficulty: Impossible\t\t Mission type: " + m.type;
 				}
 				s += "\n";
 				//other constraints(unit number)
@@ -316,18 +312,14 @@ public class missionSelect : MonoBehaviour
 				GUI.Box (new Rect (x, 0, width, dy), msg);
                 //now display default items
                 int y = dy/12;
-                if (GUI.Button(new Rect(x, y, width, y), buildItem(data.weapons[0])))
-                {
-                } 
-                if (GUI.Button(new Rect(x, y*2, width, y), buildItem(data.armors[0])))
+                if (GUI.Button(new Rect(x, y, width, y), buildItem(data.mains[0])))
                 {
                 }
-                if (GUI.Button(new Rect(x, y*3, width, y), buildItem(data.secondaries[0])))
+
+                if (GUI.Button(new Rect(x, y * 3, width, y), buildItem(data.secondaries[0])))
                 {
                 }
-                if (GUI.Button(new Rect(x, y*4, width, y), buildItem(data.accessories[0])))
-                {
-                }
+
             //  GUI.Box(new Rect (x, y, width, y), buildItem(data.weapons[0]));
                 //GUI.EndGroup();
              /*   GUI.BeginGroup(new Rect (x, y*2, width, y), buildItem(data.secondaries[0]));

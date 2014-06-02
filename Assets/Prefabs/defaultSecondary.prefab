@@ -38,10 +38,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bf8f28ccbc2da04b9a3a480a7e0fb16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemName: 
+  itemName: A second
   sellValue: 0
   buyValue: 0
-  slot: 
+  slot: Secondary
   healthBoost: 0
   damageBoost: 0
   atkRtBoost: 0

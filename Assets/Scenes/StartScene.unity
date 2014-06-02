@@ -597,41 +597,8 @@ MonoBehaviour:
   - {fileID: 0}
   numUnits: 0
   gold: 0
-  weapons:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   secondaries:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  armors:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  accessories:
-  - {fileID: 0}
+  - {fileID: 11400000, guid: 73b0fcecd5cca34458b0dff7c82062bb, type: 2}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
@@ -642,7 +609,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   mains:
-  - {fileID: 0}
+  - {fileID: 11400000, guid: e5741a33207cbde4eb1f6d4eb676a85a, type: 2}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}

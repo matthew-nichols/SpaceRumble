@@ -41,7 +41,7 @@ MonoBehaviour:
   itemName: Main Test Item 1
   sellValue: 0
   buyValue: 0
-  slot: 
+  slot: Main
   healthBoost: 500
   damage: 150
   energyBoost: 0
