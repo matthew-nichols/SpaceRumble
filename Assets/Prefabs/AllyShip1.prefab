@@ -378,7 +378,7 @@ MonoBehaviour:
   health: 1000
   currentHealth: 1000
   attackDmg: 1370
-  attackRange: 125
+  attackRange: 85
   attackRate: .5
   isClicked: 0
   updateRightClick: 0

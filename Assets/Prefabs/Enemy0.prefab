@@ -290,7 +290,7 @@ MonoBehaviour:
   health: 1000
   currentHealth: 1000
   attackDmg: 100
-  attackRange: 500
+  attackRange: 50
   attackRate: 1
   isClicked: 0
   updateRightClick: 0
@@ -305,7 +305,7 @@ MonoBehaviour:
   velocity: 100
   offset: {x: 0, y: -1, z: 0}
   lastAttack: 0
-  maxDist: 125
+  maxDist: 40
   unitSound: {fileID: 8200002}
   fireSound: {fileID: 8300000, guid: 25a8f4668dfb3c546bfdc8a0ea0cb194, type: 3}
   deathSound: {fileID: 8300000, guid: 41b79386a04a03e4aa9385c156aa5473, type: 3}
