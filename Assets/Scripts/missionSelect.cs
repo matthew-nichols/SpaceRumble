@@ -264,7 +264,7 @@ public class missionSelect : MonoBehaviour
                         m = "Secondary";
                     }
 
-                    info = "Changing Units equipment... Either select the \ncurrently equiped " + m + " \nor a main slot item from your inventory";
+                    info = "Changing Units equipment... Either select the currently equiped " + m + " \nor a main slot item from your inventory\nName: " + selectedUnit.UnitName;
                     GUIStyle s = new GUIStyle();
                     s.normal.textColor = Color.white;
                     s.fontSize = 12;
@@ -318,21 +318,39 @@ public class missionSelect : MonoBehaviour
 				//mission 1;
 				string s;
 				s = buildMission (m1);
+                Color c = GUI.backgroundColor;
+                if (m1 == selected)
+                {
+                    GUI.backgroundColor = Color.green;
+                }
 				if (GUI.Button (new Rect (0, 0, width, dy), s)) {
 						selected = m1;
-				}  
+				}
+                GUI.backgroundColor = c;
 				//mission 2;
-				s = "";
+				
+                s = "";
 				s = buildMission (m2);
-				if (GUI.Button (new Rect (0, dy, width, dy), s)) {
+                if (m2 == selected)
+                {
+                    GUI.backgroundColor = Color.green;
+                }	
+
+                if (GUI.Button (new Rect (0, dy, width, dy), s)) {
 						selected = m2;
 				}
-				//mission 3;
+                GUI.backgroundColor = c;
+                //mission 3;
 				s = "";
 				s = buildMission (m3);
-				if (GUI.Button (new Rect (0, 2 * dy, width, dy), s)) {
+                if (m3 == selected)
+                {
+                    GUI.backgroundColor = Color.green;
+                }
+                if (GUI.Button (new Rect (0, 2 * dy, width, dy), s)) {
 						selected = m3;
 				}
+                GUI.backgroundColor = c;
 		}
 
 
