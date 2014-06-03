@@ -20,6 +20,7 @@ public class missionSelect : MonoBehaviour
 		private int numSelected = 0;
 		private missionSettings selected;
         private int itemEquip;//0 if main 1 if second
+        private int invDisp;//0 main, 1 secondary
         bool contains(int n)//function to check if unit is selected
         {
             for (int i = 0; i < selectedUnits.Length; i++)
@@ -203,6 +204,7 @@ public class missionSelect : MonoBehaviour
                                     state = states.UNIT_EQUIP;
                                     selectedUnit = units[i];
                                     itemEquip = 0;
+                                    invDisp = 0;
                                 }
                             }
                             GUI.BeginGroup(new Rect(x+k*dx+ dx/4, ry + dy/10, dx, dy), n);
@@ -264,7 +266,7 @@ public class missionSelect : MonoBehaviour
                         m = "Secondary";
                     }
 
-                    info = "Changing Units equipment... Either select the currently equiped " + m + " \nor a main slot item from your inventory\nName: " + selectedUnit.UnitName;
+                    info = "Changing Units equipment... Either select the currently equiped " + m + " \nor select a "+m+" slot item from your inventory\nName: " + selectedUnit.UnitName;
                     GUIStyle s = new GUIStyle();
                     s.normal.textColor = Color.white;
                     s.fontSize = 12;
@@ -278,6 +280,11 @@ public class missionSelect : MonoBehaviour
                     GUI.EndGroup();
                     if (GUI.Button(new Rect(x + 110, y + h / 14, x, h / 14), buildItem(selectedUnit.mainslot)))
                     {
+                        if (itemEquip == 0)
+                        {
+                            invDisp = 1;
+                            itemEquip++;//don't need to change anything as the currently selected armor is left as is.
+                        }
                     }
                     s.normal.textColor = Color.white;
                     s.fontSize = 20;
@@ -286,6 +293,11 @@ public class missionSelect : MonoBehaviour
                     GUI.EndGroup();
                     if (GUI.Button(new Rect(x + 110, y + h / 14 + h/14, x, h / 14), buildItem(selectedUnit.secondary)))
                     {
+                        if (itemEquip == 1)
+                        {
+                            state = states.DEFAULT;
+                            //Do not need to change the item at all since it is left as what was equiped.
+                        }
                     }
 
 				}else if (state ==states.UNIT_SELECT){
@@ -354,6 +366,15 @@ public class missionSelect : MonoBehaviour
 		}
 
 
+        //SWAPS TWO ITEMS
+        void swap(Item a, Item b)
+        {
+            Item temp;
+            temp = a;
+            a = b;
+            b = temp;
+        }
+
 		void displayInventory ()
 		{
 				int w = Screen.width;
@@ -361,16 +382,66 @@ public class missionSelect : MonoBehaviour
 				int x = w - w / 4;
 				int width = w / 4;
 				int dy = h - h / 4;
+                //two states display main, or secondary
 				string msg = "This is the inventory box!";
 				GUI.Box (new Rect (x, 0, width, dy), msg);
+                if (GUI.Button(new Rect(x, 20, width / 2, 20), "Main"))
+                {
+                    invDisp = 0;
+                }
+                if (GUI.Button(new Rect(x + width/2, 20, width / 2, 20), "Secondary"))
+                {
+                    invDisp = 1;
+                }
+                
                 //now display default items
                 int y = dy/12;
-                if (GUI.Button(new Rect(x, y, width, y), buildItem(data.mains[0])))
+                /*if (GUI.Button(new Rect(x, y, width, y), buildItem(data.mains[0])))
                 {
                 }
 
                 if (GUI.Button(new Rect(x, y * 3, width, y), buildItem(data.secondaries[0])))
                 {
+                }*/
+                //two states 
+                if (invDisp == 0)//display main items
+                {
+                    int j = 0;
+                    for (int i = 0; i < data.mainInv.Length; i++)
+                    {
+                        if (data.mainInv[i])
+                        {
+                            if (GUI.Button(new Rect(x, y + y * j, width, y), buildItem(data.mainInv[i])))
+                            {
+                                //TODO Code for when state is equip select
+                                mainSlot temp = selectedUnit.mainslot;
+                                selectedUnit.mainslot = data.mainInv[i];
+                                data.mainInv[i] = temp;
+                                itemEquip = 1;
+                                invDisp = 1;
+                            }
+                            j++;
+                        }
+                    }
+                }
+                else if (invDisp == 1)//display secondary items
+                {
+                    int j = 0;
+                    for (int i = 0; i < data.secondaryInv.Length; i++)
+                    {
+                        if (data.secondaryInv[i])
+                        {
+                            if (GUI.Button(new Rect(x, y+ y * j, width, y), buildItem(data.secondaryInv[i])))
+                            {
+                                //TODO Code for when state is equip select
+                                state = states.DEFAULT;
+                                Secondary temp = selectedUnit.secondary;
+                                selectedUnit.secondary = data.secondaryInv[i];
+                                data.secondaryInv[i] = temp;
+                            }
+                            j++;
+                        }
+                    }
                 }
 
             //  GUI.Box(new Rect (x, y, width, y), buildItem(data.weapons[0]));
