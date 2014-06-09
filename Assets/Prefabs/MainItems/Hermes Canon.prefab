@@ -10,7 +10,7 @@ GameObject:
   - 4: {fileID: 400000}
   - 114: {fileID: 11400000}
   m_Layer: 0
-  m_Name: Secondary
+  m_Name: Hermes Canon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -35,13 +35,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2bf8f28ccbc2da04b9a3a480a7e0fb16, type: 3}
+  m_Script: {fileID: 11500000, guid: 47c016d587e33da4d9ced562366c339e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  itemName: Hermes Canon
+  sellValue: 100
+  buyValue: 100
+  slot: Main
   healthBoost: 0
-  damageBoost: 0
-  atkRtBoost: 0
-  rangeBoost: 0
+  damage: 300
+  energyBoost: 0
+  atkRate: 0
+  range: 0
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

@@ -30,8 +30,8 @@ public class AllyUnit : baseUnit
 				base.Start ();
 				playSound = true;
 				if (mainslot) {
-						base.health += mainslot.healthBoost;
-						base.currentHealth += mainslot.healthBoost;
+						health = mainslot.healthBoost + secondary.healthBoost;
+						currentHealth = health;
 				}				
 				if (mainslot) {
 						attackDmg = mainslot.damage;
@@ -59,7 +59,7 @@ public class AllyUnit : baseUnit
 				//armor = a.armor;
 				//accessory = a.accessory;
 				secondary = a.secondary;
-				health = a.health;
+				//health = a.health;
 				currentHealth = a.currentHealth;
 				attackDmg = a.attackDmg;
 				attackRange = a.attackRange;
