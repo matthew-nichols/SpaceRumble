@@ -12,6 +12,7 @@ public class EnemyUnit : baseUnit
 		public AudioSource unitSound;
 		public AudioClip fireSound;
 		public AudioClip deathSound;
+		public bool isTower = false;
 
 		protected override void Start ()
 		{
@@ -31,7 +32,8 @@ public class EnemyUnit : baseUnit
 						}
 						Destroy (gameObject.rigidbody);
 						Destroy (gameObject);
-						control.currentEnemies--;
+						if(!isTower)
+							control.currentEnemies--;
 						OnDeath ();
 				}
 
