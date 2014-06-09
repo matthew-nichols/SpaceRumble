@@ -56,11 +56,31 @@ public class GameControl : MonoBehaviour
                 mode = data.gameMode;
                 difficulty = data.difficulty;
                 wavesLeft = difficulty + 5;
+                //add start up code for different game modes
+                switch (mode)
+                {
+                    case "Defend"://defend game mode
+                        break;
+                    case "Attack"://attack game mode
+                        break;
+                    case "Find"://Find game mode(unit something etc.
+                        break;
+                  }
         }
 
 		//creates a spawner for eneimes with these stats
 		EnemySpawn createSpawner (int h, int d, float r, double rng, Vector3 pos, int n, float t, int m)
 		{
+                //MODE SPECIFIC CODE GOES HERE
+                switch (mode)
+                {
+                    case "Defend"://defend game mode
+                        break;
+                    case "Attack"://attack game mode
+                        break;
+                    case "Find"://Find game mode(unit something etc.
+                        break;
+                  }
 				//range might be better as int 
 				//create unit
 				GameObject e = enemy;
@@ -94,6 +114,21 @@ public class GameControl : MonoBehaviour
         }
         void Update()
 		{
+                //MODE SPECIFIC CODE GOES HERE
+                switch (mode)
+                {
+                    case "Defend"://defend game mode
+                        if ( wavesLeft == 0)
+                        {
+                            win = true;
+                            missionOver();
+                        }
+                        break;
+                    case "Attack"://attack game mode
+                        break;
+                    case "Find"://Find game mode(unit something etc.
+                        break;
+                }
 				if (gameState) {
 						//wait for player to finish moving units
 						//if all enemies are dead call waveEnd
@@ -123,15 +158,22 @@ public class GameControl : MonoBehaviour
                 {
                     missionFail();
                 }
-                if (mode == "Defend" && wavesLeft == 0)
-                {
-                    win = true;
-                    missionOver();
-                }
+
 		}
 
 		void waveStart ()
 		{
+                //might not be needed
+                //MODE SPECIFIC CODE GOES HERE
+                switch (mode)
+                {
+                    case "Defend"://defend game mode
+                        break;
+                    case "Attack"://attack game mode
+                        break;
+                    case "Find"://Find game mode(unit something etc.
+                        break;
+                }
 				gameState = true;
 				musicObj.gameState = gameState;
 				//gets called by GUI button
@@ -150,6 +192,15 @@ public class GameControl : MonoBehaviour
 
 		void waveEnd ()
 		{
+                switch (mode)
+                {
+                    case "Defend"://defend game mode
+                        break;
+                    case "Attack"://attack game mode
+                        break;
+                    case "Find"://Find game mode(unit something etc.
+                        break;
+                }
 				gameState = false;
 				musicObj.gameState = gameState;
 				for (int i = 0; i < allies.Length; i++) {
@@ -195,7 +246,17 @@ public class GameControl : MonoBehaviour
         }
         void missionOver()//do mission overy stuff
         {
-
+            //might not be needed
+            //MODE SPECIFIC CODE GOES HERE
+            switch (mode)
+            {
+                case "Defend"://defend game mode
+                    break;
+                case "Attack"://attack game mode
+                    break;
+                case "Find"://Find game mode(unit something etc.
+                    break;
+            }
             //clear list of allyStats
 
             AllyUnitStats[] selectedUnits = new AllyUnitStats[10];
@@ -216,6 +277,17 @@ public class GameControl : MonoBehaviour
         }
         void missionFail()
         {
+            //might not be needed
+            //MODE SPECIFIC CODE GOES HERE
+            switch (mode)
+            {
+                case "Defend"://defend game mode
+                    break;
+                case "Attack"://attack game mode
+                    break;
+                case "Find"://Find game mode(unit something etc.
+                    break;
+            }
             for (int i = 0; i < data.selectedUnits.Length; i++)
             {
                 data.selectedUnits[i] = null;
@@ -224,6 +296,25 @@ public class GameControl : MonoBehaviour
         }
         void OnGUI()
 		{
+                //might not be needed
+                //MODE SPECIFIC CODE GOES HERE
+                switch (mode)
+                {
+                    case "Defend"://defend game mode
+                        GUIStyle s = new GUIStyle();
+                        s.normal.textColor = Color.white;
+                        s.fontSize = 20;
+                        s.alignment = TextAnchor.MiddleLeft;
+
+                        string end = "Waves left: " + wavesLeft;
+                        GUI.BeginGroup(new Rect(Screen.width-160, 0, 160, 20), end, s);
+                        GUI.EndGroup();
+                        break;
+                    case "Attack"://attack game mode
+                        break;
+                    case "Find"://Find game mode(unit something etc.
+                        break;
+                }
 				if (win)
 						GUI.Box (new Rect (Screen.width / 2, Screen.height / 2, 200, 200), "You Win !!!");
 				// Make a background box
@@ -235,16 +326,6 @@ public class GameControl : MonoBehaviour
 				if (GUI.Button (new Rect (20, 30, 160, 20), ("Return to Mission Select"))) {
                         missionOver();
 				}
-                if (mode == "Defend")
-                {
-                    GUIStyle s = new GUIStyle();
-                    s.normal.textColor = Color.white;
-                    s.fontSize = 20;
-                    s.alignment = TextAnchor.MiddleLeft;
 
-                    string end = "Waves left: " + wavesLeft;
-                    GUI.BeginGroup(new Rect(Screen.width-160, 0, 160, 20), end, s);
-                    GUI.EndGroup();
-                }
 		}
 }
