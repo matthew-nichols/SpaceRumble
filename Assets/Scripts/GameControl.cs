@@ -55,11 +55,12 @@ public class GameControl : MonoBehaviour
                 //get mode info
                 mode = data.gameMode;
                 difficulty = data.difficulty;
-                wavesLeft = difficulty + 5;
+
                 //add start up code for different game modes
                 switch (mode)
                 {
                     case "Defend"://defend game mode
+                        wavesLeft = difficulty + 5;
                         break;
                     case "Attack"://attack game mode
                         break;

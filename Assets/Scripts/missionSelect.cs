@@ -189,6 +189,12 @@ public class missionSelect : MonoBehaviour
                             {
                                 s = "no unit";
                             }
+                            Color c = GUI.backgroundColor;
+                            if (units[i] == selectedUnit)
+                            {
+                                //change tint of selected unit
+                                GUI.backgroundColor = Color.yellow;
+                            }
                             Rect t = new Rect(x + k * dx, ry, dx, dy);
                             if (GUI.Button(t, new GUIContent(test)))
                             {
@@ -206,7 +212,9 @@ public class missionSelect : MonoBehaviour
                                     itemEquip = 0;
                                     invDisp = 0;
                                 }
+
                             }
+                            GUI.backgroundColor = c;   
                             GUI.BeginGroup(new Rect(x+k*dx+ dx/4, ry + dy/10, dx, dy), n);
                             GUI.EndGroup();
                             GUI.tooltip = s;
@@ -296,6 +304,7 @@ public class missionSelect : MonoBehaviour
                         if (itemEquip == 1)
                         {
                             state = states.DEFAULT;
+                            selectedUnit = null;
                             //Do not need to change the item at all since it is left as what was equiped.
                         }
                     }
@@ -438,6 +447,7 @@ public class missionSelect : MonoBehaviour
                                 Secondary temp = selectedUnit.secondary;
                                 selectedUnit.secondary = data.secondaryInv[i];
                                 data.secondaryInv[i] = temp;
+                                selectedUnit = null;
                             }
                             j++;
                         }
