@@ -166,7 +166,8 @@ public class AllyUnit : baseUnit
                 if (currentTarget)
                 {
                     transform.LookAt(currentTarget.transform, Vector3.up);
-                    if (Vector3.Distance(transform.position, currentTarget.transform.position) <= attackRange && lastAttack >= attackRate)
+					if (Vector3.Distance(transform.position, currentTarget.transform.position) <= attackRange
+				    	&& lastAttack >= attackRate && projectile != null)
                     {
 
                         Rigidbody clone = Instantiate(projectile, transform.position + offset, transform.rotation) as Rigidbody;

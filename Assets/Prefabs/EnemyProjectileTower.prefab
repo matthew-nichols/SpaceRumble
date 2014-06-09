@@ -132,7 +132,10 @@ MonoBehaviour:
   dist: 0
   dmg: 100
   maxTime: 10
+  impactVolume: .5
   impactEffect: {fileID: 19800000, guid: 2f9e7030759a647e5b7ec0b46dd414f0, type: 2}
+  projectileSound: {fileID: 0}
+  impactSound: {fileID: 8300000, guid: fd565a0cbcb74d143a6008ee3062b1e7, type: 3}
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1

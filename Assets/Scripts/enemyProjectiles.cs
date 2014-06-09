@@ -36,11 +36,17 @@ public class enemyProjectiles : MonoBehaviour
 				if (other.gameObject.tag == "Player" || other.gameObject.tag == "Terrain") {
 						ContactPoint contact = other.contacts [0];
 						Vector3 pos = contact.point;
-						Quaternion rot = Quaternion.FromToRotation (Vector3.up, contact.normal); 
-						ParticleSystem temp = Instantiate (impactEffect, pos, rot) as ParticleSystem;
-						PlayClipAt(impactSound, pos, impactVolume);
+						Quaternion rot = Quaternion.FromToRotation (Vector3.up, contact.normal);
+
+						if(impactEffect)
+						{
+							ParticleSystem temp = Instantiate (impactEffect, pos, rot) as ParticleSystem;
+							Destroy (temp.gameObject, 2);
+						}
+						if(impactSound)
+							PlayClipAt(impactSound, pos, impactVolume);
+
 						Destroy (gameObject);
-						Destroy (temp.gameObject, 3);
 						baseUnit unit = other.gameObject.GetComponent<baseUnit> ();
 						if (unit)
 								unit.currentHealth -= dmg;
@@ -49,18 +55,18 @@ public class enemyProjectiles : MonoBehaviour
 
 		AudioSource PlayClipAt (AudioClip clip, Vector3 pos, float volume)
 		{
-			GameObject tempGO = new GameObject ("TempAudio " + clip.name);
-			tempGO.transform.position = pos;
-			AudioSource aSource = tempGO.AddComponent<AudioSource> ();
-			aSource.clip = clip;
-			aSource.rolloffMode = projectileSound.rolloffMode;
-			aSource.pitch = projectileSound.pitch;
-			aSource.minDistance = projectileSound.minDistance;
-			aSource.maxDistance = projectileSound.maxDistance;
-			aSource.dopplerLevel = projectileSound.dopplerLevel;
-			aSource.volume = volume;
-			aSource.Play ();
-			Destroy (tempGO, clip.length);
-			return aSource;
+				GameObject tempGO = new GameObject ("TempAudio " + clip.name);
+				tempGO.transform.position = pos;
+				AudioSource aSource = tempGO.AddComponent<AudioSource> ();
+				aSource.clip = clip;
+				aSource.rolloffMode = projectileSound.rolloffMode;
+				aSource.pitch = projectileSound.pitch;
+				aSource.minDistance = projectileSound.minDistance;
+				aSource.maxDistance = projectileSound.maxDistance;
+				aSource.dopplerLevel = projectileSound.dopplerLevel;
+				aSource.volume = volume;
+				aSource.Play ();
+				Destroy (tempGO, clip.length);
+				return aSource;
 		}
 }

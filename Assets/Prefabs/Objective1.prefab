@@ -28,7 +28,6 @@ GameObject:
   - 23: {fileID: 2300000}
   - 95: {fileID: 9500000}
   - 65: {fileID: 6500000}
-  - 195: {fileID: 19500000}
   - 54: {fileID: 5400000}
   - 114: {fileID: 11400000}
   m_Layer: 0
@@ -214,7 +213,7 @@ MonoBehaviour:
   deathExplosion: {fileID: 19800000, guid: bf3f387d006f0414b80b25ba2b9cdf38, type: 2}
   control: {fileID: 0}
   targetLocation: {x: 0, y: 0, z: 0}
-  projectile: {fileID: 5400000, guid: 67c0def0d3a843c45bbf2cf7e331624f, type: 2}
+  projectile: {fileID: 0}
   delay: 0
   velocity: 0
   offset: {x: 0, y: 0, z: 0}
@@ -223,26 +222,7 @@ MonoBehaviour:
   unitSound: {fileID: 8200000}
   fireSound: {fileID: 8300000, guid: 740a0507d56989341965337df1cd45fb, type: 3}
   deathSound: {fileID: 8300000, guid: ab600c3e8885a1743bf3868e6b7fb3e5, type: 3}
---- !u!195 &19500000
-NavMeshAgent:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100002}
-  m_Enabled: 1
-  m_Radius: 2
-  m_Speed: 0
-  m_Acceleration: 0
-  avoidancePriority: 50
-  m_AngularSpeed: 0
-  m_StoppingDistance: 0
-  m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
-  m_AutoRepath: 1
-  m_Height: 1
-  m_BaseOffset: 0
-  m_WalkableMask: 0
-  m_ObstacleAvoidanceType: 4
+  isTower: 1
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

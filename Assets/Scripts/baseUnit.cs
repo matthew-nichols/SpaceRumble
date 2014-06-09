@@ -19,7 +19,7 @@ public class baseUnit : MonoBehaviour
 		public baseUnit currentTarget;
 		public ParticleSystem deathExplosion;
 		public GameControl control;
-
+		
         protected virtual void Start()
         {
             agent = GetComponent<NavMeshAgent>();

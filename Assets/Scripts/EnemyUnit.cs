@@ -47,14 +47,22 @@ public class EnemyUnit : baseUnit
 						}
 				}
 
-				if (currentTarget) {
-						if (Vector3.Distance (transform.position, currentTarget.transform.position) < maxDist) {
-								agent.Stop ();
-						} else {
-								agent.SetDestination (currentTarget.transform.position);
+				if (currentTarget)
+				{
+						if(agent != null)
+						{
+								if (Vector3.Distance (transform.position, currentTarget.transform.position) < maxDist)
+								{
+										agent.Stop ();
+								}
+								else
+								{
+										agent.SetDestination (currentTarget.transform.position);
+								}
 						}
-
-			if (Vector3.Distance (transform.position, currentTarget.transform.position) < attackRange && lastAttack > attackRate && control.gameState) {
+						if (Vector3.Distance (transform.position, currentTarget.transform.position) < attackRange
+						&& lastAttack > attackRate && control.gameState && projectile != null)
+						{
 								Rigidbody clone = Instantiate (projectile, transform.position + offset, transform.rotation) as Rigidbody;
 								unitSound.PlayOneShot (fireSound, 0.1f);
 								clone.SendMessage ("updateDmg", attackDmg);
@@ -66,6 +74,7 @@ public class EnemyUnit : baseUnit
 						}
 						transform.LookAt (currentTarget.transform);
 				}
+
 				lastAttack += Time.deltaTime;
 		}
 
