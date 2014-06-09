@@ -20,6 +20,26 @@ public class baseUnit : MonoBehaviour
 		public ParticleSystem deathExplosion;
 		public GameControl control;
 
+        protected virtual void Start()
+        {
+            agent = GetComponent<NavMeshAgent>();
+        }
+
+        protected virtual void Update()
+        {
+            if (isClicked && renderer)
+            {
+                renderer.material = onHoverMaterial;
+            }
+            else if (renderer)
+            {
+                renderer.material = defaultMaterial;
+            }
+        }
+
+
+
+
 		public bool IsAlive { get { return health <= 0; } }
 
 		public event DeathEventHandler Death;
@@ -30,19 +50,7 @@ public class baseUnit : MonoBehaviour
 						Death (this);
 		}
 
-		protected virtual void Start ()
-		{
-				agent = GetComponent<NavMeshAgent> ();
-		}
 		
-		protected virtual void Update ()
-		{
-				if (isClicked && renderer) {
-						renderer.material = onHoverMaterial;
-				} else if (renderer) {
-						renderer.material = defaultMaterial;
-				}
-		}
 
 		void OnMouseEnter ()
 		{

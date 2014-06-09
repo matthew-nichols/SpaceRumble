@@ -42,7 +42,7 @@ public class GameControl : MonoBehaviour
 						if (allyStats [i] != null) {
                                 
 								//code to place ally, will need some sort of offset so not placed on top of each other
-								allies [i] = Instantiate (baseUnit, allySpawnLocation + new Vector3(i * 20.0f, transform.position.y, 0), Quaternion.identity) as AllyUnit;
+								allies [i] = Instantiate (baseUnit, allySpawnLocation + new Vector3(i * 20.0f, transform.position.y, 5), Quaternion.identity) as AllyUnit;
                                 allies[i].SendMessage("SetInfo",allyStats[i]);
 						}
 				}
