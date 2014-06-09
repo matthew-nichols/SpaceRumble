@@ -16,7 +16,8 @@ public class GameControl : MonoBehaviour
 		bool win;
 		// variables that determine enemy stats;
 		public int health, damage, spawnNumber;
-		public double rate, range;
+		public double range;
+		public float rate;
 		public Vector3 enemyPos;
 		public Rect end;
 		public int maxDist;
@@ -58,7 +59,7 @@ public class GameControl : MonoBehaviour
         }
 
 		//creates a spawner for eneimes with these stats
-		EnemySpawn createSpawner (int h, int d, double r, double rng, Vector3 pos, int n, float t, int m)
+		EnemySpawn createSpawner (int h, int d, float r, double rng, Vector3 pos, int n, float t, int m)
 		{
 				//range might be better as int 
 				//create unit

@@ -10,7 +10,7 @@ public class baseUnit : MonoBehaviour
 		public int currentHealth;
 		public int attackDmg;
 		public int attackRange;
-		public double attackRate;
+		public float attackRate;
 		public bool isClicked = false;
 		public bool updateRightClick = false;
 		public Vector3 destinationVector;

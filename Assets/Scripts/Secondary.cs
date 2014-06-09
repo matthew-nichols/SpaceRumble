@@ -5,7 +5,7 @@ public class Secondary : Item {
 
 	public int healthBoost;
 	public int damageBoost;
-	public int atkRtBoost;
+	public float atkRtBoost;
 	public int rangeBoost;
 
 	// Use this for initialization

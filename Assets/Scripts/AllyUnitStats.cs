@@ -14,7 +14,7 @@ public class AllyUnitStats : MonoBehaviour {
     public int currentHealth;
     public int attackDmg;
     public int attackRange;
-    public double attackRate;
+    public float attackRate;
     public float energy;
     public float currentEnergy;
     //public Vector3 cpos, ppos;

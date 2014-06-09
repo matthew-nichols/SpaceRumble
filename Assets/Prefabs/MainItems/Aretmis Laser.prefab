@@ -45,7 +45,7 @@ MonoBehaviour:
   healthBoost: 0
   damage: 100
   energyBoost: 0
-  atkRate: 0
+  atkRate: .40000000596046448
   range: 60
 --- !u!1001 &100100000
 Prefab:
