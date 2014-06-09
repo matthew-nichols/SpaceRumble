@@ -32,9 +32,10 @@ public class EnemyUnit : baseUnit
 						}
 						Destroy (gameObject.rigidbody);
 						Destroy (gameObject);
-						if(!isTower)
-							control.currentEnemies--;
+						if (!isTower)
+								control.currentEnemies--;
 						OnDeath ();
+						return;
 				}
 
 				AllyUnit[] allTargets = FindObjectsOfType<AllyUnit> ();
@@ -47,27 +48,21 @@ public class EnemyUnit : baseUnit
 						}
 				}
 
-				if (currentTarget)
-				{
-						if(agent != null)
-						{
-								if (Vector3.Distance (transform.position, currentTarget.transform.position) < maxDist)
-								{
+				if (currentTarget) {
+						if (agent != null) {
+								if (Vector3.Distance (transform.position, currentTarget.transform.position) < maxDist) {
 										agent.Stop ();
-								}
-								else
-								{
+								} else {
 										agent.SetDestination (currentTarget.transform.position);
 								}
 						}
 						if (Vector3.Distance (transform.position, currentTarget.transform.position) < attackRange
-						&& lastAttack > attackRate && control.gameState && projectile != null)
-						{
+								&& lastAttack > attackRate && control.gameState && projectile != null) {
 								Rigidbody clone = Instantiate (projectile, transform.position + offset, transform.rotation) as Rigidbody;
 								unitSound.PlayOneShot (fireSound, 0.1f);
 								clone.SendMessage ("updateDmg", attackDmg);
 								clone.velocity = transform.TransformDirection (Vector3.forward * velocity) + new Vector3 (Time.deltaTime * velocity, 0, 0);
-								clone.transform.LookAt(currentTarget.transform, Vector3.down);
+								clone.transform.LookAt (currentTarget.transform, Vector3.down);
 								lastAttack = 0;
 								Destroy (clone, delay);
 								Destroy (clone.gameObject, delay);
