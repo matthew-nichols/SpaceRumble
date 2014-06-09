@@ -121,7 +121,7 @@ public class AllyUnit : baseUnit
             {
                 currentEnergy -= 20 * Time.deltaTime; // TODO
             }
-
+			
             if (ppos != transform.position && currentEnergy <= 0)
             {
                 currentEnergy = 0;

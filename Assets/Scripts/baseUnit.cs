@@ -23,6 +23,8 @@ public class baseUnit : MonoBehaviour
         protected virtual void Start()
         {
             agent = GetComponent<NavMeshAgent>();
+			if (control == null)
+					control = GameObject.Find("GameControl").GetComponent<GameControl>();
         }
 
         protected virtual void Update()

@@ -48,11 +48,13 @@ public class DebugCamera : MonoBehaviour {
 		}
 		if (Input.GetKey(KeyCode.E))
 		{
-			transform.Translate(defaultCam.transform.up * flySpeed*0.5f);
+			//transform.Translate(defaultCam.transform.up * flySpeed*0.5f);
+			Time.timeScale = 1;
 		}
 		else if (Input.GetKey(KeyCode.Q))
 		{
-			transform.Translate(-defaultCam.transform.up * flySpeed*0.5f);
+			//transform.Translate(-defaultCam.transform.up * flySpeed*0.5f);
+			Time.timeScale = 0;
 		}
 		if (Input.GetKeyDown(KeyCode.F12))
 			switchCamera();

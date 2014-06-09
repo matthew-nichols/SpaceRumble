@@ -9,7 +9,7 @@ public class GameControl : MonoBehaviour
 		public  GameObject enemy;
 		public EnemySpawn spawner;
         public AllyUnit baseUnit;
-		bool gameState; // true in wave mode, false in setup mode
+		public bool gameState; // true in wave mode, false in setup mode
 		public Music musicObj;
 		public int currentEnemies;
 		public int wave = 1; // holds the wave number

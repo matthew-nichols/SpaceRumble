@@ -52,7 +52,7 @@ public class EnemyUnit : baseUnit
 								agent.SetDestination (currentTarget.transform.position);
 						}
 
-						if (Vector3.Distance (transform.position, currentTarget.transform.position) < attackRange && lastAttack > attackRate) {
+			if (Vector3.Distance (transform.position, currentTarget.transform.position) < attackRange && lastAttack > attackRate && control.gameState) {
 								Rigidbody clone = Instantiate (projectile, transform.position + offset, transform.rotation) as Rigidbody;
 								unitSound.PlayOneShot (fireSound, 0.1f);
 								clone.SendMessage ("updateDmg", attackDmg);
