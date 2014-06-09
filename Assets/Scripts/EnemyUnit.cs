@@ -57,6 +57,7 @@ public class EnemyUnit : baseUnit
 								unitSound.PlayOneShot (fireSound, 0.1f);
 								clone.SendMessage ("updateDmg", attackDmg);
 								clone.velocity = transform.TransformDirection (Vector3.forward * velocity) + new Vector3 (Time.deltaTime * velocity, 0, 0);
+								clone.transform.LookAt(currentTarget.transform, Vector3.down);
 								lastAttack = 0;
 								Destroy (clone, delay);
 								Destroy (clone.gameObject, delay);

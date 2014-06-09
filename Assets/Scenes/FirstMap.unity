@@ -428,6 +428,7 @@ MonoBehaviour:
   maxDist: 40
   data: {fileID: 0}
   allySpawnLocation: {x: 100, y: 0, z: 75}
+  wavesLeft: 0
 --- !u!4 &183074255
 Transform:
   m_ObjectHideFlags: 0

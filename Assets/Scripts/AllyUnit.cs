@@ -163,7 +163,7 @@ public class AllyUnit : baseUnit
                 // possible for above to not find an enemy unit
                 if (currentTarget)
                 {
-                    transform.LookAt(currentTarget.transform);
+                    transform.LookAt(currentTarget.transform, Vector3.up);
                     if (Vector3.Distance(transform.position, currentTarget.transform.position) <= attackRange && lastAttack >= attackRate)
                     {
 
