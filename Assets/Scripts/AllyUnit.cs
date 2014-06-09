@@ -117,7 +117,7 @@ public class AllyUnit : baseUnit
                 OnDeath();
 
             }
-            if (ppos != transform.position && canMove)
+            if (Vector3.Distance(agent.destination, transform.position) >= 1.0 && ppos != transform.position)
             {
                 currentEnergy -= 20 * Time.deltaTime; // TODO
             }
