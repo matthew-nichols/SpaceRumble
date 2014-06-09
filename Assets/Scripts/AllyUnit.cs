@@ -27,7 +27,7 @@ public class AllyUnit : baseUnit
 
 		protected override void Start ()
 		{
-
+				base.Start();
 				playSound = true;
 				if (mainslot) {
 						health = mainslot.healthBoost + secondary.healthBoost;
