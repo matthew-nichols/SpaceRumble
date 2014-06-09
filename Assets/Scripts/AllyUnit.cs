@@ -30,16 +30,10 @@ public class AllyUnit : baseUnit
 
 				playSound = true;
 				if (mainslot) {
-<<<<<<< HEAD
-						health = mainslot.healthBoost;
-                        health += secondary.healthBoost;
-                        currentHealth = health;
-                }				
-=======
 						health = mainslot.healthBoost + secondary.healthBoost;
 						currentHealth = health;
 				}				
->>>>>>> 4135980dd17e6d86867333a28eacf50d8408d4dd
+
 				if (mainslot) {
 						attackDmg = mainslot.damage;
 				}
