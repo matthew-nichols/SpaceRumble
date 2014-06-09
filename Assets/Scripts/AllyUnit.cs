@@ -32,6 +32,7 @@ public class AllyUnit : baseUnit
 				if (mainslot) {
 						health = mainslot.healthBoost + secondary.healthBoost;
 						currentHealth = health;
+						attackRange = secondary.rangeBoost + mainslot.range;
 				}				
 
 				if (mainslot) {
