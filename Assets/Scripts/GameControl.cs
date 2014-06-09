@@ -6,7 +6,7 @@ public class GameControl : MonoBehaviour
         public AllyUnit[] allies = new AllyUnit[10];
 
 		public EnemySpawn[] spawners = new EnemySpawn[5]; // at most 5 enemy spawners (for now)
-		public GameObject enemy;
+		public  GameObject enemy;
 		public EnemySpawn spawner;
         public AllyUnit baseUnit;
 		bool gameState; // true in wave mode, false in setup mode
@@ -22,6 +22,9 @@ public class GameControl : MonoBehaviour
 		public int maxDist;
 		public globalData data;
 		public Vector3 allySpawnLocation;
+        private string mode;
+        private int difficulty;
+        public int wavesLeft;
 
 		void Start ()
 		{
@@ -48,7 +51,11 @@ public class GameControl : MonoBehaviour
 								allies [i].canMove = true;
 
 				} 
-		}
+                //get mode info
+                mode = data.gameMode;
+                difficulty = data.difficulty;
+                wavesLeft = difficulty + 5;
+        }
 
 		//creates a spawner for eneimes with these stats
 		EnemySpawn createSpawner (int h, int d, double r, double rng, Vector3 pos, int n, float t, int m)
@@ -115,6 +122,11 @@ public class GameControl : MonoBehaviour
                 {
                     missionFail();
                 }
+                if (mode == "Defend" && wavesLeft == 0)
+                {
+                    win = true;
+                    missionOver();
+                }
 		}
 
 		void waveStart ()
@@ -147,6 +159,10 @@ public class GameControl : MonoBehaviour
                         ally.currentEnergy = ally.energy;
                     }
 				}
+                if (mode == "Defend")
+                {
+                    wavesLeft--;
+                }
         }
         void GetInfo2(AllyUnitStats a, AllyUnit b)//calling member function isn't working
         {
@@ -195,6 +211,7 @@ public class GameControl : MonoBehaviour
                     data.selectedUnits[i] = null;
                 }
             }
+            Application.LoadLevel("mission");
         }
         void missionFail()
         {
@@ -216,7 +233,17 @@ public class GameControl : MonoBehaviour
 				}
 				if (GUI.Button (new Rect (20, 30, 160, 20), ("Return to Mission Select"))) {
                         missionOver();
-                        Application.LoadLevel ("mission");
 				}
+                if (mode == "Defend")
+                {
+                    GUIStyle s = new GUIStyle();
+                    s.normal.textColor = Color.white;
+                    s.fontSize = 20;
+                    s.alignment = TextAnchor.MiddleLeft;
+
+                    string end = "Waves left: " + wavesLeft;
+                    GUI.BeginGroup(new Rect(Screen.width-160, 0, 160, 20), end, s);
+                    GUI.EndGroup();
+                }
 		}
 }

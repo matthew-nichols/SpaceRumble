@@ -14,6 +14,8 @@ public class globalData : MonoBehaviour {
     //items owned//extras TODO Will have to come up with some way to display extra items, maybe tabs?
     public Secondary[] secondaryInv = new Secondary[14];
     public mainSlot[] mainInv = new mainSlot[14];
+    public string gameMode;//Can be attack, find, defend
+    public int difficulty;
     
 	// Use this for initialization
 	void Start () {

@@ -27,12 +27,13 @@ public class AllyUnit : baseUnit
 
 		protected override void Start ()
 		{
-				base.Start ();
+
 				playSound = true;
 				if (mainslot) {
-						base.health += mainslot.healthBoost;
-						base.currentHealth += mainslot.healthBoost;
-				}				
+						health = mainslot.healthBoost;
+                        health += secondary.healthBoost;
+                        currentHealth = health;
+                }				
 				if (mainslot) {
 						attackDmg = mainslot.damage;
 				}

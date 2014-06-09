@@ -225,13 +225,13 @@ public class missionSelect : MonoBehaviour
 						return "No mission";
 				//Difficulty
 				if (m.difficulty == 0) {//Difficulty intepreted by gamecontrol possibly
-                    s = "Mission difficulty: Easy\t\t Mission type: " + m.type;
+                    s = "Mission difficulty: Easy\t\t\t\t Mission type: " + m.type;
 				} else if (m.difficulty == 1) {
-                    s = "Mission difficulty: Medium\t\t Mission type: " + m.type;
+                    s = "Mission difficulty: Medium\t\t\t\t Mission type: " + m.type;
 				} else if (m.difficulty == 2) {
-						s = "Mission difficulty: Hard\t\t Mission type: " + m.type;
+						s = "Mission difficulty: Hard\t\t\t\t Mission type: " + m.type;
 				} else {
-                    s = "Mission difficulty: Impossible\t\t Mission type: " + m.type;
+                    s = "Mission difficulty: Impossible\t\t\t\t Mission type: " + m.type;
 				}
 				s += "\n";
 				//other constraints(unit number)
@@ -472,6 +472,7 @@ public class missionSelect : MonoBehaviour
                 {//should be grayed out if no mission is selected
                         if (state == states.DEFAULT)
                         {
+                            //set missions
                             //populate list of units.
                             if (numSelected == 0)
                             {
@@ -484,6 +485,7 @@ public class missionSelect : MonoBehaviour
                                 }
                                 data.selectedUnits = selectedUnits;
                                 data.numUnits = numSelected;
+
                             }
                             else
                             {
@@ -503,6 +505,9 @@ public class missionSelect : MonoBehaviour
                                     unselected++;
                                 }
                             }
+                            data.gameMode = selected.type;
+                            data.difficulty = selected.difficulty;
+                            
                             Application.LoadLevel("FirstMap");
                         }
                 }
