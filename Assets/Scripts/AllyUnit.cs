@@ -11,7 +11,7 @@ public class AllyUnit : baseUnit
 		public bool canMove;
 		public float energy;
 		public float currentEnergy;
-		public Vector3 cpos, ppos;
+		public Vector3 ppos;
 		//public Weapon weapon;
 		//public Armor armor;
 		//public Accessory accessory;
@@ -27,7 +27,7 @@ public class AllyUnit : baseUnit
 
 		protected override void Start ()
 		{
-				base.Start();
+				base.Start ();
 				playSound = true;
 				if (mainslot) {
 						health = 200 + mainslot.healthBoost + secondary.healthBoost;//200 is the default health
@@ -98,90 +98,75 @@ public class AllyUnit : baseUnit
 				a.UnitName = UnitName; 
 		}
 
-        protected override void Update()
-        {
-            if (currentHealth <= 0)
-            {
-                if (deathExplosion)
-                {
-                    ParticleSystem temp = Instantiate(deathExplosion, transform.position, transform.rotation) as ParticleSystem;
-                    Destroy(temp.gameObject, 5);
-                }
-                if (deathSound)
-                {
-                    PlayClipAt(deathSound, transform.position);
-                }
+		protected override void Update ()
+		{
+				if (currentHealth <= 0) {
+						if (deathExplosion) {
+								ParticleSystem temp = Instantiate (deathExplosion, transform.position, transform.rotation) as ParticleSystem;
+								Destroy (temp.gameObject, 5);
+						}
+						if (deathSound) {
+								PlayClipAt (deathSound, transform.position);
+						}
 
-                Destroy(gameObject.rigidbody);
-                Destroy(gameObject);
-                OnDeath();
+						Destroy (gameObject.rigidbody);
+						Destroy (gameObject);
+						OnDeath ();
 
-            }
-            if (Vector3.Distance(agent.destination, transform.position) >= 1.0 && ppos != transform.position)
-            {
-                currentEnergy -= 20 * Time.deltaTime; // TODO
-            }
+				}
+				if (Vector3.Distance (agent.destination, transform.position) >= 1.0 && ppos != transform.position) {
+						currentEnergy -= 20 * Time.deltaTime; // TODO
+				}
 			
-            if (ppos != transform.position && currentEnergy <= 0)
-            {
-                currentEnergy = 0;
-                agent.SetDestination(rigidbody.position);
-            }
-            ppos = transform.position;
-            if (isClicked)
-            {
-                if (playSound)
-                {
-                    unitSound.PlayOneShot(selectSound, unitSound.volume);
-                    playSound = false;
-                }
+				if (ppos != transform.position && currentEnergy <= 0) {
+						currentEnergy = 0;
+						agent.SetDestination (rigidbody.position);
+				}
+				ppos = transform.position;
+				if (isClicked) {
+						if (playSound) {
+								unitSound.PlayOneShot (selectSound, unitSound.volume);
+								playSound = false;
+						}
 
-                if (renderer)
-                    renderer.material = onHoverMaterial;
-                if (canMove && currentEnergy > 0)
-                {
-                    moveUnit();
-                }
-            }
-            else
-            {
-                renderer.material = defaultMaterial;
-                playSound = true;
-            }
-            if (!canMove)
-            {
-                EnemyUnit[] allTargets = FindObjectsOfType<EnemyUnit>();
-                float dist = float.PositiveInfinity;
-                foreach (EnemyUnit u in allTargets)
-                {
-                    float d = Vector3.Distance(u.transform.position, transform.position);
-                    if (d < dist)
-                    {
-                        dist = d;
-                        currentTarget = u;
-                    }
-                }
+						if (renderer)
+								renderer.material = onHoverMaterial;
+						if (canMove && currentEnergy > 0) {
+								moveUnit ();
+						}
+				} else {
+						renderer.material = defaultMaterial;
+						playSound = true;
+				}
+				if (!canMove) {
+						EnemyUnit[] allTargets = FindObjectsOfType<EnemyUnit> ();
+						float dist = float.PositiveInfinity;
+						foreach (EnemyUnit u in allTargets) {
+								float d = Vector3.Distance (u.transform.position, transform.position);
+								if (d < dist) {
+										dist = d;
+										currentTarget = u;
+								}
+						}
 
-                // possible for above to not find an enemy unit
-                if (currentTarget)
-                {
-                    transform.LookAt(currentTarget.transform, Vector3.up);
-                    if (Vector3.Distance(transform.position, currentTarget.transform.position) <= attackRange && lastAttack >= attackRate)
-                    {
+						// possible for above to not find an enemy unit
+						if (currentTarget) {
+								transform.LookAt (currentTarget.transform, Vector3.up);
+								if (Vector3.Distance (transform.position, currentTarget.transform.position) <= attackRange && lastAttack >= attackRate) {
 
-                        Rigidbody clone = Instantiate(projectile, transform.position + offset, transform.rotation) as Rigidbody;
-                        clone.SendMessage("updateDmg", attackDmg);
-                        unitSound.PlayOneShot(fireSound, 0.1f);
-                        clone.velocity = transform.TransformDirection(Vector3.forward * velocity) + new Vector3(Time.deltaTime * velocity, 0, 0);
+										Rigidbody clone = Instantiate (projectile, transform.position + offset, transform.rotation) as Rigidbody;
+										clone.SendMessage ("updateDmg", attackDmg);
+										unitSound.PlayOneShot (fireSound, 0.1f);
+										clone.velocity = transform.TransformDirection (Vector3.forward * velocity) + new Vector3 (Time.deltaTime * velocity, 0, 0);
 
-                        lastAttack = 0;
-                        Destroy(clone, delay);
-                        Destroy(clone.gameObject, delay);
-                    }
-                }
-                lastAttack += Time.deltaTime;
-            }
-        }
+										lastAttack = 0;
+										Destroy (clone, delay);
+										Destroy (clone.gameObject, delay);
+								}
+						}
+						lastAttack += Time.deltaTime;
+				}
+		}
 
 		void moveUnit ()
 		{
