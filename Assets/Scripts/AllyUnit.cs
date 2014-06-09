@@ -112,9 +112,9 @@ public class AllyUnit : baseUnit
 						Destroy (gameObject.rigidbody);
 						Destroy (gameObject);
 						OnDeath ();
-
+						return;
 				}
-				if (Vector3.Distance (agent.destination, transform.position) >= 10.0 && Vector3.Distance(ppos, transform.position) >= 0.001) {
+				if (Vector3.Distance (agent.destination, transform.position) >= 10.0 && Vector3.Distance (ppos, transform.position) >= 0.001) {
 						currentEnergy -= 20 * Time.deltaTime; // TODO
 				}
 			
@@ -148,13 +148,11 @@ public class AllyUnit : baseUnit
 										currentTarget = u;
 								}
 						}
-                // possible for above to not find an enemy unit
-                if (currentTarget)
-                {
-                    transform.LookAt(currentTarget.transform, Vector3.up);
-					if (Vector3.Distance(transform.position, currentTarget.transform.position) <= attackRange
-				    	&& lastAttack >= attackRate && projectile != null)
-                    {
+						// possible for above to not find an enemy unit
+						if (currentTarget) {
+								transform.LookAt (currentTarget.transform, Vector3.up);
+								if (Vector3.Distance (transform.position, currentTarget.transform.position) <= attackRange
+										&& lastAttack >= attackRate && projectile != null) {
 										Rigidbody clone = Instantiate (projectile, transform.position + offset, transform.rotation) as Rigidbody;
 										clone.SendMessage ("updateDmg", attackDmg);
 										unitSound.PlayOneShot (fireSound, 0.1f);
