@@ -60,7 +60,7 @@ public class AllyUnit : baseUnit
 				//armor = a.armor;
 				//accessory = a.accessory;
 				secondary = a.secondary;
-				//health = a.health;
+				health = a.health;
 				currentHealth = a.currentHealth;
 				attackDmg = a.attackDmg;
 				attackRange = a.attackRange;

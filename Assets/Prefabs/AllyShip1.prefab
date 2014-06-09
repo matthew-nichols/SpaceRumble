@@ -398,10 +398,8 @@ MonoBehaviour:
   currentEnergy: 125
   cpos: {x: 0, y: 0, z: 0}
   ppos: {x: 0, y: 0, z: 0}
-  weapon: {fileID: 0}
-  armor: {fileID: 0}
-  accessory: {fileID: 0}
   secondary: {fileID: 0}
+  mainslot: {fileID: 0}
   index: 0
   unitSound: {fileID: 8200002}
   fireSound: {fileID: 8300000, guid: 8d98c6698217d634eb6521d09335a30f, type: 3}
