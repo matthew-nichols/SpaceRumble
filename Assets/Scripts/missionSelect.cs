@@ -284,7 +284,7 @@ public class missionSelect : MonoBehaviour
                 else if (t.slot == "Secondary")
                 {
                     Secondary w = (Secondary)t;
-                    s += "Damage:" + w.damageBoost + " Range:" + w.rangeBoost + " Rate:" + w.atkRtBoost + " Health:";// +  w.energyBoost;
+                    s += "Damage:" + w.damageBoost + " Range:" + w.rangeBoost + " Rate:" + w.atkRtBoost + " Health:"+ w.healthBoost;// +  w.energyBoost;
                 }
             }
             return s;
@@ -729,11 +729,12 @@ public class missionSelect : MonoBehaviour
                     int j = 0;
                     for (int i = 0; i < data.secondaryInv.Length; i++)
                     {
-                        if (data.secondaryInv[i])
+                        if (data.secondaryInv[i]!=null)
                         {
-                            if (state == states.UNIT_EQUIP)
-                            {
-                                if (GUI.Button(new Rect(x, y + y * j, width, y), buildItem(data.secondaryInv[i], 0)))
+                          
+                            if (GUI.Button(new Rect(x, y + y * j, width, y), buildItem(data.secondaryInv[i], 0)))
+                                {  
+                                if (state == states.UNIT_EQUIP)
                                 {
                                     //TODO Code for when state is equip select
                                     state = states.DEFAULT;
@@ -742,13 +743,17 @@ public class missionSelect : MonoBehaviour
                                     data.secondaryInv[i] = temp;
                                     selectedUnit = null;
                                 }
+                                else if (state == states.SHOP)
+                                {
+
+                                    data.gold += data.secondaryInv[i].sellValue;
+                                    data.secondaryInv[i] = null;
+                                    clearSpaces(data.secondaryInv);
+                                }
                             }
-                            else if (state == states.SHOP)
-                            {
-                                data.gold += data.secondaryInv[i].sellValue;
-                                data.mainInv[i] = null;
-                                clearSpaces(data.secondaryInv);
-                            }
+                            
+
+
                             j++;
                         }
                     }
