@@ -826,7 +826,16 @@ public class missionSelect : MonoBehaviour
                             data.status = false;
                             data.mission = selected;
                             DontDestroyOnLoad(data.mission);
-                            Application.LoadLevel("FirstMap");
+                            if (data.map == 0)
+                            {
+                                data.map++;
+                                Application.LoadLevel("FirstMap");
+                            }
+                            else
+                            {
+                                data.map = 0;
+                                Application.LoadLevel("SecondMap");
+                            }
                         }
                 }
                 if (state != states.UNIT_SELECT)

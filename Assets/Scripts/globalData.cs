@@ -10,7 +10,7 @@ public class globalData : MonoBehaviour {
     //Item lists In each category the 0th element is the default
     public Secondary[] secondaries = new Secondary[10];//probably too many???
     public mainSlot[] mains = new mainSlot[10];
-
+    public int map;
     //items owned//extras TODO Will have to come up with some way to display extra items, maybe tabs?
     public Secondary[] secondaryInv = new Secondary[14];
     public mainSlot[] mainInv = new mainSlot[14];
