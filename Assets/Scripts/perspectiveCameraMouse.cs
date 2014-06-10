@@ -104,12 +104,6 @@ public class perspectiveCameraMouse : MonoBehaviour
 								hasUnitSelected = true;
 								previousSelectedID = rayGO.GetInstanceID ();
 						} 
-						else if (rayGO.GetComponent ("EnemyUnit") != null) {
-							RayHitSelectable (rayGO);
-			
-							hasUnitSelected = true;
-							previousSelectedID = rayGO.GetInstanceID ();
-						}
 						else {
 								if (selectedUnit != null) {
 										selectedUnit.GetComponent<SelectionDisplay> ().disp = false;

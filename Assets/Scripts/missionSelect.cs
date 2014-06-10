@@ -21,6 +21,9 @@ public class missionSelect : MonoBehaviour
 		private missionSettings selected;
         private int itemEquip;//0 if main 1 if second
         private int invDisp;//0 main, 1 secondary
+        private Secondary[] secondInv = new Secondary[3];
+        private mainSlot[] mainInv = new mainSlot[3];
+        private AllyUnitStats[] unitInv = new AllyUnitStats[3];
         bool contains(int n)//function to check if unit is selected
         {
             for (int i = 0; i < selectedUnits.Length; i++)
@@ -80,6 +83,9 @@ public class missionSelect : MonoBehaviour
                         //if( numUnits == 0) game over
                     }
                 }
+                //make sure there are no empty spaces
+                clearSpaces(data.mainInv);
+                clearSpaces(data.secondaryInv);
                 data.allyUnits = units;//clear dead units
 				//build missions
 				m1 = Instantiate (defaultmission) as missionSettings;
@@ -100,8 +106,31 @@ public class missionSelect : MonoBehaviour
                 m3.type = "Defend";    
                 //by default selected mission is m1;
                 selected = m1;
+                //set items between 1 and 5
+                for (int i = 0; i < 3; i++)
+                {
+                    mainInv[i] = data.mains[Random.Range(1, 6)];// needs some checking to make sure it doesn't out of bounds
+                    secondInv[i] = data.secondaries[Random.Range(1, 6)];// needs some checking to make sure it doesn't out of bounds
+
+                    //not sure how to do unit sales.
+                }
 		}
-		void selectUnits(){
+        void clearSpaces(Object[] g)
+        {
+            Object[] p = new Object[g.Length];
+            int k = 0;
+            for (int i = 0; i < g.Length; i++)
+            {
+                if (g[i] != null)
+                {
+                    p[k] = g[i];
+                    k++;
+                }
+            }
+
+        }
+        void selectUnits()
+        {
             numSelected = 0;
             clearIndexes();
 			state = states.UNIT_SELECT;
@@ -124,7 +153,7 @@ public class missionSelect : MonoBehaviour
                     break;
             }
 		}
-        string buildItem(Item t)
+        string buildItem(Item t, int m = 0)// m = 0 build item to sell, m =1 buy
         {
             string s = "";
             //Item
@@ -133,8 +162,15 @@ public class missionSelect : MonoBehaviour
             if (t != null)
             {
                 s = " exists";
-                s = t.itemName + " " + t.slot + " Sells for:" + t.sellValue + "\n";
-                if (t.slot == "Main")
+                if (m==1)
+                {
+                    s = t.itemName + " " + t.slot + " Buy for:" + t.sellValue*2 + "\n";
+                }
+                else
+                {
+                    s = t.itemName + " " + t.slot + " Sells for:" + t.sellValue + "\n";
+                }
+                    if (t.slot == "Main")
                 {//Possibly set each one to have at most 3 bonuses???
                     mainSlot w = (mainSlot)t;
                     s += "Damage:" + w.damage + " Range:" + w.range + " Rate:" + w.atkRate + " Health:" + w.healthBoost + " Energy:" + w.energyBoost;
@@ -158,8 +194,8 @@ public class missionSelect : MonoBehaviour
 				int h = Screen.height;
 				int x = w / 2;
 				int y = h - h / 4;
-				int dx = x / 10;
-				int dy = (h - y) / 2;
+				int dx = x / 10;//w/4
+				int dy = (h - y) / 2;//== 1/8th?
 				for (int i = 0; i < 20; i++) {//20 should be numUnits
 						int k;//to help with rows;
 						int ry;
@@ -258,11 +294,84 @@ public class missionSelect : MonoBehaviour
 				int h = Screen.height;		
 				int x = w/3;
 				int y = 0;
+                //end of the context menu is 3/4*w
+                //total
+                int l = w - w/3 - w/4;
 
 				if(state == states.DEFAULT){
 					return;
 				}else if(state == states.SHOP){
-   
+                    //layout three collumns
+                    //length of a unit == w/20 height = h/8
+                    //right side is lenght of unit
+                    //display main weapons | secondary weapons | units
+                    int main = l - w / 20;
+                   //main *= -1;
+                    int height = 3 * w / 4;
+                    GUIStyle s = new GUIStyle();
+                    s.alignment = TextAnchor.UpperCenter;
+                    s.normal.textColor = Color.white;
+                    s.fontSize = 20;
+                    GUI.BeginGroup(new Rect(x, 20, l, 20), "To sell an item from your inventory click it", s);
+                    GUI.EndGroup();
+                    GUI.BeginGroup(new Rect(x, y, main / 2, 20), "Main slot", s);
+                    GUI.EndGroup();//main slots
+                    //close shop button
+                    if (GUI.Button(new Rect(x, 3*h/4 - h/14 , l, h/14), "CLOSE SHOP"))
+                    {
+                        state = states.DEFAULT;
+                    }
+
+                    GUI.BeginGroup(new Rect(x + main / 2, y, main / 2, 20), "Secondary slot", s);
+                    GUI.EndGroup();//secondaries
+
+                    GUI.BeginGroup(new Rect(x+ main, y, w/20, h/8), "Units", s);
+                    GUI.EndGroup();//units
+                    int dh = h/7;
+                    //start at y == 40
+                    for (int i = 0; i < 3; i++)//only sell at most 3 of each
+                    {
+                        //main slots
+                        if(GUI.Button(new Rect(x, 40+i*dh, main/2, dh/2), "Buy!"))
+                        {
+                            //buy the item!
+                            if (mainInv[i].sellValue * 2 < data.gold)
+                            {
+                                data.gold -= mainInv[i].sellValue * 2;
+                                //code to add it to inv
+                                int k = 0;
+                                while (data.mainInv[k] != null) k++;
+                                data.mainInv[k] = mainInv[i];
+
+                            }
+                        }
+                        s.fontSize = 15;
+
+                        s.alignment = TextAnchor.MiddleCenter;
+                        GUI.BeginGroup(new Rect(x, 40 + i * dh + dh/2, main / 2, dh/2), buildItem((Item)mainInv[i], 1), s);
+                        GUI.EndGroup();//main slots
+
+                        //secondary slot
+                        if (GUI.Button(new Rect(x+ main/2, 40 + i * dh, main / 2, dh / 2), "Buy!"))
+                        {
+                            if (secondInv[i].sellValue * 2 < data.gold)
+                            {
+                                data.gold -= secondInv[i].sellValue * 2;
+                                //code to add it to inv
+                                int k = 0;
+                                while (data.secondaryInv[k] != null) k++;
+                                data.secondaryInv[k] = secondInv[i];
+
+                            }
+                        }
+                        s.fontSize = 15;
+        
+                        s.alignment = TextAnchor.MiddleCenter;
+                        GUI.BeginGroup(new Rect(x+main/2, 40 + i * dh + dh / 2, main / 2, dh / 2), buildItem((Item)secondInv[i], 1), s);
+                        GUI.EndGroup();//secondaires slots
+
+                    }
+
 				}else if(state == states.UNIT_EQUIP){
                     //DISPLAY SELECTED UNITS STUFFS
                                      //DISPLAY NAME
@@ -392,8 +501,15 @@ public class missionSelect : MonoBehaviour
 				int width = w / 4;
 				int dy = h - h / 4;
                 //two states display main, or secondary
-				string msg = "This is the inventory box!";
-				GUI.Box (new Rect (x, 0, width, dy), msg);
+                string msg = "Inventory box!";
+                GUIStyle s = new GUIStyle(GUI.skin.box);
+                s.alignment = TextAnchor.UpperLeft;
+
+                GUI.Box(new Rect(x, 0, width, dy), msg, s);
+                if (GUI.Button(new Rect(x + width /2, 0, width / 2, 20), "Shop"))
+                {
+                    state = states.SHOP;
+                }
                 if (GUI.Button(new Rect(x, 20, width / 2, 20), "Main"))
                 {
                     invDisp = 0;
