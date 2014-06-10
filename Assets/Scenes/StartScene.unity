@@ -202,8 +202,8 @@ MonoBehaviour:
   attackDmg: 100
   attackRange: 50
   attackRate: .5
-  energy: 125
-  currentEnergy: 125
+  energy: 175
+  currentEnergy: 175
   secondary: {fileID: 11400000, guid: 73b0fcecd5cca34458b0dff7c82062bb, type: 2}
   mainslot: {fileID: 11400000, guid: e5741a33207cbde4eb1f6d4eb676a85a, type: 2}
   index: 0
