@@ -42,7 +42,7 @@ MonoBehaviour:
   sellValue: 0
   buyValue: 0
   slot: Secondary
-  healthBoost: 300
+  healthBoost: 500
   damageBoost: 0
   atkRtBoost: 0
   rangeBoost: 0

@@ -39,10 +39,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemName: Medium Shield
-  sellValue: 0
+  sellValue: 100
   buyValue: 0
   slot: Secondary
-  healthBoost: 500
+  healthBoost: 1000
   damageBoost: 0
   atkRtBoost: 0
   rangeBoost: 0

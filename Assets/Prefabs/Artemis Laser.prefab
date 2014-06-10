@@ -42,7 +42,7 @@ MonoBehaviour:
   sellValue: 0
   buyValue: 0
   slot: Main
-  healthBoost: 500
+  healthBoost: 0
   damage: 10
   energyBoost: 0
   atkRate: .400000006

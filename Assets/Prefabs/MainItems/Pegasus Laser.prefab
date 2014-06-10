@@ -39,14 +39,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemName: Pegasus Laser
-  sellValue: 100
+  sellValue: 250
   buyValue: 100
   slot: Main
   healthBoost: 0
-  damage: 250
+  damage: 25
   energyBoost: 0
-  atkRate: .5
-  range: 50
+  atkRate: .600000024
+  range: 100
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

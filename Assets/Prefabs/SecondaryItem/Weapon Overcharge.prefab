@@ -39,12 +39,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemName: Weapon Overcharge
-  sellValue: 0
+  sellValue: 100
   buyValue: 0
   slot: Secondary
-  healthBoost: 0
-  damageBoost: 100
-  atkRtBoost: .100000001
+  healthBoost: 150
+  damageBoost: 5
+  atkRtBoost: .200000003
   rangeBoost: 0
 --- !u!1001 &100100000
 Prefab:

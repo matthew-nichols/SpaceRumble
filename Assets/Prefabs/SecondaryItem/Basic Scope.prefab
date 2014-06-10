@@ -39,11 +39,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemName: Basic Scope
-  sellValue: 0
+  sellValue: 100
   buyValue: 0
   slot: Secondary
-  healthBoost: 0
-  damageBoost: 50
+  healthBoost: 200
+  damageBoost: 5
   atkRtBoost: 0
   rangeBoost: 10
 --- !u!1001 &100100000

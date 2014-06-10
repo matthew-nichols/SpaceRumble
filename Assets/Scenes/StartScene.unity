@@ -491,6 +491,8 @@ MonoBehaviour:
   - {fileID: 0}
   gameMode: 
   difficulty: 0
+  status: 0
+  mission: {fileID: 0}
 --- !u!1 &2058409045
 GameObject:
   m_ObjectHideFlags: 0

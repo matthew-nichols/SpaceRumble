@@ -39,11 +39,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemName: Advanced Scope
-  sellValue: 0
+  sellValue: 100
   buyValue: 0
   slot: Secondary
-  healthBoost: 0
-  damageBoost: 50
+  healthBoost: 400
+  damageBoost: 10
   atkRtBoost: 0
   rangeBoost: 20
 --- !u!1001 &100100000

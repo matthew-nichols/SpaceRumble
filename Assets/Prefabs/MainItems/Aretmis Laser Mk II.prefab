@@ -39,14 +39,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemName: Artemis Laser Mk II
-  sellValue: 100
+  sellValue: 150
   buyValue: 100
   slot: Main
   healthBoost: 0
-  damage: 150
+  damage: 15
   energyBoost: 0
-  atkRate: .600000024
-  range: 50
+  atkRate: .5
+  range: 100
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
