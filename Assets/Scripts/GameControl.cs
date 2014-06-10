@@ -147,20 +147,7 @@ public class GameControl : MonoBehaviour
 						if (currentEnemies == 0 && done) {
 								waveEnd ();
 						}
-				} else {
-						//what needs to be done during the wave
-						//need to check if units are in end zone.
-						for (int i = 0; i < allies.Length; i++) {
-								if (allies [i] != null) {
-										Vector3 p;
-										Vector3 pos = allies [i].transform.position;
-										p = new Vector3 (pos.x, pos.z, pos.z);
-										if (end.Contains (p)) {
-												win = true;
-										}
-								}
-						}
-				}
+				} 
 				if (!checkUnits ()) {
 						missionFail ();
 				}
