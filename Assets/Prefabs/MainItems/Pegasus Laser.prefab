@@ -43,10 +43,10 @@ MonoBehaviour:
   buyValue: 100
   slot: Main
   healthBoost: 0
-  damage: 500
+  damage: 250
   energyBoost: 0
-  atkRate: 0
-  range: 90
+  atkRate: .5
+  range: 50
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

@@ -31,6 +31,7 @@ GameObject:
   - 195: {fileID: 19500000}
   - 65: {fileID: 6500000}
   - 54: {fileID: 5400000}
+  - 114: {fileID: 11400002}
   m_Layer: 0
   m_Name: Enemy0
   m_TagString: Enemy
@@ -287,10 +288,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   defaultMaterial: {fileID: 2100000, guid: d72afdd902bb8874dbce14621f320b3a, type: 2}
   onHoverMaterial: {fileID: 2100000, guid: 13f2273eee249e24f92aa2d8fabfc2af, type: 2}
-  health: 1000
-  currentHealth: 1000
+  health: 100
+  currentHealth: 100
   attackDmg: 100
-  attackRange: 50
+  attackRange: 75
   attackRate: 1
   isClicked: 0
   updateRightClick: 0
@@ -305,10 +306,24 @@ MonoBehaviour:
   velocity: 100
   offset: {x: 0, y: 1, z: 0}
   lastAttack: 0
-  maxDist: 50
+  maxDist: 40
   unitSound: {fileID: 8200002}
   fireSound: {fileID: 8300000, guid: 25a8f4668dfb3c546bfdc8a0ea0cb194, type: 3}
   deathSound: {fileID: 8300000, guid: 247c117139ff4e34a858a1c664ca680d, type: 3}
+  UnitName: unset
+--- !u!114 &11400002
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100002}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8034373a37dbb9442a660686bb9cbc3b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 11400000}
+  healthBarLength: 0
 --- !u!195 &19500000
 NavMeshAgent:
   m_ObjectHideFlags: 1

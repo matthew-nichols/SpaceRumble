@@ -9,9 +9,9 @@ public class AllyUnitStats : MonoBehaviour {
    // public float velocity = 100;
     //public int delay = 3;
     //public bool canMove;
-    public int health;
+    public float health;
     public string UnitName = "unset";
-    public int currentHealth;
+    public float currentHealth;
     public int attackDmg;
     public int attackRange;
     public float attackRate;
