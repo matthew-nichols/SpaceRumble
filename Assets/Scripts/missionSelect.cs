@@ -93,17 +93,64 @@ public class missionSelect : MonoBehaviour
 				m1.allowedUnits = 10 - m1.difficulty;
 				m1.goldReward = 100 + m1.difficulty * 20;
                 m1.type = "Attack";
-
+                if (Random.Range(0, 5) < 2)
+                {
+                    m1.second = data.secondaries[Random.Range(1, 6)];
+                }
+                else
+                {
+                    m1.second = null;
+                }
+                if (Random.Range(0, 5) < 2)
+                {
+                    m1.main = data.mains[Random.Range(1, 6)];
+                }
+                else
+                {
+                    m1.main = null;
+                }
 				m2 = Instantiate (defaultmission) as missionSettings;
 				m2.difficulty = Random.Range (1, 4);
 				m2.allowedUnits = 10 - m2.difficulty;
 				m2.goldReward = 100 + m2.difficulty * 20;
                 m2.type = "Find";
+                if (Random.Range(0, 5) < 2)
+                {
+                    m2.second = data.secondaries[Random.Range(1, 6)];
+                }
+                else
+                {
+                    m2.second = null;
+                }
+                if (Random.Range(0, 5) < 2)
+                {
+                    m2.main = data.mains[Random.Range(1, 6)];
+                }
+                else
+                {
+                    m2.main = null;
+                }
 				m3 = Instantiate (defaultmission) as missionSettings;
 				m3.difficulty = Random.Range (1, 4);
 				m3.allowedUnits = 10 - m3.difficulty;
 				m3.goldReward = 100 + m3.difficulty * 20;
-                m3.type = "Defend";    
+                m3.type = "Defend";
+                if (Random.Range(0, 5) < 2)
+                {
+                    m3.second = data.secondaries[Random.Range(1, 6)];
+                }
+                else
+                {
+                    m3.second = null;
+                }
+                if (Random.Range(0, 5) < 2)
+                {
+                    m3.main = data.mains[Random.Range(1, 6)];
+                }
+                else
+                {
+                    m3.main = null;
+                }
                 //by default selected mission is m1;
                 selected = m1;
                 //set items between 1 and 5
@@ -111,10 +158,27 @@ public class missionSelect : MonoBehaviour
                 {
                     mainInv[i] = data.mains[Random.Range(1, 6)];// needs some checking to make sure it doesn't out of bounds
                     secondInv[i] = data.secondaries[Random.Range(1, 6)];// needs some checking to make sure it doesn't out of bounds
-
+                    unitInv[i] = buildUnit();
                     //not sure how to do unit sales.
                 }
+                if (data.status)//Mission success.
+                {
+                    //give rewards
+                    missionSettings ms = data.mission;
+                    data.gold += ms.goldReward;
+                    //OTHER STUFF
+                   
+                }
 		}
+        AllyUnitStats buildUnit()
+        {
+            AllyUnitStats s = Instantiate(units[0]) as AllyUnitStats;
+            s.UnitName = "Bobish";//should be changed to make name uniquer
+            s.secondary = data.secondaries[Random.Range(0, 6)];
+            s.mainslot = data.mains[Random.Range(0, 6)];
+
+            return s;
+        }
         void clearSpaces(Object[] g)
         {
             Object[] p = new Object[g.Length];
@@ -217,8 +281,9 @@ public class missionSelect : MonoBehaviour
                             if (units[i] != null)
                             {
                                 AllyUnitStats a = units[i];
-                                s = a.UnitName + "\nDamage: " + a.attackDmg + " Range: " + a.attackRange + " Rate: " + a.attackRate + "\nHealth: " + a.health + " Energy: " + a.energy;
+                                //s = a.UnitName + "\nDamage: " + a.attackDmg + " Range: " + a.attackRange + " Rate: " + a.attackRate + "\nHealth: " + a.health + " Energy: " + a.energy;
                                 //s = a.UnitName + "\n" + buildItem((Item)a.weapon) + "\n" + buildItem((Item)a.secondary) + "\n" + buildItem((Item)a.armor) + "\n" + buildItem((Item)a.accessory);
+                                s = a.UnitName + "\n" + a.mainslot.itemName + "\n" + a.secondary.itemName;
                                 n = a.UnitName;
                             }
                             else
@@ -292,6 +357,7 @@ public class missionSelect : MonoBehaviour
 
 				return s;
 		}
+
 		void displayContext ()
 		{
 				//start of context menu y = 0; x = 1/3 Screen.width;
@@ -347,6 +413,7 @@ public class missionSelect : MonoBehaviour
                                 int k = 0;
                                 while (data.mainInv[k] != null) k++;
                                 data.mainInv[k] = mainInv[i];
+                                mainInv[i] = null;
 
                             }
                         }
@@ -366,6 +433,7 @@ public class missionSelect : MonoBehaviour
                                 int k = 0;
                                 while (data.secondaryInv[k] != null) k++;
                                 data.secondaryInv[k] = secondInv[i];
+                                secondInv[i] = null;
 
                             }
                         }
@@ -374,8 +442,40 @@ public class missionSelect : MonoBehaviour
                         s.alignment = TextAnchor.MiddleCenter;
                         GUI.BeginGroup(new Rect(x+main/2, 40 + i * dh + dh / 2, main / 2, dh / 2), buildItem((Item)secondInv[i], 1), s);
                         GUI.EndGroup();//secondaires slots
+                        //UNITS
 
+                                                //unit slot
+                        if (GUI.Button(new Rect(x+ main, 40 + i * dh, l - main, dh / 4), "Buy!"))
+                        {
+
+                            int value = unitInv[i].secondary.sellValue * 2;
+                            value += unitInv[i].mainslot.sellValue * 2;
+                            value += 50;
+                            if (value * 2 < data.gold)
+                            {
+                                data.gold -= value;
+                                //code to add it to inv
+                                int k = 0;
+                                while (units[k] != null) k++;
+                                units[k] = unitInv[i];
+                                unitInv[i] = null;
+                                numUnits++;
+
+                            }
+                        }
+                        s.fontSize = 15;
+        
+                        s.alignment = TextAnchor.MiddleCenter;
+                        string t = unitInv[i].UnitName;
+                        t += "\n" + unitInv[i].mainslot.itemName;
+                        t += "\n" + unitInv[i].secondary.itemName;
+                        GUI.BeginGroup(new Rect(x+main, 40 + i * dh + dh / 4, w/20, 3*dh / 4), t, s);
+                        GUI.EndGroup();//secondaires slots
+                    
+                    
+                    
                     }
+                    
 
 				}else if(state == states.UNIT_EQUIP){
                     //DISPLAY SELECTED UNITS STUFFS
@@ -638,7 +738,9 @@ public class missionSelect : MonoBehaviour
                             }
                             data.gameMode = selected.type;
                             data.difficulty = selected.difficulty;
-                            
+                            data.status = false;
+                            data.mission = selected;
+                            DontDestroyOnLoad(data.mission);
                             Application.LoadLevel("FirstMap");
                         }
                 }

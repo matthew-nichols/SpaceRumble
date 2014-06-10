@@ -16,7 +16,8 @@ public class globalData : MonoBehaviour {
     public mainSlot[] mainInv = new mainSlot[14];
     public string gameMode;//Can be attack, find, defend
     public int difficulty;
-    
+    public bool status; //false == fail true == pass
+    public missionSettings mission;
 	// Use this for initialization
 	void Start () {
 	

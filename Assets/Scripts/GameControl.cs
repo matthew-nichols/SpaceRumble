@@ -246,6 +246,7 @@ public class GameControl : MonoBehaviour
 								data.selectedUnits [i] = null;
 						}
 				}
+                data.status = true;
 				Application.LoadLevel ("mission");
 		}
 
