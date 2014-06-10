@@ -109,6 +109,13 @@ public class missionSelect : MonoBehaviour
                 {
                     m1.main = null;
                 }
+                if (Random.Range(0, 8) > 2)
+                {
+                    //add a unit
+                    m1.unitRewards = buildUnit();
+                    DontDestroyOnLoad(m1.unitRewards);
+                }
+
 				m2 = Instantiate (defaultmission) as missionSettings;
 				m2.difficulty = Random.Range (1, 4);
 				m2.allowedUnits = 10 - m2.difficulty;
@@ -130,6 +137,13 @@ public class missionSelect : MonoBehaviour
                 {
                     m2.main = null;
                 }
+                if (Random.Range(0, 8) > 2)
+                {
+                    //add a unit
+                    m2.unitRewards = buildUnit();
+                    DontDestroyOnLoad(m2.unitRewards);
+                }
+
 				m3 = Instantiate (defaultmission) as missionSettings;
 				m3.difficulty = Random.Range (1, 4);
 				m3.allowedUnits = 10 - m3.difficulty;
@@ -151,6 +165,12 @@ public class missionSelect : MonoBehaviour
                 {
                     m3.main = null;
                 }
+                if (Random.Range(0, 8) > 2)
+                {
+                    //add a unit
+                    m3.unitRewards = buildUnit();
+                    DontDestroyOnLoad(m3.unitRewards);
+                }
                 //by default selected mission is m1;
                 selected = m1;
                 //set items between 1 and 5
@@ -167,6 +187,28 @@ public class missionSelect : MonoBehaviour
                     missionSettings ms = data.mission;
                     data.gold += ms.goldReward;
                     //OTHER STUFF
+                    if (ms.main)
+                    {
+                        int k = 0;
+                        while (data.mainInv[k] != null) k++;
+                        data.mainInv[k] = ms.main;
+                    }
+                    if (ms.second)
+                    {
+                        int k = 0;
+                        while (data.secondaryInv[k] != null) k++;
+                        data.secondaryInv[k] = ms.second;
+                        
+                    }
+                    if (ms.unitRewards)
+                    {
+                        //code to add it to inv
+                        int k = 0;
+                        while (units[k] != null) k++;
+                        units[k] = ms.unitRewards;
+                        numUnits++;
+
+                    }
                    
                 }
 		}
@@ -348,7 +390,23 @@ public class missionSelect : MonoBehaviour
 				//gold value
 				s += "Expected Rewards: \n";
 				s += "Gold: " + m.goldReward;
-                if(m.type == "Attack")
+                s += "\n";
+                if (m.main)
+                {
+                    s += "Main: " + m.main.itemName + "\t\t";
+                }
+                if (m.second)
+                {
+                    s += "Secondary: " + m.second.itemName;
+                }
+                if (m.unitRewards)
+                {
+                    s += "\nUnit: " + m.unitRewards.UnitName + " Main: " + m.unitRewards.mainslot.itemName + " Secondary: " + m.unitRewards.secondary.itemName;
+                }
+                s += "\n";
+
+
+                if (m.type == "Attack")
 				    s += "\nYou arrive to find the Chitari have already started harvesting resources here. \nAttack and destroy them so you can take the resources for yourself.";
                 else if(m.type == "Defend")
                     s += "\nYou are gathering resources when the Chitari attack you. \nDefend all the waves of attacks they send at you.";
@@ -443,36 +501,38 @@ public class missionSelect : MonoBehaviour
                         GUI.BeginGroup(new Rect(x+main/2, 40 + i * dh + dh / 2, main / 2, dh / 2), buildItem((Item)secondInv[i], 1), s);
                         GUI.EndGroup();//secondaires slots
                         //UNITS
-
-                                                //unit slot
-                        if (GUI.Button(new Rect(x+ main, 40 + i * dh, l - main, dh / 4), "Buy!"))
+                        if (unitInv[i] != null)
                         {
 
                             int value = unitInv[i].secondary.sellValue * 2;
                             value += unitInv[i].mainslot.sellValue * 2;
-                            value += 50;
-                            if (value * 2 < data.gold)
+                            value += 50;                          //unit slot
+                            if (GUI.Button(new Rect(x + main, 40 + i * dh, l - main, dh / 4), "Buy!"))
                             {
-                                data.gold -= value;
-                                //code to add it to inv
-                                int k = 0;
-                                while (units[k] != null) k++;
-                                units[k] = unitInv[i];
-                                unitInv[i] = null;
-                                numUnits++;
 
+                                if (value * 2 < data.gold)
+                                {
+                                    data.gold -= value;
+                                    //code to add it to inv
+                                    int k = 0;
+                                    while (units[k] != null) k++;
+                                    units[k] = unitInv[i];
+                                    unitInv[i] = null;
+                                    numUnits++;
+
+                                }
                             }
+                            s.fontSize = 15;
+
+                            s.alignment = TextAnchor.MiddleCenter;
+                            string t = unitInv[i].UnitName;
+                            t += "\n" + unitInv[i].mainslot.itemName;
+                            t += "\n" + unitInv[i].secondary.itemName;
+                            t += "\nPrice:" + value;
+                            GUI.BeginGroup(new Rect(x + main, 40 + i * dh + dh / 4, w / 20, 3 * dh / 4), t, s);
+                            GUI.EndGroup();//secondaires slots
+
                         }
-                        s.fontSize = 15;
-        
-                        s.alignment = TextAnchor.MiddleCenter;
-                        string t = unitInv[i].UnitName;
-                        t += "\n" + unitInv[i].mainslot.itemName;
-                        t += "\n" + unitInv[i].secondary.itemName;
-                        GUI.BeginGroup(new Rect(x+main, 40 + i * dh + dh / 4, w/20, 3*dh / 4), t, s);
-                        GUI.EndGroup();//secondaires slots
-                    
-                    
                     
                     }
                     
