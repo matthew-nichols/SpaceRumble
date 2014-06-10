@@ -272,20 +272,30 @@ public class GameControl : MonoBehaviour
 		{
 				//might not be needed
 				//MODE SPECIFIC CODE GOES HERE
-				switch (mode) {
+                string end;
+                GUIStyle s = new GUIStyle();
+                s.normal.textColor = Color.white;
+                s.fontSize = 20;
+                s.alignment = TextAnchor.MiddleLeft;
+                s.wordWrap = true;
+                switch (mode) {
 				case "Defend"://defend game mode
-						GUIStyle s = new GUIStyle ();
-						s.normal.textColor = Color.white;
-						s.fontSize = 20;
-						s.alignment = TextAnchor.MiddleLeft;
 
-						string end = "Waves left: " + wavesLeft;
-						GUI.BeginGroup (new Rect (Screen.width - 160, 0, 160, 20), end, s);
+
+						end = "Waves left: " + wavesLeft;
+						GUI.BeginGroup (new Rect (Screen.width - 360, 0, 360, 20), end, s);
 						GUI.EndGroup ();
 						break;
 				case "Attack"://attack game mode
+
+						end = "Find the satalite and destroy it!";
+						GUI.BeginGroup (new Rect (Screen.width - 360, 0, 360, 40), end, s);
+						GUI.EndGroup ();
 						break;
 				case "Find"://Find game mode(unit something etc.
+                        end = "Find the THING and get to it!";
+						GUI.BeginGroup (new Rect (Screen.width - 360, 0, 360, 40), end, s);
+						GUI.EndGroup ();
 						break;
 				}
 				if (win)
