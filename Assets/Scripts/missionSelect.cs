@@ -408,7 +408,7 @@ public class missionSelect : MonoBehaviour
 
 
                 if (m.type == "Attack")
-				    s += "\nYou arrive to find the Chitari have already started harvesting resources here. \nAttack and destroy them so you can take the resources for yourself.";
+				    s += "\nYou arrive to find the Chitari have already started harvesting resources here. \nAttack and destroy their communications array before they can call for help.";
                 else if(m.type == "Defend")
                     s += "\nYou are gathering resources when the Chitari attack you. \nDefend all the waves of attacks they send at you.";
                 else if(m.type == "Find")
