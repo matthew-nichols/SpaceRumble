@@ -380,31 +380,31 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   secondaryInv:
-  - {fileID: 11400000, guid: 3398b6271f66c164fbb26442bcc82a09, type: 2}
-  - {fileID: 11400000, guid: 3398b6271f66c164fbb26442bcc82a09, type: 2}
-  - {fileID: 11400000, guid: a9f86b53733736647b07dd23af1602ac, type: 2}
-  - {fileID: 11400000, guid: a9f86b53733736647b07dd23af1602ac, type: 2}
-  - {fileID: 11400000, guid: d8fb28d10869cf44ab74f8bfe8623b41, type: 2}
-  - {fileID: 11400000, guid: d8fb28d10869cf44ab74f8bfe8623b41, type: 2}
-  - {fileID: 11400000, guid: 066cc16da1778f1429ae138b7f156a47, type: 2}
-  - {fileID: 11400000, guid: 066cc16da1778f1429ae138b7f156a47, type: 2}
-  - {fileID: 11400000, guid: 3b48001f8afd09e40b060f8fdbf20cb3, type: 2}
-  - {fileID: 11400000, guid: 3b48001f8afd09e40b060f8fdbf20cb3, type: 2}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   mainInv:
-  - {fileID: 11400000, guid: e8af4f83848349647be847575ebbe4f3, type: 2}
-  - {fileID: 11400000, guid: e8af4f83848349647be847575ebbe4f3, type: 2}
-  - {fileID: 11400000, guid: 27ff97ab6975f4148986a73f02350237, type: 2}
-  - {fileID: 11400000, guid: 27ff97ab6975f4148986a73f02350237, type: 2}
-  - {fileID: 11400000, guid: 42f4e73ad7e8515428e0eb7ac716f1a2, type: 2}
-  - {fileID: 11400000, guid: 42f4e73ad7e8515428e0eb7ac716f1a2, type: 2}
-  - {fileID: 11400000, guid: 9fe77934974e7a142a319063faaaee53, type: 2}
-  - {fileID: 11400000, guid: 9fe77934974e7a142a319063faaaee53, type: 2}
-  - {fileID: 11400000, guid: 550f52162f5a08341bfe6523c597f666, type: 2}
-  - {fileID: 11400000, guid: 550f52162f5a08341bfe6523c597f666, type: 2}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}

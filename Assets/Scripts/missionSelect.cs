@@ -91,7 +91,7 @@ public class missionSelect : MonoBehaviour
 				m1 = Instantiate (defaultmission) as missionSettings;
 				m1.difficulty = Random.Range (1, 4);
 				m1.allowedUnits = 10 - m1.difficulty;
-				m1.goldReward = 100 + m1.difficulty * 20;
+				m1.goldReward = 200 + m1.difficulty * 50;
                 m1.type = "Attack";
                 if (Random.Range(0, 5) < 2)
                 {
@@ -119,7 +119,7 @@ public class missionSelect : MonoBehaviour
 				m2 = Instantiate (defaultmission) as missionSettings;
 				m2.difficulty = Random.Range (1, 4);
 				m2.allowedUnits = 10 - m2.difficulty;
-				m2.goldReward = 100 + m2.difficulty * 20;
+				m2.goldReward = 200 + m2.difficulty * 50;
                 m2.type = "Find";
                 if (Random.Range(0, 5) < 2)
                 {
@@ -147,7 +147,7 @@ public class missionSelect : MonoBehaviour
 				m3 = Instantiate (defaultmission) as missionSettings;
 				m3.difficulty = Random.Range (1, 4);
 				m3.allowedUnits = 10 - m3.difficulty;
-				m3.goldReward = 100 + m3.difficulty * 20;
+				m3.goldReward = 200 + m3.difficulty * 50;
                 m3.type = "Defend";
                 if (Random.Range(0, 5) < 2)
                 {
@@ -305,6 +305,7 @@ public class missionSelect : MonoBehaviour
 				for (int i = 0; i < 20; i++) {//20 should be numUnits
 						int k;//to help with rows;
 						int ry;
+                        int ty = y;
                     //only build if unit exists
                         if (units[i] != null)
                         {
@@ -358,12 +359,12 @@ public class missionSelect : MonoBehaviour
 
                             }
                             GUI.backgroundColor = c;   
-                            GUI.BeginGroup(new Rect(x+k*dx+ dx/4, ry + dy/10, dx, dy), n);
+                            GUI.BeginGroup(new Rect(x+k*dx+ dx/4, ty + dy/10, dx, dy), n);
                             GUI.EndGroup();
                             GUI.tooltip = s;
                             if (t.Contains(Event.current.mousePosition))
                             {
-                                GUI.Label(new Rect(x, ry-dy, dx*5, dy), GUI.tooltip);
+                                GUI.Label(new Rect(x, ty-dy, dx*5, dy), GUI.tooltip);
                             }
                         }
 				}
