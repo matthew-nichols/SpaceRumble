@@ -57,7 +57,7 @@ public class EnemyUnit : baseUnit
 								}
 						}
 						if (Vector3.Distance (transform.position, currentTarget.transform.position) < attackRange
-								&& lastAttack > attackRate && control.gameState && projectile != null) {
+								&& lastAttack > attackRate && control.inWave && projectile != null) {
 								Rigidbody clone = Instantiate (projectile, transform.position + offset, transform.rotation) as Rigidbody;
 								unitSound.PlayOneShot (fireSound, 0.1f);
 								clone.SendMessage ("updateDmg", attackDmg);

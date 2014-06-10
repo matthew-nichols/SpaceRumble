@@ -9,11 +9,9 @@ GameObject:
   m_Component:
   - 4: {fileID: 400000}
   - 114: {fileID: 11400000}
-  - 33: {fileID: 0}
-  - 23: {fileID: 0}
   m_Layer: 0
   m_Name: Spawn 1
-  m_TagString: Untagged
+  m_TagString: EnemySpawn
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -25,7 +23,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 216.473877, y: 0, z: 534.644775}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -40,8 +38,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24ca22b917e11db4b87fc9f772f2b326, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unitType: {fileID: 0}
-  totalEnemies: 50
+  unitType: {fileID: 100042, guid: 3e8238def9f31c94aa3938120b3d4575, type: 2}
+  totalEnemies: 3
   targetLocation: {x: 0, y: 0, z: 0}
   sTime: 0
   done: 0
