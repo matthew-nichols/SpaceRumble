@@ -359,6 +359,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selected: {fileID: 11400004}
+  selectedEnemy: {fileID: 0}
   disp: 0
   width: 200
   height: 200
@@ -377,7 +378,7 @@ MonoBehaviour:
   onHoverMaterial: {fileID: 2100000, guid: 13f2273eee249e24f92aa2d8fabfc2af, type: 2}
   health: 1000
   currentHealth: 1000
-  attackDmg: 1370
+  attackDmg: 10
   attackRange: 85
   attackRate: .5
   isClicked: 0
@@ -394,9 +395,8 @@ MonoBehaviour:
   velocity: 25
   delay: 3
   canMove: 0
-  energy: 125
-  currentEnergy: 125
-  cpos: {x: 0, y: 0, z: 0}
+  energy: 175
+  currentEnergy: 175
   ppos: {x: 0, y: 0, z: 0}
   secondary: {fileID: 0}
   mainslot: {fileID: 0}
