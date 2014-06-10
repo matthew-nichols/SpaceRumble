@@ -279,12 +279,12 @@ public class missionSelect : MonoBehaviour
                     if (t.slot == "Main")
                 {//Possibly set each one to have at most 3 bonuses???
                     mainSlot w = (mainSlot)t;
-                    s += "Damage:" + w.damage + " Range:" + w.range + " Rate:" + w.atkRate + " Health:" + w.healthBoost + " Energy:" + w.energyBoost;
+                    s += "Damage:" + w.damage + " Range:" + w.range + " Rate:" + w.atkRate + " Health:" + w.healthBoost;
                 }
                 else if (t.slot == "Secondary")
                 {
                     Secondary w = (Secondary)t;
-                    s += "Damage:" + w.damageBoost + " Range:" + w.rangeBoost + " Rate:" + w.atkRtBoost + " Health:" + w.healthBoost + " Energy:";// +  w.energyBoost;
+                    s += "Damage:" + w.damageBoost + " Range:" + w.rangeBoost + " Rate:" + w.atkRtBoost + " Health:";// +  w.energyBoost;
                 }
             }
             return s;
@@ -434,7 +434,7 @@ public class missionSelect : MonoBehaviour
                     //length of a unit == w/20 height = h/8
                     //right side is lenght of unit
                     //display main weapons | secondary weapons | units
-                    int main = l - w / 20;
+                    int main = l - w / 18;
                    //main *= -1;
                     int height = 3 * w / 4;
                     GUIStyle s = new GUIStyle();
@@ -454,7 +454,7 @@ public class missionSelect : MonoBehaviour
                     GUI.BeginGroup(new Rect(x + main / 2, y, main / 2, 20), "Secondary slot", s);
                     GUI.EndGroup();//secondaries
 
-                    GUI.BeginGroup(new Rect(x+ main, y, w/20, h/8), "Units", s);
+                    GUI.BeginGroup(new Rect(x+ main, y, w/18, h/8), "Units", s);
                     GUI.EndGroup();//units
                     int dh = h/7;
                     //start at y == 40
@@ -523,6 +523,7 @@ public class missionSelect : MonoBehaviour
                                 }
                             }
                             s.fontSize = 15;
+                            s.wordWrap = true;
 
                             s.alignment = TextAnchor.MiddleCenter;
                             string t = unitInv[i].UnitName;
@@ -666,7 +667,7 @@ public class missionSelect : MonoBehaviour
 				int width = w / 4;
 				int dy = h - h / 4;
                 //two states display main, or secondary
-                string msg = "Inventory box!";
+                string msg = "Inventory box!\tGolds!: " + data.gold;
                 GUIStyle s = new GUIStyle(GUI.skin.box);
                 s.alignment = TextAnchor.UpperLeft;
 
@@ -704,11 +705,20 @@ public class missionSelect : MonoBehaviour
                             if (GUI.Button(new Rect(x, y + y * j, width, y), buildItem(data.mainInv[i], 0)))
                             {
                                 //TODO Code for when state is equip select
-                                mainSlot temp = selectedUnit.mainslot;
-                                selectedUnit.mainslot = data.mainInv[i];
-                                data.mainInv[i] = temp;
-                                itemEquip = 1;
-                                invDisp = 1;
+                                if (state == states.UNIT_EQUIP)
+                                {
+                                    mainSlot temp = selectedUnit.mainslot;
+                                    selectedUnit.mainslot = data.mainInv[i];
+                                    data.mainInv[i] = temp;
+                                    itemEquip = 1;
+                                    invDisp = 1;
+                                }
+                                else if (state == states.SHOP)
+                                {
+                                    data.gold += data.mainInv[i].sellValue;
+                                    data.mainInv[i] = null;
+                                    clearSpaces(data.mainInv);
+                                }
                             }
                             j++;
                         }
@@ -721,14 +731,23 @@ public class missionSelect : MonoBehaviour
                     {
                         if (data.secondaryInv[i])
                         {
-                            if (GUI.Button(new Rect(x, y+ y * j, width, y), buildItem(data.secondaryInv[i], 0)))
+                            if (state == states.UNIT_EQUIP)
                             {
-                                //TODO Code for when state is equip select
-                                state = states.DEFAULT;
-                                Secondary temp = selectedUnit.secondary;
-                                selectedUnit.secondary = data.secondaryInv[i];
-                                data.secondaryInv[i] = temp;
-                                selectedUnit = null;
+                                if (GUI.Button(new Rect(x, y + y * j, width, y), buildItem(data.secondaryInv[i], 0)))
+                                {
+                                    //TODO Code for when state is equip select
+                                    state = states.DEFAULT;
+                                    Secondary temp = selectedUnit.secondary;
+                                    selectedUnit.secondary = data.secondaryInv[i];
+                                    data.secondaryInv[i] = temp;
+                                    selectedUnit = null;
+                                }
+                            }
+                            else if (state == states.SHOP)
+                            {
+                                data.gold += data.secondaryInv[i].sellValue;
+                                data.mainInv[i] = null;
+                                clearSpaces(data.secondaryInv);
                             }
                             j++;
                         }
