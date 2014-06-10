@@ -283,7 +283,12 @@ public class missionSelect : MonoBehaviour
 				//gold value
 				s += "Expected Rewards: \n";
 				s += "Gold: " + m.goldReward;
-				s += "\nOtherstuffs";
+                if(m.type == "Attack")
+				    s += "\nYou arrive to find the Chitari have already started harvesting resources here. \nAttack and destroy them so you can take the resources for yourself.";
+                else if(m.type == "Defend")
+                    s += "\nYou are gathering resources when the Chitari attack you. \nDefend all the waves of attacks they send at you.";
+                else if(m.type == "Find")
+                    s += "\nYou arrive on the planet to find the Chitari have already stripped it bare.\nGet to the landing zone and escape before their main fleet arrives";
 
 				return s;
 		}
