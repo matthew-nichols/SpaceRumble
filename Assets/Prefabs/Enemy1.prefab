@@ -365,6 +365,7 @@ GameObject:
   - 195: {fileID: 19500000}
   - 65: {fileID: 6500000}
   - 54: {fileID: 5400000}
+  - 114: {fileID: 11400002}
   m_Layer: 0
   m_Name: Enemy1
   m_TagString: Enemy
@@ -1318,6 +1319,19 @@ MonoBehaviour:
   fireSound: {fileID: 8300000, guid: 08e8bdf6cc9b0dd4ab061efc223c047f, type: 3}
   deathSound: {fileID: 8300000, guid: dec94b1fa9d7717459f18cf7b24080e5, type: 3}
   isTower: 0
+--- !u!114 &11400002
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100042}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8034373a37dbb9442a660686bb9cbc3b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 11400000}
+  healthBarLength: 0
 --- !u!195 &19500000
 NavMeshAgent:
   m_ObjectHideFlags: 1
