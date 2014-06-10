@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class HealthBar : MonoBehaviour {
-	public EnemyUnit target;
+	public EnemyUnit target;//Should change target to enemy
 	public float healthBarLength;
 
 	// Use this for initialization
@@ -17,10 +17,13 @@ public class HealthBar : MonoBehaviour {
 
 	void OnGUI()
 	{
-		Vector2 targetPos;
-		targetPos = Camera.main.WorldToScreenPoint(transform.position);
+		if (Vector3.Distance (target.transform.position, target.currentTarget.transform.position) < target.maxDist*3)
+		{
+			Vector2 targetPos;
+			targetPos = Camera.main.WorldToScreenPoint(transform.position);
 
-		GUI.Box(new Rect(targetPos.x, Screen.height - targetPos.y, 60, 20),target.currentHealth + "/" + target.health);
+			GUI.Box(new Rect(targetPos.x, Screen.height - targetPos.y, 60, 20),target.currentHealth + "/" + target.health);
+		}
 	}
 
 	public void AdjustCurrentHealth(int adj)
