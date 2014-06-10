@@ -153,7 +153,7 @@ public class missionSelect : MonoBehaviour
                     break;
             }
 		}
-        string buildItem(Item t, int m = 0)// m = 0 build item to sell, m =1 buy
+        string buildItem(Item t, int m)// m = 0 build item to sell, m =1 buy
         {
             string s = "";
             //Item
@@ -395,7 +395,7 @@ public class missionSelect : MonoBehaviour
                     s.alignment = TextAnchor.MiddleLeft;
                     GUI.BeginGroup(new Rect(x, y + h / 14, x, h / 14), "Main:", s);
                     GUI.EndGroup();
-                    if (GUI.Button(new Rect(x + 110, y + h / 14, x, h / 14), buildItem(selectedUnit.mainslot)))
+                    if (GUI.Button(new Rect(x + 110, y + h / 14, x, h / 14), buildItem(selectedUnit.mainslot, 0)))
                     {
                         if (itemEquip == 0)
                         {
@@ -408,7 +408,7 @@ public class missionSelect : MonoBehaviour
                     s.alignment = TextAnchor.MiddleLeft;
                     GUI.BeginGroup(new Rect(x, y + h / 14+h/14, x, h / 14), "Secondary:", s);
                     GUI.EndGroup();
-                    if (GUI.Button(new Rect(x + 110, y + h / 14 + h/14, x, h / 14), buildItem(selectedUnit.secondary)))
+                    if (GUI.Button(new Rect(x + 110, y + h / 14 + h/14, x, h / 14), buildItem(selectedUnit.secondary, 0)))
                     {
                         if (itemEquip == 1)
                         {
@@ -536,7 +536,7 @@ public class missionSelect : MonoBehaviour
                     {
                         if (data.mainInv[i])
                         {
-                            if (GUI.Button(new Rect(x, y + y * j, width, y), buildItem(data.mainInv[i])))
+                            if (GUI.Button(new Rect(x, y + y * j, width, y), buildItem(data.mainInv[i], 0)))
                             {
                                 //TODO Code for when state is equip select
                                 mainSlot temp = selectedUnit.mainslot;
@@ -556,7 +556,7 @@ public class missionSelect : MonoBehaviour
                     {
                         if (data.secondaryInv[i])
                         {
-                            if (GUI.Button(new Rect(x, y+ y * j, width, y), buildItem(data.secondaryInv[i])))
+                            if (GUI.Button(new Rect(x, y+ y * j, width, y), buildItem(data.secondaryInv[i], 0)))
                             {
                                 //TODO Code for when state is equip select
                                 state = states.DEFAULT;
