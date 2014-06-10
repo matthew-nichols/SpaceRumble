@@ -274,10 +274,10 @@ MonoBehaviour:
   currentHealth: 1000
   attackDmg: 200
   attackRange: 75
-  attackRate: 1
+  attackRate: 2
   isClicked: 0
   updateRightClick: 0
-  destinationVector: {x: 0, y: 0, z: 0}
+  destinationVector: {x: 0, y: 0, z: 4}
   UnitName: Tower
   currentTarget: {fileID: 0}
   deathExplosion: {fileID: 19800000, guid: bf3f387d006f0414b80b25ba2b9cdf38, type: 2}
