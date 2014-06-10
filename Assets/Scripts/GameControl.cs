@@ -288,7 +288,7 @@ public class GameControl : MonoBehaviour
 						break;
 				case "Attack"://attack game mode
 
-						end = "Find the satalite and destroy it!";
+						end = "Find the satellite and destroy it!";
 						GUI.BeginGroup (new Rect (Screen.width - 360, 0, 360, 40), end, s);
 						GUI.EndGroup ();
 						break;
