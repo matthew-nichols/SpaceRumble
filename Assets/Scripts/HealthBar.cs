@@ -12,17 +12,21 @@ public class HealthBar : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		AdjustCurrentHealth(0);
+		if(target != null)
+			AdjustCurrentHealth(0);
 	}
 
 	void OnGUI()
 	{
-		if (Vector3.Distance (target.transform.position, target.currentTarget.transform.position) < target.maxDist*3)
+		if(target != null && target.currentTarget != null)
 		{
-			Vector2 targetPos;
-			targetPos = Camera.main.WorldToScreenPoint(transform.position);
+			if (Vector3.Distance (target.transform.position, target.currentTarget.transform.position) < target.maxDist*3)
+			{
+				Vector2 targetPos;
+				targetPos = Camera.main.WorldToScreenPoint(transform.position);
 
-			GUI.Box(new Rect(targetPos.x, Screen.height - targetPos.y, 60, 20),target.currentHealth + "/" + target.health);
+				GUI.Box(new Rect(targetPos.x, Screen.height - targetPos.y, 60, 20),target.currentHealth + "/" + target.health);
+			}
 		}
 	}
 

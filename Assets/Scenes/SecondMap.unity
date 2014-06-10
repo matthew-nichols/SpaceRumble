@@ -1410,7 +1410,7 @@ MonoBehaviour:
     height: 1000
   maxDist: 125
   data: {fileID: 0}
-  allySpawnLocation: {x: 90, y: 0, z: 85}
+  allySpawnLocation: {x: 75, y: 0, z: 95}
   wavesLeft: 0
 --- !u!4 &1149641108
 Transform:
