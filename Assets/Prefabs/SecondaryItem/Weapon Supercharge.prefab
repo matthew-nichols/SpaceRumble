@@ -43,8 +43,8 @@ MonoBehaviour:
   buyValue: 0
   slot: Secondary
   healthBoost: 0
-  damageBoost: 300
-  atkRtBoost: 0
+  damageBoost: 100
+  atkRtBoost: .200000003
   rangeBoost: 0
 --- !u!1001 &100100000
 Prefab:

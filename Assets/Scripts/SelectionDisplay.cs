@@ -3,6 +3,7 @@
 public class SelectionDisplay : MonoBehaviour
 {
 		public AllyUnit selected;
+		public EnemyUnit selectedEnemy;
 		public bool disp = false;
 		// variables for size of UI
 		public int width = 200;

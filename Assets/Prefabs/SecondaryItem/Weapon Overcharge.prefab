@@ -44,7 +44,7 @@ MonoBehaviour:
   slot: Secondary
   healthBoost: 0
   damageBoost: 100
-  atkRtBoost: 0
+  atkRtBoost: .100000001
   rangeBoost: 0
 --- !u!1001 &100100000
 Prefab:

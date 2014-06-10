@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Secondary : Item {
 
-	public int healthBoost;
+	public float healthBoost;
 	public int damageBoost;
 	public float atkRtBoost;
 	public int rangeBoost;

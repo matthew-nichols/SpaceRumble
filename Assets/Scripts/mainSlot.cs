@@ -3,7 +3,7 @@ using System.Collections;
 
 public class mainSlot : Item {
 
-	public int healthBoost;
+	public float healthBoost;
 	public int damage;
 	public int energyBoost;
 	public float atkRate;

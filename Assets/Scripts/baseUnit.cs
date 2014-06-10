@@ -6,8 +6,8 @@ public class baseUnit : MonoBehaviour
 {
 		public Material defaultMaterial;
 		public Material onHoverMaterial;
-		public int health;
-		public int currentHealth;
+		public float health;
+		public float currentHealth;
 		public int attackDmg;
 		public int attackRange;
 		public float attackRate;
