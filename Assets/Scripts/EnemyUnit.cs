@@ -13,7 +13,6 @@ public class EnemyUnit : baseUnit
 		public AudioClip fireSound;
 		public AudioClip deathSound;
 		public bool isTower = false;
-		public string UnitName = "Enemy";
 
 		protected override void Start ()
 		{

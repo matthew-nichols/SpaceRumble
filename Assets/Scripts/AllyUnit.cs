@@ -12,9 +12,6 @@ public class AllyUnit : baseUnit
 		public float energy;
 		public float currentEnergy;
 		public Vector3 ppos;
-		//public Weapon weapon;
-		//public Armor armor;
-		//public Accessory accessory;
 		public Secondary secondary;
 		public mainSlot mainslot;
 		public int index;
@@ -43,24 +40,10 @@ public class AllyUnit : baseUnit
 
 		void SetInfo (AllyUnitStats a)
 		{
-				/*targetLocation = a.targetLocation;
-		        lastAttack = a.lastAttack;
-		        projectile = a.projectile;
-		        offset= a.offset;
-		        velocity = a.velocity;
-		        delay = a.delay;
-		        unitSound = a.unitSound;
-		        fireSound = a.fireSound;
-		        deathSound = a.deathSound;
-		        canMove = a.canMove;*/
+			
 				energy = a.energy;
 				currentEnergy = a.currentEnergy;
-				// cpos = a.cpos;
-				// ppos = a.ppos;
 				mainslot = a.mainslot;
-				//weapon = a.weapon;
-				//armor = a.armor;
-				//accessory = a.accessory;
 				secondary = a.secondary;
 				health = a.health;
 				currentHealth = a.currentHealth;
@@ -72,23 +55,8 @@ public class AllyUnit : baseUnit
 
 		void GetInfo (AllyUnitStats a)
 		{
-				/* a.targetLocation = targetLocation;
-            a.lastAttack = lastAttack;
-            a.projectile = projectile;
-            a.offset = offset;
-            a.velocity = velocity;
-            a.delay = delay;
-            a.unitSound = unitSound;
-            a.fireSound = fireSound;
-            a.deathSound = deathSound;
-            a.canMove = canMove;*/
 				a.energy = energy;
 				a.currentEnergy = currentEnergy;
-				//   a.cpos = cpos;
-				//  a.ppos = ppos;
-				//a.weapon = weapon;
-				//a.armor = armor;
-				//a.accessory = accessory;
 				a.secondary = secondary;
 				a.health = health;
 				a.currentHealth = currentHealth;

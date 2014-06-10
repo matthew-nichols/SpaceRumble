@@ -3,10 +3,8 @@ using System.Collections;
 
 public class EnemySpawn : MonoBehaviour
 {
-		//public ArrayList enemies = new ArrayList ();
 		public GameObject unitType;
 		public int totalEnemies = 50;
-		public Vector3 targetLocation;
 		float spawnTime = 0;
 		public float sTime = 0;
 		public bool done = false;
