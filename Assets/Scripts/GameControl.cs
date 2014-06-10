@@ -127,7 +127,7 @@ public class GameControl : MonoBehaviour
 				case "Attack"://attack game mode
 						if(!GameObject.Find("Objective1")){
 								win = true;
-								missionOver ();
+								//missionOver ();
 						}
 						break;
 				case "Find"://Find game mode(unit something etc.

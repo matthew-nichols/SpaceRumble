@@ -56,25 +56,5 @@ public class DebugCamera : MonoBehaviour {
 			//transform.Translate(-defaultCam.transform.up * flySpeed*0.5f);
 			Time.timeScale = 0;
 		}
-		if (Input.GetKeyDown(KeyCode.F12))
-			switchCamera();
-		if (Input.GetKeyDown(KeyCode.M))
-			playerObject.transform.position = transform.position; //Moves the player to the flycam's position. Make sure not to just move the player's camera.
-	}
-	void switchCamera()
-	{
-		if (!isEnabled) //means it is currently disabled. code will enable the flycam. you can NOT use 'enabled' as boolean's name.
-		{
-			transform.position = defaultCam.transform.position; //moves the flycam to the defaultcam's position
-			defaultCam.camera.active = false;
-			this.camera.active = true;
-			isEnabled = true;
-		}
-		else if (isEnabled) //if it is not disabled, it must be enabled. the function will disable the freefly camera this time.
-		{
-			this.camera.active = false;
-			defaultCam.camera.active = true;
-			isEnabled = false;
-		}
 	}
 }
