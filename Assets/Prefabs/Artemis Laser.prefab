@@ -43,7 +43,7 @@ MonoBehaviour:
   buyValue: 0
   slot: Main
   healthBoost: 0
-  damage: 10
+  damage: 15
   energyBoost: 0
   atkRate: .400000006
   range: 100
