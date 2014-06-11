@@ -154,7 +154,7 @@ AudioSource:
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
   serializedVersion: 3
-  m_audioClip: {fileID: 8300000, guid: eec47df07d1c0984ba02bdb9acf64775, type: 3}
+  m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: .200000003
   m_Pitch: 1
@@ -309,7 +309,7 @@ MonoBehaviour:
   lastAttack: 0
   maxDist: 40
   unitSound: {fileID: 8200002}
-  fireSound: {fileID: 8300000, guid: 25a8f4668dfb3c546bfdc8a0ea0cb194, type: 3}
+  fireSound: {fileID: 8300000, guid: 8d98c6698217d634eb6521d09335a30f, type: 3}
   deathSound: {fileID: 8300000, guid: 247c117139ff4e34a858a1c664ca680d, type: 3}
   isTower: 0
 --- !u!114 &11400002

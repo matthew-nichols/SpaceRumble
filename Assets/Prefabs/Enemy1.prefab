@@ -1316,8 +1316,8 @@ MonoBehaviour:
   lastAttack: 0
   maxDist: 50
   unitSound: {fileID: 8200002}
-  fireSound: {fileID: 8300000, guid: 08e8bdf6cc9b0dd4ab061efc223c047f, type: 3}
-  deathSound: {fileID: 8300000, guid: dec94b1fa9d7717459f18cf7b24080e5, type: 3}
+  fireSound: {fileID: 8300000, guid: 38fe7e8005330d744bcf31d78b3f2be6, type: 3}
+  deathSound: {fileID: 8300000, guid: 2081494e048573e42bf109ee4f2a62a0, type: 3}
   isTower: 0
 --- !u!114 &11400002
 MonoBehaviour:

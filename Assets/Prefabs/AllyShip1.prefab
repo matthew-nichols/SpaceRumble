@@ -403,9 +403,9 @@ MonoBehaviour:
   index: 0
   unitSound: {fileID: 8200002}
   fireSound: {fileID: 8300000, guid: 8d98c6698217d634eb6521d09335a30f, type: 3}
-  deathSound: {fileID: 8300000, guid: ab2b2c9abeaae614faf97117cc30e640, type: 3}
+  deathSound: {fileID: 8300000, guid: 67db67fcbbd213d488ac767ab7370846, type: 3}
   selectSound: {fileID: 8300000, guid: ae9cfa87a7417624dadb374ed30164f4, type: 3}
-  moveSound: {fileID: 8300000, guid: 6b64d9845e1d1ad4685cf8d201f79db6, type: 3}
+  moveSound: {fileID: 8300000, guid: f41d014ca4466994aa9c7f977e929189, type: 3}
 --- !u!195 &19500000
 NavMeshAgent:
   m_ObjectHideFlags: 1
