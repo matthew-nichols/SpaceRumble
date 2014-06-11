@@ -120,7 +120,7 @@ public class missionSelect : MonoBehaviour
 				m2.difficulty = Random.Range (1, 4);
 				m2.allowedUnits = 10 - m2.difficulty;
 				m2.goldReward = 200 + m2.difficulty * 50;
-                m2.type = "Find";
+                m2.type = "Defend";
                 if (Random.Range(0, 5) < 2)
                 {
                     m2.second = data.secondaries[Random.Range(1, 6)];
@@ -465,7 +465,7 @@ public class missionSelect : MonoBehaviour
                         if(GUI.Button(new Rect(x, 40+i*dh, main/2, dh/2), "Buy!"))
                         {
                             //buy the item!
-                            if (mainInv[i].sellValue * 2 < data.gold)
+                            if (mainInv[i].sellValue * 2 <= data.gold)
                             {
                                 data.gold -= mainInv[i].sellValue * 2;
                                 //code to add it to inv
@@ -485,7 +485,7 @@ public class missionSelect : MonoBehaviour
                         //secondary slot
                         if (GUI.Button(new Rect(x+ main/2, 40 + i * dh, main / 2, dh / 2), "Buy!"))
                         {
-                            if (secondInv[i].sellValue * 2 < data.gold)
+                            if (secondInv[i].sellValue * 2 <= data.gold)
                             {
                                 data.gold -= secondInv[i].sellValue * 2;
                                 //code to add it to inv
@@ -511,7 +511,7 @@ public class missionSelect : MonoBehaviour
                             if (GUI.Button(new Rect(x + main, 40 + i * dh, l - main, dh / 4), "Buy!"))
                             {
 
-                                if (value * 2 < data.gold)
+                                if (value * 2 <= data.gold)
                                 {
                                     data.gold -= value;
                                     //code to add it to inv

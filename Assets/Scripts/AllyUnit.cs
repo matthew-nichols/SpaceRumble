@@ -27,7 +27,7 @@ public class AllyUnit : baseUnit
 				base.Start ();
 				playSound = true;
 				if (mainslot) {
-						health = 200 + mainslot.healthBoost + secondary.healthBoost;//200 is the default health
+						health = 600 + mainslot.healthBoost + secondary.healthBoost;//200 is the default health
 						currentHealth = health;
 						attackRange = secondary.rangeBoost + mainslot.range;
 						attackRate = 1 - mainslot.atkRate - secondary.atkRtBoost; //1 is the default attack rate

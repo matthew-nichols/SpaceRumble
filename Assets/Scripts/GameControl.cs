@@ -306,9 +306,9 @@ public class GameControl : MonoBehaviour
 								waveStart ();
 						}
 				}
-				if (GUI.Button (new Rect (20, 30, 160, 20), ("Return to Mission Select"))) {
-						missionOver ();
-				}
+				//if (GUI.Button (new Rect (20, 30, 160, 20), ("Return to Mission Select"))) {
+				//		missionOver ();
+				//}
 
 		}
 }
